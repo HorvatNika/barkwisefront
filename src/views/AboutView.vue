@@ -82,7 +82,7 @@ export default {
 
 .form-container {
   background-color: #EDD9B7;
-  padding: 30px;
+  padding: 20px;
   border-radius: 130px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -127,19 +127,19 @@ h2 {
   font-family: 'Montel', sans-serif;
   text-align: left; 
   width: 90%; 
-  margin-left: 5%;
+  margin-right: 15%;
 }
 
 .input-field {
-  width: 90%; 
+  width: 110%; 
   padding: 17px;
   font-size: 16px;
   border-radius: 60px;
   border: 1px solid #FFFEF9; 
   background-color: #FFFEF9;
-  font-family: 'Montel', sans-serif;
+  font-family: 'CenturyGothic', sans-serif;
   color: #EDD9B7;
-  text-align: center; 
+  text-align: left; 
 }
 
 .input-field::placeholder {
@@ -161,7 +161,8 @@ h2 {
   font-size: 20px;
   cursor: pointer;
   font-family: 'Montel', sans-serif;
-  margin-top: 20px;
+  margin-top: 5px;
+  margin-bottom: 10px;
   transition: all 0.3s ease; 
 }
 
@@ -180,8 +181,8 @@ h2 {
   color: #FFFEF9;
   text-align: right;
   margin-top: 5px;
+  margin-left: 30px;
   width: 90%;
-  margin-left: -5%;
   cursor: pointer;
 }
 
