@@ -1,138 +1,138 @@
 <template>
-    <div class="register">
-      <div class="title-container" v-if="showFirstForm">
-        <h2>Register</h2>
-      </div>
-  
-      <div class="form-container">
-        <div v-if="showFirstForm" class="input-container">
-          <div class="profile-picture-container" @click="triggerFileInput">
-            <input
-              type="file"
-              id="profilePicture"
-              ref="fileInput"
-              @change="handleProfilePictureUpload"
-              accept="image/*"
-              style="display: none;"
-            />
-            <div v-if="profilePicture" class="profile-picture-preview">
-              <img :src="profilePicture" alt="Profile Picture" />
-            </div>
-            <div v-else class="profile-picture-placeholder">
-              <span>+</span>
-            </div>
-          </div>
-  
-          <div class="input-item">
-            <label for="name" class="input-label">Name</label>
-            <div class="input-line">
-              <input
-                type="text"
-                id="name"
-                v-model="name"
-                class="input-text"
-                placeholder="Enter your name"
-              />
-            </div>
-          </div>
-  
-          <div class="input-item">
-            <label for="gender" class="input-label">Gender</label>
-            <div class="input-line">
-              <select id="gender" v-model="gender" class="input-select">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-            </div>
-          </div>
-  
-          <div class="input-item">
-            <label for="birthday" class="input-label">Birthday</label>
-            <div class="input-line">
-              <input
-                type="date"
-                id="birthday"
-                v-model="birthday"
-                class="input-text"
-              />
-            </div>
-          </div>
-  
-          <div class="input-item">
-            <label for="colorPattern" class="input-label">Coat Pattern</label>
-            <div class="input-line">
-              <input
-                type="text"
-                id="colorPattern"
-                v-model="colorPattern"
-                class="input-text"
-                placeholder="Enter color pattern"
-              />
-            </div>
-          </div>
-        </div>
-  
-        <div v-else class="input-container">
-          <div class="input-item">
-            <label for="email" class="input-label">Email</label>
-            <div class="input-line">
-              <input
-                type="email"
-                id="email"
-                v-model="email"
-                class="input-text"
-                placeholder="Enter your email"
-              />
-            </div>
-          </div>
-  
-          <div class="input-item">
-            <label for="password" class="input-label">Password</label>
-            <div class="input-line">
-              <input
-                type="password"
-                id="password"
-                v-model="password"
-                class="input-text"
-                placeholder="Enter your password"
-              />
-            </div>
-          </div>
-  
-          <div class="input-item">
-            <label for="confirmPassword" class="input-label">Confirm Password</label>
-            <div class="input-line">
-              <input
-                type="password"
-                id="confirmPassword"
-                v-model="confirmPassword"
-                class="input-text"
-                placeholder="Confirm your password"
-              />
-            </div>
-          </div>
+  <div class="register">
+    <div class="title-container" v-if="showFirstForm">
+      <h2>Register</h2>
+    </div>
 
-          <div class="button-container">
-            <button type="submit" class="register-btn">Register</button>
+    <div class="form-container">
+      <div v-if="showFirstForm" class="input-container">
+        <div class="profile-picture-container" @click="triggerFileInput">
+          <input
+            type="file"
+            id="profilePicture"
+            ref="fileInput"
+            @change="handleProfilePictureUpload"
+            accept="image/*"
+            style="display: none;"
+          />
+          <div v-if="profilePicture" class="profile-picture-preview">
+            <img :src="profilePicture" alt="Profile Picture" />
+          </div>
+          <div v-else class="profile-picture-placeholder">
+            <span>+</span>
           </div>
         </div>
-  
-        <div class="toggle-buttons">
-          <div 
-            class="circle" 
-            :class="{ active: showFirstForm }" 
-            @click="showFirstForm = true"
-          ></div>
-          <div 
-            class="circle" 
-            :class="{ active: !showFirstForm }" 
-            @click="showFirstForm = false"
-          ></div>
+
+        <div class="input-item">
+          <label for="name" class="input-label">Name</label>
+          <div class="input-line">
+            <input
+              type="text"
+              id="name"
+              v-model="name"
+              class="input-text"
+              placeholder="Enter your name"
+            />
+          </div>
         </div>
+
+        <div class="input-item">
+          <label for="gender" class="input-label">Gender</label>
+          <div class="input-line">
+            <select id="gender" v-model="gender" class="input-select">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-item">
+          <label for="birthday" class="input-label">Birthday</label>
+          <div class="input-line">
+            <input
+              type="date"
+              id="birthday"
+              v-model="birthday"
+              class="input-text"
+            />
+          </div>
+        </div>
+
+        <div class="input-item">
+          <label for="colorPattern" class="input-label">Coat Pattern</label>
+          <div class="input-line">
+            <input
+              type="text"
+              id="colorPattern"
+              v-model="colorPattern"
+              class="input-text"
+              placeholder="Enter color pattern"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div v-else class="input-container">
+        <div class="input-item">
+          <label for="email" class="input-label">Email</label>
+          <div class="input-line">
+            <input
+              type="email"
+              id="email"
+              v-model="email"
+              class="input-text"
+              placeholder="Enter your email"
+            />
+          </div>
+        </div>
+
+        <div class="input-item">
+          <label for="password" class="input-label">Password</label>
+          <div class="input-line">
+            <input
+              type="password"
+              id="password"
+              v-model="password"
+              class="input-text"
+              placeholder="Enter your password"
+            />
+          </div>
+        </div>
+
+        <div class="input-item">
+          <label for="confirmPassword" class="input-label">Confirm Password</label>
+          <div class="input-line">
+            <input
+              type="password"
+              id="confirmPassword"
+              v-model="confirmPassword"
+              class="input-text"
+              placeholder="Confirm your password"
+            />
+          </div>
+        </div>
+
+        <div class="button-container">
+          <button type="submit" class="register-btn">Register</button>
+        </div>
+      </div>
+
+      <div class="toggle-buttons">
+        <div 
+          class="circle" 
+          :class="{ active: showFirstForm }" 
+          @click="showFirstForm = true"
+        ></div>
+        <div 
+          class="circle" 
+          :class="{ active: !showFirstForm }" 
+          @click="showFirstForm = false"
+        ></div>
       </div>
     </div>
-  </template>
-  
+  </div>
+</template>
+
 <script>
 export default {
   name: 'Register',
@@ -217,7 +217,7 @@ export default {
 h2 {
   margin: 0;
   color: inherit;
-  margin-top: -192px;
+  margin-top: -154px;
 }
 
 .input-container {
@@ -239,25 +239,25 @@ h2 {
 .input-label {
   color: #FFFEF9;
   font-size: 18px;
-  margin-right: 10px;
+  margin-right: 15px;
   font-family: 'Montel', sans-serif;
   text-align: left;
   width: 40%;
 }
 
 .input-line {
-  width: 60%;
+  width: 50%;
   display: flex;
   justify-content: flex-end;
+  padding-right: 15px;
 }
 
 .input-text, .input-select {
   font-family: 'Century Gothic', sans-serif;
   color: #FFFEF9;
   font-size: 16px;
-  padding: 10px;
   text-align: left;
-  width: 75%;
+  width: 100%;
   background-color: transparent;
   border: none;
 }
@@ -269,6 +269,11 @@ h2 {
 
 input::placeholder, .input-select::placeholder {
   color: #FFFEF9;
+}
+
+input:focus, .input-select:focus {
+  outline: none;
+  border-bottom: 0.5px solid #FFFEF9;
 }
 
 .circle {
@@ -293,11 +298,6 @@ input::placeholder, .input-select::placeholder {
 
 input[type="date"]::-webkit-calendar-picker-indicator {
   display: none;
-}
-
-input:focus, .input-select:focus {
-  outline: none;
-  border-bottom: 0.5px solid #FFFEF9;
 }
 
 .profile-picture-container {
