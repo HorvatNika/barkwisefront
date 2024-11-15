@@ -6,7 +6,11 @@
       </div>
       <div class="top-background"></div>
       <div class="middle-line"></div>
-      <div class="bottom-background"></div>
+      <div class="bottom-background">
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+      </div>
       <img src="@/assets/slike/borderpla.png" alt="borderpla" class="borderzel-image" />
     </div>
   </template>
@@ -44,10 +48,10 @@
     font-size: 1rem;
     color: #FFFEF9;
     text-align: left;
-    margin-top: 11%; 
+    margin-top: 11%;
     position: absolute;
-    left: 15%; 
-    width: 50%; 
+    left: 15%;
+    width: 50%;
     z-index: 2;
   }
   
@@ -66,13 +70,23 @@
   .bottom-background {
     background-color: #EEEEE6;
     flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     z-index: 1;
+    padding: 0 10%; 
+  }
+  
+  .square {
+    width: 27%; 
+    height: 270px; 
+    background-color: #BAE1F0;
   }
   
   .borderzel-image {
     position: fixed;
     right: 70px;
-    top: 25%;
+    top: 26%;
     width: auto;
     height: 40%;
     object-fit: contain;
