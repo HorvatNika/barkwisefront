@@ -97,7 +97,7 @@ export default {
   color: #838383; 
   font-family: 'chunkyretro', sans-serif;
   font-size: 80px;
-  top: 250px;
+  top: 252px;
   left: -122px;
 }
 
