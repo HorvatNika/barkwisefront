@@ -2,7 +2,7 @@
     <div class="profile">
       <div class="profile-title">profile</div>
       <div class="profile-text">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        Take control of your and your dog's profile with a simple and intuitive interface. Update personal information, track your Border Collie’s training milestones, and access detailed progress reports. With easy-to-follow insights, you can monitor your dog's development over time and adjust their training routine as needed. Stay on top of your dog's achievements and ensure they continue to progress in their training journey.
       </div>
       <div class="top-background"></div>
       <div class="middle-line"></div>

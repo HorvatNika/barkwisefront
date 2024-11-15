@@ -2,7 +2,7 @@
     <div class="home">
       <div class="home-title">home</div>
       <div class="home-text">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        Explore a variety of expert-written articles focused on maintaining the health and well-being of your Border Collie. From dietary advice and exercise routines to grooming tips and common health issues, our resources are designed to help you give your furry companion the best care possible. Stay informed with the latest news and insights to ensure your Border Collie leads a happy and healthy life.
       </div>
       <div class="top-background"></div>
       <div class="middle-line"></div>
