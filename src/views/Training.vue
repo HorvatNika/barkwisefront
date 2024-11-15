@@ -1,12 +1,10 @@
 <template>
     <div class="training">
+      <div class="training-title">training</div>
       <div class="top-background"></div>
-  
       <div class="middle-line"></div>
-  
       <div class="bottom-background"></div>
-
-      <img src="@/assets/slike/bordernar.png" alt="borderzel" class="borderzel-image" />
+      <img src="@/assets/slike/bordernar.png" alt="bordernar" class="borderzel-image" />
     </div>
   </template>
   
@@ -22,39 +20,47 @@
     flex-direction: column;
     height: 100vh;
     width: 100%;
+    position: relative;
+  }
+  
+  .training-title {
+    font-family: 'ChunkyRetro', sans-serif;
+    font-size: 17rem;
+    color: #FFFEF9;
+    text-align: left;
+    position: absolute;
+    top: 1%;
+    left: 15%; 
+    width: 100%;
+    z-index: 2;
   }
   
   .top-background {
     background-color: #EDD9B7;
-    flex: 1; 
+    flex: 1;
+    z-index: 1;
   }
   
   .middle-line {
     background-color: #FFFEF9;
-    height: 100px; 
+    height: 100px;
+    z-index: 1;
   }
   
   .bottom-background {
     background-color: #EEEEE6;
-    flex: 1; 
+    flex: 1;
+    z-index: 1;
   }
   
-  h1 {
-    text-align: center;
-    font-size: 2rem;
-    z-index: 10;
-    position: relative; 
-  }
-
- 
   .borderzel-image {
-    position: absolute; 
-    right: 70px; 
-    top: 31%; 
-    width: auto; 
-    height: 35%; 
+    position: fixed;
+    right: 70px;
+    top: 31%;
+    width: auto;
+    height: 35%;
     object-fit: contain;
-    z-index: 10; 
+    z-index: 10;
   }
   </style>
   
