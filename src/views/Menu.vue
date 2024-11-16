@@ -78,7 +78,7 @@ export default {
 }
 
 .text-green {
-  color: #838383; 
+  color: #5F5F5F; 
   font-family: 'chunkyretro', sans-serif;
   font-size: 80px;
   bottom: 185px;
@@ -86,7 +86,7 @@ export default {
 }
 
 .text-beige {
-  color: #838383; 
+  color: #5F5F5F; 
   font-family: 'chunkyretro', sans-serif;
   font-size: 80px;
   top: 230px;
@@ -94,7 +94,7 @@ export default {
 }
 
 .text-blue {
-  color: #838383; 
+  color: #5F5F5F; 
   font-family: 'chunkyretro', sans-serif;
   font-size: 80px;
   top: 252px;
@@ -103,7 +103,7 @@ export default {
 
 .description-text {
   position: absolute;
-  color: #838383; 
+  color: #5F5F5F; 
   font-family: 'Century Gothic', sans-serif; 
   font-size: 17px;
   text-align: left;
