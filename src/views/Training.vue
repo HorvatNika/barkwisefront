@@ -148,9 +148,9 @@ export default {
 
 .personalplan-image {
   position: absolute;
-  top: 23%;
+  top: 25%;
   left: 11%;
-  width: 12%;
+  width: 11.5%;
   height: auto;
   object-fit: contain;
 }
@@ -158,7 +158,7 @@ export default {
 .borderzel-image {
   position: fixed;
   right: 70px;
-  top: 31%;
+  top: 24%;
   width: auto;
   height: 35%;
   object-fit: contain;

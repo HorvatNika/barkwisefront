@@ -147,7 +147,7 @@ export default {
 .borderzel-image {
   position: fixed;
   right: 60px;
-  top: 15%;
+  top: 8%;
   width: auto;
   height: 50%;
   object-fit: contain;
@@ -157,16 +157,16 @@ export default {
 .collie-traits-image {
   position: absolute;
   top: 50%;
-  left: 3%;
+  left: 3.7%;
   transform: translateY(-50%) rotate(-10deg);
-  width: 30%;
+  width: 26%;
   height: auto;
   object-fit: contain;
 }
 
 .healthcare-image {
   position: absolute;
-  top: 30%;
+  top: 32%;
   left: 9%;
   width: 18%;
   transform: rotate(-8deg);
@@ -176,7 +176,7 @@ export default {
 
 .food-image {
   position: absolute;
-  top: 30%;
+  top: 31%;
   left: 8%;
   width: 19%;
   height: auto;

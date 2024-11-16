@@ -6,6 +6,7 @@ import Menu from '../views/Menu.vue'
 import Home from '../views/Home.vue'
 import Training from '../views/Training.vue'
 import Profile from '../views/Profile.vue'
+import CollieTraits from '../views/CollieTraits.vue'
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: Profile
+  },
+  {
+    path: '/collietraits',
+    name: 'collietraits',
+    component: CollieTraits
   }
 ]
 

@@ -155,8 +155,8 @@ export default {
 
 .progress-image {
   position: absolute;
-  top: 28%;
-  left: 9%;
+  top: 30%;
+  left: 8.2%;
   width: 19%;
   height: auto;
   object-fit: contain;
@@ -164,8 +164,8 @@ export default {
 
 .settings-image {
   position: absolute;
-  top: 30%;
-  left: 9%;
+  top: 32%;
+  left: 8%;
   width: 20%;
   height: auto;
   object-fit: contain;
@@ -174,7 +174,7 @@ export default {
 .borderzel-image {
   position: fixed;
   right: 70px;
-  top: 31%;
+  top: 24%;
   width: auto;
   height: 35%;
   object-fit: contain;
