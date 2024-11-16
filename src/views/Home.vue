@@ -177,8 +177,8 @@ export default {
 .food-image {
   position: absolute;
   top: 30%;
-  left: 7%;
-  width: 20%;
+  left: 8%;
+  width: 19%;
   height: auto;
   object-fit: contain;
 }
