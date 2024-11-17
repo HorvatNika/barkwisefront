@@ -101,7 +101,7 @@
   font-size: 17rem;
   color: #FFFEF9;
   text-align: left;
-  position: absolute;
+  position: fixed;
   top: 1%;
   left: 15%;
   width: 100%;
@@ -127,7 +127,7 @@
   color: #5F5F5F;
   text-align: center;
   position: absolute;
-  top: 37.5%; 
+  top: 38%; 
   width: 100%;
   z-index: 2;
   opacity: 30%;
@@ -225,6 +225,5 @@
 .nav-circle:hover {
   background-color: #AEEBBA;
 }
-
   </style>
   

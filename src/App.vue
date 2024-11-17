@@ -15,7 +15,8 @@
       <router-link to="/home">Home</router-link> 
       <router-link to="/training">Training</router-link> 
       <router-link to="/profile">Profile</router-link> 
-      <router-link to="/collietraits">CollieTraits</router-link> 
+      <router-link to="/collietraits">CollieTraits</router-link>
+      <router-link to="/trainingplan">TrainingPlan</router-link>  
     </div>
   </nav>
   <router-view/>
@@ -33,7 +34,7 @@
 nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start; 
   padding: 20px;
   font-family: 'CenturyGothic', sans-serif;
   background-color: transparent;
@@ -41,7 +42,7 @@ nav {
   position: fixed;
   width: 100%;
   z-index: 1000;
-  left: 0;  
+  left: 0;
 }
 
 .nav-container {
@@ -82,7 +83,7 @@ nav {
 }
 
 .nav-links {
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: flex-start; 
 }

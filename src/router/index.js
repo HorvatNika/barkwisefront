@@ -7,6 +7,7 @@ import Home from '../views/Home.vue'
 import Training from '../views/Training.vue'
 import Profile from '../views/Profile.vue'
 import CollieTraits from '../views/CollieTraits.vue'
+import TrainingPlan from '../views/TrainingPlan.vue'
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
     path: '/collietraits',
     name: 'collietraits',
     component: CollieTraits
+  },
+  {
+    path: '/trainingplan',
+    name: 'trainingplan',
+    component: TrainingPlan
   }
 ]
 

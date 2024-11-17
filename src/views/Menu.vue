@@ -29,7 +29,7 @@ export default {
   background-color: #FBFBC0;
   min-height: 100vh;
   padding: 20px;
-  display: flex;
+  display: fixed;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -41,7 +41,7 @@ export default {
   position: absolute;
   width: 900px;
   height: auto;
-  display: flex;
+  display: fixed;
   justify-content: center;
   align-items: center;
 }

@@ -52,7 +52,7 @@ export default {
   font-size: 17rem;
   color: #FFFEF9;
   text-align: left;
-  position: absolute;
+  position: fixed;
   top: 1%;
   left: 15%;
   width: 100%;
