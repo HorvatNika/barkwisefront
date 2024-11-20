@@ -127,7 +127,7 @@
   color: #5F5F5F;
   text-align: center;
   position: absolute;
-  top: 38%; 
+  top: 37.5%; 
   width: 100%;
   z-index: 2;
   opacity: 30%;

@@ -1,38 +1,40 @@
 <template>
   <div class="training-plan">
     <div class="training-title">training plan</div>
-    <div class="top-background"></div>
-    <div class="bottom-background">
+
+    <div class="menu-container">
       <div class="menu">
-        <div 
-          class="menu-item" 
-          v-for="(item, index) in trainingOptions" 
-          :key="index"
-          @click="toggleMenu(index)"
-        >
-          <div class="menu-title">{{ item.title }}</div>
-          <div v-if="item.isOpen" class="submenu">
-            <ul>
-              <li 
-                v-for="(subitem, subindex) in item.suboptions" 
-                :key="subindex"
-                @click.stop="selectOption(item.title, subitem)"
-              >
-                {{ subitem }}
-              </li>
-            </ul>
+        <div class="dropdown">
+          <button class="dropbtn">by difficulty</button>
+          <div class="dropdown-content">
+            <div class="menu-item" @click="selectDifficulty('Beginner')">Beginner</div>
+            <div class="menu-item" @click="selectDifficulty('Intermediate')">Intermediate</div>
+            <div class="menu-item" @click="selectDifficulty('Advanced')">Advanced</div>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">by type</button>
+          <div class="dropdown-content">
+            <div class="menu-item" @click="selectType('Commands')">Commands</div>
+            <div class="menu-item" @click="selectType('Behavioral Training')">Behavioral Training</div>
+            <div class="menu-item" @click="selectType('Tricks')">Tricks</div>
+            <div class="menu-item" @click="selectType('Advanced Training')">Advanced Training</div>
+            <div class="menu-item" @click="selectType('Active Disciplines')">Active Disciplines</div>
+            <div class="menu-item" @click="selectType('Potty Training')">Potty Training</div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="content" v-if="selectedContent">
-        <h2 class="content-title">Selected: {{ selectedContent.title }}</h2>
-        <p class="content-description">
-          You selected: <strong>{{ selectedContent.option }}</strong>.
-        </p>
-        <p class="content-details">
-          {{ contentDetails }}
-        </p>
+    <div class="top-background"></div>
+
+    <div class="bottom-background">
+      <div class="exercise-list">
+        <div v-for="(subOption, index) in filteredSubOptions" :key="index" class="exercise-item">
+          <div class="exercise-image"></div>
+          <div class="exercise-title">{{ subOption }}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -43,157 +45,168 @@ export default {
   name: "Training",
   data() {
     return {
-      selectedContent: null,
       trainingOptions: [
-        {
-          title: "Commands",
-          suboptions: ["Sit", "Lie down", "Come", "Stop", "Stay"],
-          isOpen: false, // Stanje proširenja
-        },
-        {
-          title: "Behavioral Training",
-          suboptions: [
-            "Socialization with people and other dogs",
-            "Learning proper leash manners",
-            "Eliminating unwanted habits",
-          ],
-          isOpen: false,
-        },
-        {
-          title: "Tricks",
-          suboptions: [
-            "Giving a paw",
-            "Rolling over",
-            "Spinning in a circle",
-            "Jumping through a hoop",
-            "Putting a paw on their face",
-            "Playing dead",
-            "Carrying objects",
-          ],
-          isOpen: false,
-        },
-        {
-          title: "Advanced Training",
-          suboptions: [
-            "Retrieving items by name",
-            "Recognizing and distinguishing colors",
-            "Navigating obstacles",
-            "Opening doors or drawers",
-          ],
-          isOpen: false,
-        },
-        {
-          title: "Active Disciplines",
-          suboptions: ["Agility", "Flyball", "Disc dog", "Running", "Swimming"],
-          isOpen: false,
-        },
-        {
-          title: "Potty Training",
-          suboptions: ["Potty training basics and tips"],
-          isOpen: false,
-        },
+        "Commands",
+        "Behavioral Training",
+        "Tricks",
+        "Advanced Training",
+        "Active Disciplines",
+        "Potty Training",
       ],
+      subOptions: {
+        "Commands": [
+          "Sit", "Lie down", "Come", "Stop", "Stay"
+        ],
+        "Behavioral Training": [
+          "Socialization with people and other dogs",
+          "Learning proper leash manners"
+        ],
+        "Tricks": [
+          "Giving a paw"
+        ],
+        "Advanced Training": [
+          "Retrieving items by name", "Recognizing and distinguishing colors",
+          "Navigating obstacles", "Opening doors or drawers"
+        ],
+        "Active Disciplines": [
+          "Agility", "Flyball", "Disc dog", "Running"
+        ],
+        "Potty Training": []
+      },
+      difficultyLevels: {
+        Beginner: [
+          "Sit", "Lie down", "Come", "Stop", "Stay",
+          "Socialization with people and other dogs",
+          "Learning proper leash manners",
+          "Giving a paw"
+        ],
+        Intermediate: [
+          "Rolling over", "Spinning in a circle", "Jumping through a hoop",
+          "Putting a paw on their face", "Carrying objects",
+          "Eliminating unwanted habits"
+        ],
+        Advanced: [
+          "Retrieving items by name", "Recognizing and distinguishing colors",
+          "Navigating obstacles", "Opening doors or drawers",
+          "Agility", "Flyball", "Disc dog", "Running",
+          "Playing Dead"
+        ]
+      },
+      selectedDifficulty: null,
+      selectedType: null
     };
   },
   computed: {
-    contentDetails() {
-      if (!this.selectedContent) return "";
-
-      const { title, option } = this.selectedContent;
-
-      const details = {
-        Commands: {
-          "Sit": "Teach your dog to sit on command.",
-          "Lie down": "Help your dog learn the 'lie down' command.",
-          "Come": "Train your dog to come back when called.",
-          "Stop": "Ensure your dog halts when you say stop.",
-          "Stay": "Teach your dog to stay in place.",
-        },
-        "Behavioral Training": {
-          "Socialization with people and other dogs": "Learn how to socialize your dog effectively.",
-          "Learning proper leash manners": "Ensure a calm walk with proper leash manners.",
-          "Eliminating unwanted habits": "Tips to stop jumping, barking, and chewing.",
-        },
-        Tricks: {
-          "Giving a paw": "Show your dog how to give a paw.",
-          "Rolling over": "Step-by-step guide to teach rolling over.",
-          "Spinning in a circle": "Fun trick to spin in circles.",
-          "Jumping through a hoop": "Teach your dog to jump through hoops.",
-          "Putting a paw on their face": "Train your dog to mimic a 'shy' gesture.",
-          "Playing dead": "Classic trick for 'play dead.'",
-          "Carrying objects": "Train your dog to carry light objects.",
-        },
-        "Advanced Training": {
-          "Retrieving items by name": "Train your dog to retrieve specific items.",
-          "Recognizing and distinguishing colors": "Teach your dog to recognize colors.",
-          "Navigating obstacles": "Prepare your dog for advanced obstacle courses.",
-          "Opening doors or drawers": "Advanced training for opening objects.",
-        },
-        "Active Disciplines": {
-          "Agility": "Learn about agility training for dogs.",
-          "Flyball": "Guide to start flyball activities.",
-          "Disc dog": "Teach your dog to catch flying discs.",
-          "Running": "Best practices for running with your dog.",
-          "Swimming": "Introduce your dog to swimming safely.",
-        },
-        "Potty Training": {
-          "Potty training basics and tips": "Comprehensive guide to potty training.",
-        },
-      };
-
-      return details[title]?.[option] || "Details unavailable for this option.";
-    },
+    filteredSubOptions() {
+      if (this.selectedType) {
+        return this.subOptions[this.selectedType] || [];
+      }
+      if (this.selectedDifficulty) {
+        return this.difficultyLevels[this.selectedDifficulty] || [];
+      }
+      return [];
+    }
   },
   methods: {
-    toggleMenu(index) {
-      this.trainingOptions.forEach((item, i) => {
-        if (i === index) {
-          item.isOpen = !item.isOpen; 
-        } else {
-          item.isOpen = false;
-        }
-      });
+    selectDifficulty(difficulty) {
+      this.selectedDifficulty = difficulty;
+      this.selectedType = null;
     },
-    selectOption(menuTitle, option) {
-      this.selectedContent = { title: menuTitle, option };
-    },
+    selectType(type) {
+      this.selectedType = type;
+      this.selectedDifficulty = null;
+    }
   },
 };
 </script>
 
 <style scoped>
-body, html {
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-}
-
 .training-plan {
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  position: fixed;
-  overflow-x: hidden;
+  position: relative;
 }
 
 .training-title {
   font-family: 'ChunkyRetro', sans-serif;
-  font-size: 14rem;
+  font-size: 15rem;
   color: #FFFEF9;
   text-align: left;
   position: fixed;
-  top: 10%;
+  top: 4%;
   left: 15%;
   width: 100%;
   z-index: 2;
   opacity: 60%;
-  white-space: nowrap;
+}
+
+.menu-container {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 30%;
+  width: 100%;
+  z-index: 3;
+}
+
+.menu {
+  display: flex;
+  gap: 50px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #FFFEF9;
+  color: #EDD9B7;
+  font-family: 'ChunkyRetro', sans-serif;
+  font-size: 3rem;
+  padding: 16px;
+  border-radius: 70px;
+  cursor: pointer;
+  min-width: 200px;
+  text-align: center;
+  border: none;
+  z-index: 10;
+  opacity: 60%;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  left: 0;
+  text-align: left; 
+  border-radius: 20px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.menu-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  font-family: 'CenturyGothic', sans-serif;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.menu-item:hover {
+  background-color: #ddd;
 }
 
 .top-background {
   background-color: #EDD9B7;
-  height: 37%;
+  height: 45%;
   width: 100%;
   z-index: 1;
 }
@@ -201,78 +214,40 @@ body, html {
 .bottom-background {
   background-color: #EEEEE6;
   flex: 1;
-  width: 100%;
-  height: 60%;
-  padding: 20px;
-  overflow-y: auto;
-  overflow-x: auto;
-}
-
-.menu {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 20px;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  padding: 0 5%;
+}
+
+.exercise-list {
+  display: flex;
   flex-wrap: wrap;
-}
-
-.menu-item {
-  background-color: #d7bdf2;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: 'CenturyGothic', sans-serif;
-  font-size: 1rem;
-  color: #5f5f5f;
-  text-align: center;
-  flex: 1;
-  min-width: 120px;
-  box-sizing: border-box;
-}
-
-.menu-title {
-  font-weight: bold;
-}
-
-.submenu {
-  margin-top: 10px;
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 10px;
-}
-
-.submenu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.submenu li {
-  padding: 5px 0;
-  color: #5f5f5f;
-  cursor: pointer;
-  text-align: left;
-}
-
-.content {
+  gap: 20px;
+  justify-content: center;
   margin-top: 20px;
-  padding: 20px;
-  background-color: #fff;
+}
+
+.exercise-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 200px;
+}
+
+.exercise-image {
+  width: 100px;
+  height: 100px;
+  background-color: #D1B38D;
   border-radius: 10px;
-}
-
-.content-title {
-  font-size: 1.5rem;
-  font-weight: bold;
   margin-bottom: 10px;
 }
 
-.content-description {
-  margin-bottom: 10px;
-  color: #5f5f5f;
-}
-
-.content-details {
-  color: #7a7a7a;
+.exercise-title {
+  font-family: 'CenturyGothic', sans-serif;
+  font-size: 1.1rem;
+  color: #333;
 }
 </style>

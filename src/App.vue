@@ -34,7 +34,7 @@
 nav {
   display: flex;
   align-items: center;
-  justify-content: flex-start; 
+  justify-content: space-between; 
   padding: 20px;
   font-family: 'CenturyGothic', sans-serif;
   background-color: transparent;
@@ -43,6 +43,8 @@ nav {
   width: 100%;
   z-index: 1000;
   left: 0;
+  top: 0;
+  box-sizing: border-box; 
 }
 
 .nav-container {
@@ -83,9 +85,11 @@ nav {
 }
 
 .nav-links {
-  display: block;
+  display: flex;
+  justify-content: flex-end; 
   align-items: center;
-  justify-content: flex-start; 
+  flex-wrap: wrap; 
+  gap: 10px; 
 }
 
 .nav-links a {
@@ -96,6 +100,34 @@ nav {
   &.router-link-exact-active {
     color: #FFFEF9;
     font-weight: bold;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  .nav-links {
+    justify-content: center; 
+    width: 100%;
+    margin-top: 20px; 
+  }
+
+  .nav-links a {
+    margin: 5px 0; 
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text {
+    font-size: 30px; 
+  }
+
+  .logo {
+    width: 30px;
+    height: 30px;
   }
 }
 </style>
