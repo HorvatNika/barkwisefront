@@ -1,27 +1,28 @@
 <template>
   <div class="training-plan">
     <div class="training-title">training plan</div>
+    <img src="@/assets/slike/bordernar.png" alt="bordernar" class="borderzel-image" />
 
     <div class="menu-container">
       <div class="menu">
         <div class="dropdown">
           <button class="dropbtn">by difficulty</button>
           <div class="dropdown-content">
-            <div class="menu-item" @click="selectDifficulty('Beginner')">Beginner</div>
-            <div class="menu-item" @click="selectDifficulty('Intermediate')">Intermediate</div>
-            <div class="menu-item" @click="selectDifficulty('Advanced')">Advanced</div>
+            <div class="menu-item" @click="selectDifficulty('Beginner')">beginner</div>
+            <div class="menu-item" @click="selectDifficulty('Intermediate')">intermediate</div>
+            <div class="menu-item" @click="selectDifficulty('Advanced')">advanced</div>
           </div>
         </div>
 
         <div class="dropdown">
           <button class="dropbtn">by type</button>
           <div class="dropdown-content">
-            <div class="menu-item" @click="selectType('Commands')">Commands</div>
-            <div class="menu-item" @click="selectType('Behavioral Training')">Behavioral Training</div>
-            <div class="menu-item" @click="selectType('Tricks')">Tricks</div>
-            <div class="menu-item" @click="selectType('Advanced Training')">Advanced Training</div>
-            <div class="menu-item" @click="selectType('Active Disciplines')">Active Disciplines</div>
-            <div class="menu-item" @click="selectType('Potty Training')">Potty Training</div>
+            <div class="menu-item" @click="selectType('Commands')">commands</div>
+            <div class="menu-item" @click="selectType('Behavioral Training')">behavioral training</div>
+            <div class="menu-item" @click="selectType('Tricks')">tricks</div>
+            <div class="menu-item" @click="selectType('Advanced Training')">advanced training</div>
+            <div class="menu-item" @click="selectType('Active Disciplines')">active disciplines</div>
+            <div class="menu-item" @click="selectType('Potty Training')">potty training</div>
           </div>
         </div>
       </div>
@@ -54,46 +55,54 @@ export default {
         "Potty Training",
       ],
       subOptions: {
-        "Commands": [
-          "Sit", "Lie down", "Come", "Stop", "Stay"
-        ],
+        "Commands": ["Sit", "Lie down", "Come", "Stop", "Stay"],
         "Behavioral Training": [
           "Socialization with people and other dogs",
-          "Learning proper leash manners"
+          "Learning proper leash manners",
         ],
-        "Tricks": [
-          "Giving a paw"
-        ],
+        "Tricks": ["Giving a paw"],
         "Advanced Training": [
-          "Retrieving items by name", "Recognizing and distinguishing colors",
-          "Navigating obstacles", "Opening doors or drawers"
+          "Retrieving items by name",
+          "Recognizing and distinguishing colors",
+          "Navigating obstacles",
+          "Opening doors or drawers",
         ],
-        "Active Disciplines": [
-          "Agility", "Flyball", "Disc dog", "Running"
-        ],
-        "Potty Training": []
+        "Active Disciplines": ["Agility", "Flyball", "Disc dog", "Running"],
+        "Potty Training": [],
       },
       difficultyLevels: {
         Beginner: [
-          "Sit", "Lie down", "Come", "Stop", "Stay",
+          "Sit",
+          "Lie down",
+          "Come",
+          "Stop",
+          "Stay",
           "Socialization with people and other dogs",
           "Learning proper leash manners",
-          "Giving a paw"
+          "Giving a paw",
         ],
         Intermediate: [
-          "Rolling over", "Spinning in a circle", "Jumping through a hoop",
-          "Putting a paw on their face", "Carrying objects",
-          "Eliminating unwanted habits"
+          "Rolling over",
+          "Spinning in a circle",
+          "Jumping through a hoop",
+          "Putting a paw on their face",
+          "Carrying objects",
+          "Eliminating unwanted habits",
         ],
         Advanced: [
-          "Retrieving items by name", "Recognizing and distinguishing colors",
-          "Navigating obstacles", "Opening doors or drawers",
-          "Agility", "Flyball", "Disc dog", "Running",
-          "Playing Dead"
-        ]
+          "Retrieving items by name",
+          "Recognizing and distinguishing colors",
+          "Navigating obstacles",
+          "Opening doors or drawers",
+          "Agility",
+          "Flyball",
+          "Disc dog",
+          "Running",
+          "Playing Dead",
+        ],
       },
       selectedDifficulty: null,
-      selectedType: null
+      selectedType: null,
     };
   },
   computed: {
@@ -105,7 +114,7 @@ export default {
         return this.difficultyLevels[this.selectedDifficulty] || [];
       }
       return [];
-    }
+    },
   },
   methods: {
     selectDifficulty(difficulty) {
@@ -115,7 +124,7 @@ export default {
     selectType(type) {
       this.selectedType = type;
       this.selectedDifficulty = null;
-    }
+    },
   },
 };
 </script>
@@ -131,29 +140,39 @@ export default {
 
 .training-title {
   font-family: 'ChunkyRetro', sans-serif;
-  font-size: 15rem;
+  font-size: 17rem;
   color: #FFFEF9;
   text-align: left;
   position: fixed;
-  top: 4%;
-  left: 15%;
+  top: 5%; 
+  left: 15%; 
   width: 100%;
   z-index: 2;
   opacity: 60%;
+}
+
+.borderzel-image {
+  position: fixed;
+  right: 70px;
+  top: 19.2%;
+  width: auto; 
+  height: 35%; 
+  object-fit: contain; 
+  z-index: 10;
 }
 
 .menu-container {
   display: flex;
   justify-content: center;
   position: fixed;
-  top: 30%;
+  top: 36.6%;
   width: 100%;
   z-index: 3;
 }
 
 .menu {
   display: flex;
-  gap: 50px;
+  gap: 80px;
 }
 
 .dropdown {
@@ -167,9 +186,10 @@ export default {
   font-family: 'ChunkyRetro', sans-serif;
   font-size: 3rem;
   padding: 16px;
-  border-radius: 70px;
+  border-radius: 70px 70px 0 0;
   cursor: pointer;
-  min-width: 200px;
+  height: 80px;
+  width: 270px;
   text-align: center;
   border: none;
   z-index: 10;
@@ -179,34 +199,41 @@ export default {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
+  background-color: #FFFEF9;
+  width: 270px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   left: 0;
-  text-align: left; 
-  border-radius: 20px;
+  border-radius: 0 0 20px 20px;
+  overflow: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
+  opacity: 1;
+  transform: translateY(0);
+  opacity: 60%;
 }
 
 .menu-item {
   padding: 12px 16px;
   cursor: pointer;
-  font-family: 'CenturyGothic', sans-serif;
-  font-size: 1.1rem;
-  color: #333;
+  font-family: 'ChunkyRetro', sans-serif;
+  font-size: 2.5rem;
+  color: #EDD9B7;
+  text-align: left;
 }
 
 .menu-item:hover {
-  background-color: #ddd;
+  background-color: #EDD9B7;
+  color: #FFFEF9;
 }
 
 .top-background {
   background-color: #EDD9B7;
-  height: 45%;
+  height: 44.5%;
   width: 100%;
   z-index: 1;
 }
