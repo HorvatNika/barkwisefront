@@ -1,7 +1,6 @@
 <template>
   <div class="training-plan">
     <div class="training-title">training plan</div>
-    <img src="@/assets/slike/bordernar.png" alt="bordernar" class="borderzel-image" />
 
     <div class="menu-container">
       <div class="menu">
@@ -28,14 +27,10 @@
       </div>
     </div>
 
-    <div class="top-background"></div>
-
-    <div class="bottom-background">
-      <div class="exercise-list">
-        <div v-for="(subOption, index) in filteredSubOptions" :key="index" class="exercise-item">
-          <div class="exercise-image"></div>
-          <div class="exercise-title">{{ subOption }}</div>
-        </div>
+    <div class="exercise-list">
+      <div v-for="(subOption, index) in filteredSubOptions" :key="index" class="exercise-item">
+        <div class="exercise-image" :style="getImageStyle(subOption)"></div>
+        <div class="exercise-title">{{ subOption }}</div>
       </div>
     </div>
   </div>
@@ -125,6 +120,15 @@ export default {
       this.selectedType = type;
       this.selectedDifficulty = null;
     },
+    getImageStyle(exerciseName) {
+      let imageUrl = '';
+      if (exerciseName === 'Rolling over') {
+        imageUrl = require('@/assets/slike/rollover.jpg');
+      } else if (exerciseName === 'Spinning in a circle') {
+        imageUrl = require('@/assets/slike/spin.jpg');
+      }
+      return { backgroundImage: `url(${imageUrl})` };
+    },
   },
 };
 </script>
@@ -133,9 +137,9 @@ export default {
 .training-plan {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  width: 100%;
-  position: relative;
+  background-color: #EDD9B7;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .training-title {
@@ -143,31 +147,18 @@ export default {
   font-size: 17rem;
   color: #FFFEF9;
   text-align: left;
-  position: fixed;
-  top: 5%; 
-  left: 15%; 
   width: 100%;
   z-index: 2;
   opacity: 60%;
-}
-
-.borderzel-image {
-  position: fixed;
-  right: 70px;
-  top: 19.2%;
-  width: auto; 
-  height: 35%; 
-  object-fit: contain; 
-  z-index: 10;
+  margin-top: 5%;
+  margin-left: 15%;
 }
 
 .menu-container {
   display: flex;
   justify-content: center;
-  position: fixed;
-  top: 36.6%;
   width: 100%;
-  z-index: 3;
+  top: 5%;
 }
 
 .menu {
@@ -231,29 +222,13 @@ export default {
   color: #FFFEF9;
 }
 
-.top-background {
-  background-color: #EDD9B7;
-  height: 44.5%;
-  width: 100%;
-  z-index: 1;
-}
-
-.bottom-background {
-  background-color: #EEEEE6;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 1;
-  padding: 0 5%;
-}
-
 .exercise-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  justify-items: center;  
+  align-items: start;    
+  margin-top: 5%;
+  padding: 0 5%;
 }
 
 .exercise-item {
@@ -261,20 +236,22 @@ export default {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  max-width: 200px;
+  max-width: 250px; 
+  margin-bottom: 50px;  
 }
 
 .exercise-image {
-  width: 100px;
-  height: 100px;
+  width: 250px; 
+  height: 250px;
   background-color: #D1B38D;
-  border-radius: 10px;
   margin-bottom: 10px;
+  background-size: cover;
+  background-position: center;
 }
 
 .exercise-title {
   font-family: 'CenturyGothic', sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   color: #333;
 }
 </style>
