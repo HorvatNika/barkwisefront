@@ -2,17 +2,17 @@
   <div class="menu-page">
     <div class="splotch splotch-green">
       <img src="@/assets/slike/splotch3.png" alt="Green Splotch" />
-      <span class="text-green">home</span>
+      <span class="text-green" @click="goToHome">home</span>
       <span class="description-text">Discover articles on Border Collie health and care and stay updated with the latest tips and news.</span>
     </div>
     <div class="splotch splotch-beige">
       <img src="@/assets/slike/splotch1.png" alt="Beige Splotch" />
-      <span class="text-beige">training</span>
+      <span class="text-beige" @click="goToTraining">training</span>
       <span class="description-text">Access all the training exercises, tailored for your Border Collie, and monitor your dog’s progress step by step.</span>
     </div>
     <div class="splotch splotch-blue">
       <img src="@/assets/slike/splotch2.png" alt="Blue Splotch" />
-      <span class="text-blue">profile</span>
+      <span class="text-blue" @click="goToProfile">profile</span>
       <span class="description-text">Manage your profile and your dog's profile, and easily track your dog's training progress.</span>
     </div>
   </div>
@@ -20,7 +20,18 @@
 
 <script>
 export default {
-  name: 'MenuPage'
+  name: 'MenuPage',
+  methods: {
+    goToHome() {
+      this.$router.push('/home');
+    },
+    goToTraining() {
+      this.$router.push('/training');
+    },
+    goToProfile() {
+      this.$router.push('/profile');
+    }
+  }
 };
 </script>
 
@@ -60,6 +71,7 @@ export default {
   width: 100%;
   top: 50%;
   transform: translateY(-50%);
+  cursor: pointer;
 }
 
 .splotch-green {

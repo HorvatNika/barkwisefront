@@ -29,7 +29,7 @@
 
     <div class="exercise-list">
       <div v-for="(subOption, index) in filteredSubOptions" :key="index" class="exercise-item">
-        <div class="exercise-image" :style="getImageStyle(subOption)"></div>
+        <div class="exercise-image"></div>
         <div class="exercise-title">{{ subOption }}</div>
       </div>
     </div>
@@ -119,15 +119,6 @@ export default {
     selectType(type) {
       this.selectedType = type;
       this.selectedDifficulty = null;
-    },
-    getImageStyle(exerciseName) {
-      let imageUrl = '';
-      if (exerciseName === 'Rolling over') {
-        imageUrl = require('@/assets/slike/rollover.jpg');
-      } else if (exerciseName === 'Spinning in a circle') {
-        imageUrl = require('@/assets/slike/spin.jpg');
-      }
-      return { backgroundImage: `url(${imageUrl})` };
     },
   },
 };
@@ -224,7 +215,7 @@ export default {
 
 .exercise-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); 
+  grid-template-columns: repeat(3, 1fr); 
   justify-items: center;  
   align-items: start;    
   margin-top: 5%;
@@ -241,17 +232,15 @@ export default {
 }
 
 .exercise-image {
-  width: 250px; 
+  width: 350px; 
   height: 250px;
   background-color: #D1B38D;
   margin-bottom: 10px;
-  background-size: cover;
-  background-position: center;
 }
 
 .exercise-title {
   font-family: 'CenturyGothic', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1rem;
   color: #333;
 }
 </style>
