@@ -29,10 +29,10 @@ export default {
   },
   methods: {
     handleLoginClick() {
-      console.log('Login clicked');
+      this.$router.push('/login');
     },
     handleRegisterClick() {
-      console.log('Register clicked');
+      this.$router.push('/register');
     }
   }
 };

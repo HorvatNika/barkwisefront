@@ -1,9 +1,5 @@
 <template>
   <div class="register">
-    <div class="title-container" v-if="showFirstForm">
-      <h2>Register</h2>
-    </div>
-
     <div class="form-container">
       <div v-if="showFirstForm" class="input-container">
         <div class="profile-picture-container" @click="triggerFileInput">
@@ -201,23 +197,12 @@ export default {
   position: relative;
 }
 
-.title-container {
-  position: absolute;
-  top: 330px;
-  left: 50%;
-  transform: translateX(-50%);
+h2 {
   font-family: 'Montel', sans-serif;
   color: #EDD9B7;
-  font-size: 50px;
+  font-size: 36px;
   font-weight: bold;
-  margin: 0;
-  z-index: 10;
-}
-
-h2 {
-  margin: 0;
-  color: inherit;
-  margin-top: -154px;
+  margin-top: -10px;
 }
 
 .input-container {
