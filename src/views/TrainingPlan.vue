@@ -20,7 +20,6 @@
             {{ selectedType ? selectedType : "by type" }}
           </button>
           <div class="dropdown-content">
-            <div class="menu-item" @click="selectType('commands')">commands</div>
             <div class="menu-item" @click="selectType('behavioral training')">behavioral training</div>
             <div class="menu-item" @click="selectType('tricks')">tricks</div>
             <div class="menu-item" @click="selectType('advanced training')">advanced training</div>
@@ -46,7 +45,6 @@ export default {
   data() {
     return {
       trainingOptions: [
-        "commands",
         "behavioral training",
         "tricks",
         "advanced training",
@@ -54,7 +52,6 @@ export default {
         "potty training",
       ],
       subOptions: {
-        "commands": ["sit", "lie down", "come", "stop", "stay"],
         "behavioral training": [
           "sit and stay",
           "leave it",
