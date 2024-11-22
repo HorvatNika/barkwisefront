@@ -5,23 +5,27 @@
     <div class="menu-container">
       <div class="menu">
         <div class="dropdown">
-          <button class="dropbtn">by difficulty</button>
+          <button class="dropbtn">
+            {{ selectedDifficulty ? selectedDifficulty : "by difficulty" }}
+          </button>
           <div class="dropdown-content">
-            <div class="menu-item" @click="selectDifficulty('Beginner')">beginner</div>
-            <div class="menu-item" @click="selectDifficulty('Intermediate')">intermediate</div>
-            <div class="menu-item" @click="selectDifficulty('Advanced')">advanced</div>
+            <div class="menu-item" @click="selectDifficulty('beginner')">beginner</div>
+            <div class="menu-item" @click="selectDifficulty('intermediate')">intermediate</div>
+            <div class="menu-item" @click="selectDifficulty('advanced')">advanced</div>
           </div>
         </div>
 
         <div class="dropdown">
-          <button class="dropbtn">by type</button>
+          <button class="dropbtn">
+            {{ selectedType ? selectedType : "by type" }}
+          </button>
           <div class="dropdown-content">
-            <div class="menu-item" @click="selectType('Commands')">commands</div>
-            <div class="menu-item" @click="selectType('Behavioral Training')">behavioral training</div>
-            <div class="menu-item" @click="selectType('Tricks')">tricks</div>
-            <div class="menu-item" @click="selectType('Advanced Training')">advanced training</div>
-            <div class="menu-item" @click="selectType('Active Disciplines')">active disciplines</div>
-            <div class="menu-item" @click="selectType('Potty Training')">potty training</div>
+            <div class="menu-item" @click="selectType('commands')">commands</div>
+            <div class="menu-item" @click="selectType('behavioral training')">behavioral training</div>
+            <div class="menu-item" @click="selectType('tricks')">tricks</div>
+            <div class="menu-item" @click="selectType('advanced training')">advanced training</div>
+            <div class="menu-item" @click="selectType('active disciplines')">active disciplines</div>
+            <div class="menu-item" @click="selectType('potty training')">potty training</div>
           </div>
         </div>
       </div>
@@ -42,58 +46,58 @@ export default {
   data() {
     return {
       trainingOptions: [
-        "Commands",
-        "Behavioral Training",
-        "Tricks",
-        "Advanced Training",
-        "Active Disciplines",
-        "Potty Training",
+        "commands",
+        "behavioral training",
+        "tricks",
+        "advanced training",
+        "active disciplines",
+        "potty training",
       ],
       subOptions: {
-        "Commands": ["Sit", "Lie down", "Come", "Stop", "Stay"],
-        "Behavioral Training": [
-          "Socialization with people and other dogs",
-          "Learning proper leash manners",
+        "commands": ["sit", "lie down", "come", "stop", "stay"],
+        "behavioral training": [
+          "socialization with people and other dogs",
+          "learning proper leash manners",
         ],
-        "Tricks": ["Giving a paw"],
-        "Advanced Training": [
-          "Retrieving items by name",
-          "Recognizing and distinguishing colors",
-          "Navigating obstacles",
-          "Opening doors or drawers",
+        "tricks": ["giving a paw"],
+        "advanced training": [
+          "retrieving items by name",
+          "recognizing and distinguishing colors",
+          "navigating obstacles",
+          "opening doors or drawers",
         ],
-        "Active Disciplines": ["Agility", "Flyball", "Disc dog", "Running"],
-        "Potty Training": [],
+        "active disciplines": ["agility", "flyball", "disc dog", "running"],
+        "potty training": [],
       },
       difficultyLevels: {
-        Beginner: [
-          "Sit",
-          "Lie down",
-          "Come",
-          "Stop",
-          "Stay",
-          "Socialization with people and other dogs",
-          "Learning proper leash manners",
-          "Giving a paw",
+        beginner: [
+          "sit",
+          "lie down",
+          "come",
+          "stop",
+          "stay",
+          "socialization with people and other dogs",
+          "learning proper leash manners",
+          "giving a paw",
         ],
-        Intermediate: [
-          "Rolling over",
-          "Spinning in a circle",
-          "Jumping through a hoop",
-          "Putting a paw on their face",
-          "Carrying objects",
-          "Eliminating unwanted habits",
+        intermediate: [
+          "rolling over",
+          "spinning in a circle",
+          "jumping through a hoop",
+          "putting a paw on their face",
+          "carrying objects",
+          "eliminating unwanted habits",
         ],
-        Advanced: [
-          "Retrieving items by name",
-          "Recognizing and distinguishing colors",
-          "Navigating obstacles",
-          "Opening doors or drawers",
-          "Agility",
-          "Flyball",
-          "Disc dog",
-          "Running",
-          "Playing Dead",
+        advanced: [
+          "retrieving items by name",
+          "recognizing and distinguishing colors",
+          "navigating obstacles",
+          "opening doors or drawers",
+          "agility",
+          "flyball",
+          "disc dog",
+          "running",
+          "playing dead",
         ],
       },
       selectedDifficulty: null,
@@ -114,11 +118,11 @@ export default {
   methods: {
     selectDifficulty(difficulty) {
       this.selectedDifficulty = difficulty;
-      this.selectedType = null;
+      this.selectedType = null; 
     },
     selectType(type) {
-      this.selectedType = type;
-      this.selectedDifficulty = null;
+      this.selectedType = type; 
+      this.selectedDifficulty = null; 
     },
   },
 };
@@ -135,7 +139,7 @@ export default {
 
 .training-title {
   font-family: 'ChunkyRetro', sans-serif;
-  font-size: 17rem;
+  font-size: 15rem;
   color: #FFFEF9;
   text-align: left;
   width: 100%;

@@ -1,56 +1,45 @@
 <template>
-    <div class="personalized-plan">
-      <h1>Comprehensive Personalized Training Plan for Your Border Collie</h1>
+    <div class="training-plan">
+      <div class="training-title">personalized plan</div>
   
-      <div>
-        <label for="age">Select Your Dog's Age:</label>
-        <select v-model="form.age" id="age">
-          <option value="">--Select Age--</option>
-          <option value="Puppy">Puppy (Younger than 6 months)</option>
-          <option value="Young">Young (6-12 months)</option>
-          <option value="Adult">Adult (1-2 years)</option>
-          <option value="Mature">Mature (2-7 years)</option>
-          <option value="Senior">Senior (Older than 7 years)</option>
-        </select>
+      <div class="menu-container">
+        <div class="menu">
+          <div class="dropdown">
+            <button class="dropbtn">{{ form.age ? form.age : "select age" }}</button>
+            <div class="dropdown-content">
+              <div class="menu-item" @click="selectAge('puppy')">puppy (younger than 6 months)</div>
+              <div class="menu-item" @click="selectAge('young')">young (6-12 months)</div>
+              <div class="menu-item" @click="selectAge('adult')">adult (1-2 years)</div>
+              <div class="menu-item" @click="selectAge('mature')">mature (2-7 years)</div>
+              <div class="menu-item" @click="selectAge('senior')">senior (older than 7 years)</div>
+            </div>
+          </div>
+  
+          <div class="dropdown">
+            <button class="dropbtn">
+              {{ form.goals.length > 0 ? form.goals.join(", ") : "training goals" }}
+            </button>
+            <div class="dropdown-content">
+              <div class="menu-item" @click="toggleGoal('behavioral')">behavioral control</div>
+              <div class="menu-item" @click="toggleGoal('tricks')">trick training</div>
+              <div class="menu-item" @click="toggleGoal('advanced')">advanced training</div>
+              <div class="menu-item" @click="toggleGoal('active')">active disciplines</div>
+              <div class="menu-item" @click="toggleGoal('potty')">potty training</div>
+              <div class="menu-item" @click="toggleGoal('mental')">mental stimulation</div>
+            </div>
+          </div>
+        </div>
       </div>
   
-      <form @submit.prevent="generatePlan">
-        <div>
-          <label>Select Training Goals:</label>
-          <div>
-            <input type="checkbox" id="behavioral" value="behavioral" v-model="form.goals" />
-            <label for="behavioral">Behavioral Control</label>
-          </div>
-          <div>
-            <input type="checkbox" id="tricks" value="tricks" v-model="form.goals" />
-            <label for="tricks">Trick Training</label>
-          </div>
-          <div>
-            <input type="checkbox" id="advanced" value="advanced" v-model="form.goals" />
-            <label for="advanced">Advanced Training</label>
-          </div>
-          <div>
-            <input type="checkbox" id="active" value="active" v-model="form.goals" />
-            <label for="active">Active Disciplines</label>
-          </div>
-          <div>
-            <input type="checkbox" id="potty" value="potty" v-model="form.goals" />
-            <label for="potty">Potty Training</label>
-          </div>
-          <div>
-            <input type="checkbox" id="mental" value="mental" v-model="form.goals" />
-            <label for="mental">Mental Stimulation & Problem Solving</label>
-          </div>
+      <div class="exercise-list">
+        <div v-if="plan" class="exercise-item">
+          <h2>Your Comprehensive Training Plan:</h2>
+          <pre>{{ plan }}</pre>
         </div>
+      </div>
   
-        <div>
-          <button type="submit">Generate Plan</button>
-        </div>
-      </form>
-  
-      <div v-if="plan" class="plan-result">
-        <h2>Your Comprehensive Training Plan:</h2>
-        <pre>{{ plan }}</pre>
+      <div class="generate-button-container">
+        <button class="generate-button" @click="generatePlan">generate plan</button>
       </div>
     </div>
   </template>
@@ -66,108 +55,163 @@
         plan: "",
       };
     },
-    computed: {
-      trainingTimePerSession() {
-        const times = {
-          "Puppy": "5-10 minutes",
-          "Young": "10-15 minutes",
-          "Adult": "15-20 minutes",
-          "Mature": "20-30 minutes",
-          "Senior": "10-15 minutes",
-        };
-        return times[this.form.age] || "0 minutes";
-      },
-    },
     methods: {
+      selectAge(age) {
+        this.form.age = age;
+      },
+      toggleGoal(goal) {
+        if (this.form.goals.includes(goal)) {
+          this.form.goals = this.form.goals.filter((g) => g !== goal);
+        } else {
+          this.form.goals.push(goal);
+        }
+      },
       generatePlan() {
+        if (!this.form.age) {
+          this.plan = "Please select an age.";
+          return;
+        }
         if (this.form.goals.length === 0) {
           this.plan = "Please select at least one training goal.";
           return;
         }
-  
-        let exerciseList = [];
-  
-        const ageExercises = {
-          "Puppy": {
-            behavioral: [
-              "Basic Commands (Sit, Stay, Come): Focus on short, positive reinforcement-based sessions.",
-              "Crate Training: Essential for safe and calm behavior management.",
-            ],
-            tricks: ["Shake Hands, Paw: Begin light trick training with rewards."],
-            advanced: ["None at this stage."],
-            active: ["Interactive Play, Fetch (Short bursts of activity)."],
-            potty: ["Scheduled Potty Breaks: Create a consistent potty schedule for success."],
-            mental: ["Puzzle Toys: Start with easy-to-solve puzzles to engage their intelligence."]
-          },
-          "Young": {
-            behavioral: [
-              "Advanced Recall (Come when called): Introduce more distractions and environment changes.",
-              "Leash Training: Control over walking pace and no pulling.",
-            ],
-            tricks: ["Spin, Roll Over, Play Dead: Increase complexity as they learn."],
-            advanced: ["Introduction to Agility Training: Start with basic obstacles like tunnels."],
-            active: ["Short Agility Sessions (Weaving, tunnels), Fetch with distractions."],
-            potty: ["Consistent Potty Breaks and Crate Training with added distractions."],
-            mental: ["Puzzle Games: Increase complexity of puzzles for problem-solving."],
-          },
-          "Adult": {
-            behavioral: [
-              "Leash Walking (Heel): Focus on loose-leash walking and focus on you.",
-              "Place Command: Instruct the dog to stay in a designated spot until released.",
-            ],
-            tricks: [
-              "Wave, High Five, Back Up, Crawl, Kiss: Complex tricks to keep them mentally sharp.",
-              "Advanced Sit and Stay with distractions.",
-            ],
-            advanced: ["Advanced Agility (More difficult obstacles and increased speed)."],
-            active: ["Agility Training, Flyball, Fetch with Speed and Direction Changes."],
-            potty: ["Continue Scheduled Potty Breaks with added distractions."],
-            mental: ["Advanced Puzzle Games: Introduce problem-solving toys that take longer to solve."],
-          },
-          "Mature": {
-            behavioral: [
-              "No Pulling, Heel: Focus on perfecting walking skills in real-life situations.",
-              "Place Command, Stay: Extend duration for advanced self-control.",
-            ],
-            tricks: ["Advanced Tricks: Teach new tricks like 'Spin and Crawl'."],
-            advanced: ["Advanced Agility (Complex sequences and longer durations)."],
-            active: ["Frisbee (Light), Agility Training."],
-            potty: ["Scheduled Potty Breaks with more independence from you."],
-            mental: ["Interactive Mental Challenges: Introduce complex toys and scent games."],
-          },
-          "Senior": {
-            behavioral: [
-              "Gentle Commands: Focus on maintaining calm and stability, no intense corrections.",
-              "Recall: Practice recall with low-intensity distractions.",
-            ],
-            tricks: ["Shake Hands, Paw: Keep tricks light and gentle to prevent strain."],
-            advanced: ["Gentle Agility or Light Frisbee."],
-            active: ["Light Agility or Slow-Paced Fetch."],
-            potty: ["Scheduled Potty Breaks: Monitor for signs of incontinence or difficulty."],
-            mental: ["Puzzle Games with Slow Pace: Use simple, easy puzzles to stimulate their mind."],
-          },
-        };
-  
-        this.form.goals.forEach(goal => {
-          if (ageExercises[this.form.age][goal]) {
-            exerciseList.push(...ageExercises[this.form.age][goal]);
-          }
-        });
-  
-        this.plan = `Training Plan for Your Border Collie:\n\n` + exerciseList.join("\n\n") || "No training plan available for selected goals.";
+        this.plan = `Training plan for a ${this.form.age} with goals: ${this.form.goals.join(", ")}.`;
       },
     },
   };
   </script>
   
   <style scoped>
-  .plan-result {
+  .training-plan {
+    display: flex;
+    flex-direction: column;
+    background-color: #EDD9B7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  .training-title {
+    font-family: 'ChunkyRetro', sans-serif;
+    font-size: 15rem;
+    color: #FFFEF9;
+    text-align: left;
+    width: 100%;
+    z-index: 2;
+    opacity: 60%;
+    margin-top: 5%;
+    margin-left: 15%;
+  }
+  
+  .menu-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    top: 5%;
+  }
+  
+  .menu {
+    display: flex;
+    gap: 80px;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropbtn {
+    background-color: #FFFEF9;
+    color: #EDD9B7;
+    font-family: 'ChunkyRetro', sans-serif;
+    font-size: 3rem;
+    padding: 16px;
+    border-radius: 70px 70px 0 0;
+    cursor: pointer;
+    height: 80px;
+    width: 270px;
+    text-align: center;
+    border: none;
+    z-index: 10;
+    opacity: 60%;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #FFFEF9;
+    width: 270px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    left: 0;
+    border-radius: 0 0 20px 20px;
+    overflow: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    opacity: 60%;
+  }
+  
+  .menu-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    font-family: 'ChunkyRetro', sans-serif;
+    font-size: 2.5rem;
+    color: #EDD9B7;
+    text-align: left;
+  }
+  
+  .menu-item:hover {
+    background-color: #EDD9B7;
+    color: #FFFEF9;
+  }
+  
+  .exercise-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5%;
+    padding: 0 5%;
+  }
+  
+  .exercise-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 600px;
+    margin-bottom: 50px;
+    font-family: 'CenturyGothic', sans-serif;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .generate-button-container {
+    display: flex;
+    justify-content: center;
     margin-top: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-family: Arial, sans-serif;
+  }
+  
+  .generate-button {
+    font-family: 'ChunkyRetro', sans-serif;
+    font-size: 3rem;
+    color: #EDD9B7;
+    background-color: #FFFEF9;
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    opacity: 60%;
+  }
+  
+  .generate-button:hover {
+    background-color: #EDD9B7;
+    color: #FFFEF9;
   }
   </style>
   
