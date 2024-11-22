@@ -2,7 +2,7 @@
   <div class="training">
     <div class="training-title">training</div>
     <div class="training-text">
-      Our comprehensive training program is specifically designed for Border Collies, offering a variety of exercises to suit your dog's age, ability, and temperament. Whether you're looking to improve basic commands or teach advanced skills, you'll find step-by-step guides to help you through each exercise. 
+      Our comprehensive training program is specifically designed for Border Collies, offering a variety of exercises to suit your dog's age, ability, and temperament. Whether you're looking to improve basic commands or teach advanced skills, you'll find step-by-step guides to help you through each exercise.
     </div>
     <div class="top-background"></div>
     <div class="middle-line"></div>
@@ -26,6 +26,13 @@
         <img src="@/assets/slike/personalplan.png" alt="Personal Plan" class="personalplan-image" />
       </div>
       <div class="square right">
+        <div class="square-title-wrapper">
+          <div class="square-title">Schedule</div>
+        </div>
+        <div class="square-description">
+          Keep your Border Collie on track with a structured schedule for their training. Consistency is key, and our training program helps you set a daily or weekly plan to ensure your dog stays engaged and motivated.
+        </div>
+        <img src="@/assets/slike/personalplan.png" alt="Schedule" class="schedule-image" />
       </div>
     </div>
     <img src="@/assets/slike/bordernar.png" alt="bordernar" class="borderzel-image" />
@@ -150,6 +157,15 @@ export default {
   position: absolute;
   top: 25%;
   left: 11%;
+  width: 11.5%;
+  height: auto;
+  object-fit: contain;
+}
+
+.schedule-image {
+  position: absolute;
+  top: 25%;
+  left: 10%;
   width: 11.5%;
   height: auto;
   object-fit: contain;

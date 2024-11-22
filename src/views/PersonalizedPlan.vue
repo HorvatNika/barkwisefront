@@ -5,27 +5,44 @@
       <div class="menu-container">
         <div class="menu">
           <div class="dropdown">
-            <button class="dropbtn">{{ form.age ? form.age : "select age" }}</button>
+            <button class="dropbtn">select age</button>
             <div class="dropdown-content">
-              <div class="menu-item" @click="selectAge('puppy')">puppy (younger than 6 months)</div>
-              <div class="menu-item" @click="selectAge('young')">young (6-12 months)</div>
-              <div class="menu-item" @click="selectAge('adult')">adult (1-2 years)</div>
-              <div class="menu-item" @click="selectAge('mature')">mature (2-7 years)</div>
-              <div class="menu-item" @click="selectAge('senior')">senior (older than 7 years)</div>
+              <div class="menu-item" 
+                   :class="{ selected: form.age === 'Puppy' }"
+                   @click="selectAge('Puppy')">puppy (younger than 6 months)</div>
+              <div class="menu-item" 
+                   :class="{ selected: form.age === 'Young' }"
+                   @click="selectAge('Young')">young (6-12 months)</div>
+              <div class="menu-item" 
+                   :class="{ selected: form.age === 'Adult' }"
+                   @click="selectAge('Adult')">adult (1-2 years)</div>
+              <div class="menu-item" 
+                   :class="{ selected: form.age === 'Mature' }"
+                   @click="selectAge('Mature')">mature (2-7 years)</div>
+              <div class="menu-item" 
+                   :class="{ selected: form.age === 'Senior' }"
+                   @click="selectAge('Senior')">senior (older than 7 years)</div>
             </div>
           </div>
   
           <div class="dropdown">
-            <button class="dropbtn">
-              {{ form.goals.length > 0 ? form.goals.join(", ") : "training goals" }}
-            </button>
+            <button class="dropbtn">training goals</button>
             <div class="dropdown-content">
-              <div class="menu-item" @click="toggleGoal('behavioral')">behavioral control</div>
-              <div class="menu-item" @click="toggleGoal('tricks')">trick training</div>
-              <div class="menu-item" @click="toggleGoal('advanced')">advanced training</div>
-              <div class="menu-item" @click="toggleGoal('active')">active disciplines</div>
-              <div class="menu-item" @click="toggleGoal('potty')">potty training</div>
-              <div class="menu-item" @click="toggleGoal('mental')">mental stimulation</div>
+              <div class="menu-item"
+                   :class="{ selected: form.goals.includes('behavioral') }"
+                   @click="toggleGoal('behavioral')">behavioral control</div>
+              <div class="menu-item"
+                   :class="{ selected: form.goals.includes('tricks') }"
+                   @click="toggleGoal('tricks')">trick training</div>
+              <div class="menu-item"
+                   :class="{ selected: form.goals.includes('advanced') }"
+                   @click="toggleGoal('advanced')">advanced training</div>
+              <div class="menu-item"
+                   :class="{ selected: form.goals.includes('active') }"
+                   @click="toggleGoal('active')">active disciplines</div>
+              <div class="menu-item"
+                   :class="{ selected: form.goals.includes('potty') }"
+                   @click="toggleGoal('potty')">potty training</div>
             </div>
           </div>
         </div>
@@ -61,7 +78,7 @@
       },
       toggleGoal(goal) {
         if (this.form.goals.includes(goal)) {
-          this.form.goals = this.form.goals.filter((g) => g !== goal);
+          this.form.goals = this.form.goals.filter(g => g !== goal);
         } else {
           this.form.goals.push(goal);
         }
@@ -75,9 +92,112 @@
           this.plan = "Please select at least one training goal.";
           return;
         }
-        this.plan = `Training plan for a ${this.form.age} with goals: ${this.form.goals.join(", ")}.`;
-      },
-    },
+  
+        let planDetails = [];
+  
+        const exercises = {
+          behavioral: {
+            Puppy: [
+              "Sit and Stay", "Leave It", "Quiet", "Recall", "No Jumping", "Crate Training (can help with housebreaking)", "Door Manners", "Not Pulling", "Place Command"
+            ],
+            Young: [
+              "Sit and Stay", "Leave It", "Quiet", "Recall", "No Jumping", "Crate Training", "Door Manners", "Not Pulling", "Place Command"
+            ],
+            Adult: [
+              "Sit", "Stay", "Leave It", "Recall", "No Jumping", "Crate Training", "Door Manners", "Not Pulling", "Place Command"
+            ],
+            Mature: [
+              "Sit", "Stay", "Leave It", "Recall", "No Jumping", "Crate Training", "Door Manners", "Not Pulling", "Place Command"
+            ],
+            Senior: [
+              "Sit", "Stay", "Leave It", "Recall", "No Jumping", "Crate Training (helpful for comfort)", "Door Manners", "Not Pulling", "Place Command"
+            ]
+          },
+          tricks: {
+            Puppy: [
+              "Shake Hand", "Paw", "Wave", "High Five", "Kiss"
+            ],
+            Young: [
+              "Shake Hand", "Paw", "Spin", "Roll Over", "Wave", "High Five", "Kiss", "Frisbee"
+            ],
+            Adult: [
+              "Shake Hand", "Paw", "Spin", "Roll Over", "Wave", "High Five", "Kiss", "Frisbee"
+            ],
+            Mature: [
+              "Shake Hand", "Paw", "Spin", "Roll Over", "Wave", "High Five", "Kiss", "Frisbee"
+            ],
+            Senior: [
+              "Shake Hand", "Paw", "Spin", "Roll Over", "Wave", "High Five", "Kiss"
+            ]
+          },
+          active: {
+            Puppy: [],
+            Young: [
+              "Agility Training", "Flyball"
+            ],
+            Adult: [
+              "Agility Training", "Flyball", "Frisbee"
+            ],
+            Mature: [
+              "Agility Training", "Parkour"
+            ],
+            Senior: [
+              "Frisbee (lightly)", "Parkour (modified to fit comfort level)"
+            ]
+          },
+          advanced: {
+            Puppy: [],
+            Young: [
+              "Recall at greater distance", "Advanced Heel", "Retrieve specific items", "Search"
+            ],
+            Adult: [
+              "Advanced Off-Leash", "Find Your Keys", "Parkour", "Search and Rescue", "Advanced Agility"
+            ],
+            Mature: [
+              "Off-Leash Training", "Search and Rescue", "Parkour", "Find Your Keys"
+            ],
+            Senior: [
+              "Advanced Recall", "Off-Leash (if possible)"
+            ]
+          },
+          potty: {
+            Puppy: [
+              "Scheduled Potty Breaks", "Puppy Pad"
+            ],
+            Young: [],
+            Adult: [],
+            Mature: [],
+            Senior: [
+              "Scheduled Potty Breaks", "Crate Training"
+            ]
+          }
+        };
+  
+        let selectedExercises = [];
+        
+        if (this.form.goals.includes('behavioral')) {
+          selectedExercises.push(...exercises.behavioral[this.form.age]);
+        }
+        if (this.form.goals.includes('tricks')) {
+          selectedExercises.push(...exercises.tricks[this.form.age]);
+        }
+        if (this.form.goals.includes('active')) {
+          selectedExercises.push(...exercises.active[this.form.age]);
+        }
+        if (this.form.goals.includes('advanced')) {
+          selectedExercises.push(...exercises.advanced[this.form.age]);
+        }
+        if (this.form.goals.includes('potty')) {
+          selectedExercises.push(...exercises.potty[this.form.age]);
+        }
+  
+        if (selectedExercises.length > 0) {
+          this.plan = selectedExercises.join("\n");
+        } else {
+          this.plan = "No exercises available for the selected options.";
+        }
+      }
+    }
   };
   </script>
   
@@ -165,7 +285,8 @@
     text-align: left;
   }
   
-  .menu-item:hover {
+  .menu-item:hover,
+  .menu-item.selected {
     background-color: #EDD9B7;
     color: #FFFEF9;
   }
