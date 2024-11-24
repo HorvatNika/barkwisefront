@@ -9,6 +9,7 @@ import Profile from '../views/Profile.vue'
 import CollieTraits from '../views/CollieTraits.vue'
 import TrainingPlan from '../views/TrainingPlan.vue'
 import PersonalizedPlan from '../views/PersonalizedPlan.vue'
+import SitStay from '../views/Trainings/SitStay.vue'
 
 const routes = [
   {
@@ -60,6 +61,11 @@ const routes = [
     path: '/personalizedplan',
     name: 'personalizedplan',
     component: PersonalizedPlan
+  },
+  {
+    path: '/sitstay',
+    name: 'sitstay',
+    component: SitStay
   }
 ]
 

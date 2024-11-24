@@ -96,82 +96,96 @@
         let planDetails = [];
   
         const exercises = {
-          behavioral: {
-            Puppy: [
-              "Sit and Stay", "Leave It", "Quiet", "Recall", "No Jumping", "Crate Training (can help with housebreaking)", "Door Manners", "Not Pulling", "Place Command"
-            ],
-            Young: [
-              "Sit and Stay", "Leave It", "Quiet", "Recall", "No Jumping", "Crate Training", "Door Manners", "Not Pulling", "Place Command"
-            ],
-            Adult: [
-              "Sit", "Stay", "Leave It", "Recall", "No Jumping", "Crate Training", "Door Manners", "Not Pulling", "Place Command"
-            ],
-            Mature: [
-              "Sit", "Stay", "Leave It", "Recall", "No Jumping", "Crate Training", "Door Manners", "Not Pulling", "Place Command"
-            ],
-            Senior: [
-              "Sit", "Stay", "Leave It", "Recall", "No Jumping", "Crate Training (helpful for comfort)", "Door Manners", "Not Pulling", "Place Command"
-            ]
-          },
-          tricks: {
-            Puppy: [
-              "Shake Hand", "Paw", "Wave", "High Five", "Kiss"
-            ],
-            Young: [
-              "Shake Hand", "Paw", "Spin", "Roll Over", "Wave", "High Five", "Kiss", "Frisbee"
-            ],
-            Adult: [
-              "Shake Hand", "Paw", "Spin", "Roll Over", "Wave", "High Five", "Kiss", "Frisbee"
-            ],
-            Mature: [
-              "Shake Hand", "Paw", "Spin", "Roll Over", "Wave", "High Five", "Kiss", "Frisbee"
-            ],
-            Senior: [
-              "Shake Hand", "Paw", "Spin", "Roll Over", "Wave", "High Five", "Kiss"
-            ]
-          },
-          active: {
-            Puppy: [],
-            Young: [
-              "Agility Training", "Flyball"
-            ],
-            Adult: [
-              "Agility Training", "Flyball", "Frisbee"
-            ],
-            Mature: [
-              "Agility Training", "Parkour"
-            ],
-            Senior: [
-              "Frisbee (lightly)", "Parkour (modified to fit comfort level)"
-            ]
-          },
-          advanced: {
-            Puppy: [],
-            Young: [
-              "Recall at greater distance", "Advanced Heel", "Retrieve specific items", "Search"
-            ],
-            Adult: [
-              "Advanced Off-Leash", "Find Your Keys", "Parkour", "Search and Rescue", "Advanced Agility"
-            ],
-            Mature: [
-              "Off-Leash Training", "Search and Rescue", "Parkour", "Find Your Keys"
-            ],
-            Senior: [
-              "Advanced Recall", "Off-Leash (if possible)"
-            ]
-          },
-          potty: {
-            Puppy: [
-              "Scheduled Potty Breaks", "Puppy Pad"
-            ],
-            Young: [],
-            Adult: [],
-            Mature: [],
-            Senior: [
-              "Scheduled Potty Breaks", "Crate Training"
-            ]
-          }
-        };
+  behavioral: {
+    Puppy: [
+      "Sit and Stay", "Leave It", "Quiet", "Recall", "No Jumping", 
+      "Crate Training (can help with housebreaking)", "Door Manners", 
+      "Not Pulling", "Place Command"
+    ],
+    Young: [
+      "Sit and Stay", "Leave It", "Quiet", "Recall", "No Jumping", 
+      "Crate Training", "Door Manners", "Not Pulling", "Place Command"
+    ],
+    Adult: [
+      "Sit", "Stay", "Leave It", "Recall", "No Jumping", 
+      "Crate Training", "Door Manners", "Not Pulling", "Place Command"
+    ],
+    Mature: [
+      "Sit", "Stay", "Leave It", "Recall", "No Jumping", 
+      "Crate Training", "Door Manners", "Not Pulling", "Place Command"
+    ],
+    Senior: [
+      "Sit", "Stay", "Leave It", "Recall", "No Jumping", 
+      "Crate Training (helpful for comfort)", "Door Manners", 
+      "Not Pulling", "Place Command"
+    ]
+  },
+  tricks: {
+    Puppy: [
+      "Shake Hand", "Paw", "Wave", "High Five", "Kiss"
+    ],
+    Young: [
+      "Shake Hand", "Paw", "Spin", "Roll Over", "Wave", 
+      "High Five", "Kiss", "Frisbee", "Bang", "Back Up", "Crawl"
+    ],
+    Adult: [
+      "Shake Hand", "Paw", "Spin", "Roll Over", "Wave", 
+      "High Five", "Kiss", "Frisbee", "Bang", "Back Up", "Crawl"
+    ],
+    Mature: [
+      "Shake Hand", "Paw", "Spin", "Roll Over", "Wave", 
+      "High Five", "Kiss", "Frisbee", "Bang", "Back Up", "Crawl"
+    ],
+    Senior: [
+      "Shake Hand", "Paw", "Spin", "Roll Over", "Wave", 
+      "High Five", "Kiss", "Bang", "Back Up", "Crawl"
+    ]
+  },
+  active: {
+    Puppy: [],
+    Young: [
+      "Agility Training", "Flyball"
+    ],
+    Adult: [
+      "Agility Training", "Flyball", "Frisbee"
+    ],
+    Mature: [
+      "Agility Training", "Parkour"
+    ],
+    Senior: [
+      "Frisbee (lightly)", "Parkour (modified to fit comfort level)"
+    ]
+  },
+  advanced: {
+    Puppy: [],
+    Young: [
+      "Recall at greater distance", "Advanced Heel", 
+      "Retrieve Specific Items", "Search", "Heel", "Off-Leash"
+    ],
+    Adult: [
+      "Advanced Off-Leash", "Find Your Keys", "Parkour", 
+      "Search and Rescue", "Advanced Agility", "Heel", "Off-Leash"
+    ],
+    Mature: [
+      "Off-Leash Training", "Search and Rescue", 
+      "Parkour", "Find Your Keys", "Heel", "Off-Leash"
+    ],
+    Senior: [
+      "Advanced Recall", "Off-Leash (if possible)", "Heel"
+    ]
+  },
+  potty: {
+    Puppy: [
+      "Scheduled Potty Breaks", "Puppy Pad"
+    ],
+    Young: [],
+    Adult: [],
+    Mature: [],
+    Senior: [
+      "Scheduled Potty Breaks", "Crate Training"
+    ]
+  }
+};
   
         let selectedExercises = [];
         
