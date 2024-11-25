@@ -34,6 +34,9 @@
       <router-link to="/highfive">HighFive</router-link>  
       <router-link to="/recall">Recall</router-link>  
       <router-link to="/scheduledpotty">ScheduledPotty</router-link> 
+      <router-link to="/cratetraining">CrateTraining</router-link> 
+      <router-link to="/leaveit">LaveIt</router-link> 
+      <router-link to="/doormanners">doormanners</router-link> 
     </div>
   </nav>
   <router-view/>

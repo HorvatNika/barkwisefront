@@ -3,7 +3,7 @@
       <div class="title-box">
         <div class="page-title">bang</div>
         <div class="content">
-          <h2>Teaching Your Dog to Play Bang</h2>
+          <h2>Teaching Your Dog to Play Bang!</h2>
           <ol>
             <li>
               <strong>Start with the Dog in a Lying Position:</strong> First, place the dog in a lying position. You can lure them into this position or gently push them until their rear end touches the ground.

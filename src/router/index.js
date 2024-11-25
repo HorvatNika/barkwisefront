@@ -25,6 +25,9 @@ import Bang from '../views/Trainings/Bang.vue'
 import HighFive from '../views/Trainings/HighFive.vue'
 import Recall from '../views/Trainings/Recall.vue'
 import ScheduledPotty from '../views/Trainings/ScheduledPotty.vue'
+import CrateTraining from '../views/Trainings/CrateTraining.vue'
+import LeaveIt from '../views/Trainings/LeaveIt.vue'
+import DoorManners from '../views/Trainings/DoorManners.vue'
 
 const routes = [
   {
@@ -156,6 +159,21 @@ const routes = [
     path: '/scheduledpotty',
     name: 'scheduledpotty',
     component: ScheduledPotty
+  },
+  {
+    path: '/cratetraining',
+    name: 'cratetraining',
+    component: CrateTraining
+  },
+  {
+    path: '/leaveit',
+    name: 'leaveit',
+    component: LeaveIt
+  },
+  {
+    path: '/doormanners',
+    name: 'doormanners',
+    component: DoorManners
   }
 ]
 

@@ -100,24 +100,24 @@
     Puppy: [
       "Sit and Stay", "Leave It", "Quiet", "Recall", "No Jumping", 
       "Crate Training (can help with housebreaking)", "Door Manners", 
-      "Not Pulling", "Place Command"
+      "No Pulling", "Place Command"
     ],
     Young: [
       "Sit and Stay", "Leave It", "Quiet", "Recall", "No Jumping", 
-      "Crate Training", "Door Manners", "Not Pulling", "Place Command"
+      "Crate Training", "Door Manners", "No Pulling", "Place Command"
     ],
     Adult: [
       "Sit", "Stay", "Leave It", "Recall", "No Jumping", 
-      "Crate Training", "Door Manners", "Not Pulling", "Place Command"
+      "Crate Training", "Door Manners", "No Pulling", "Place Command"
     ],
     Mature: [
       "Sit", "Stay", "Leave It", "Recall", "No Jumping", 
-      "Crate Training", "Door Manners", "Not Pulling", "Place Command"
+      "Crate Training", "Door Manners", "No Pulling", "Place Command"
     ],
     Senior: [
       "Sit", "Stay", "Leave It", "Recall", "No Jumping", 
       "Crate Training (helpful for comfort)", "Door Manners", 
-      "Not Pulling", "Place Command"
+      "No Pulling", "Place Command"
     ]
   },
   tricks: {

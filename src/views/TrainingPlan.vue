@@ -60,7 +60,7 @@ export default {
           "no jumping",
           "crate training",
           "door manners",
-          "not pulling",
+          "no pulling",
           "place command",
         ],
         "tricks": [
@@ -110,7 +110,7 @@ export default {
         ],
         intermediate: [
           "door manners",
-          "not pulling",
+          "no pulling",
           "place command",
           "spin",
           "roll over",
