@@ -6,7 +6,7 @@
           <h2>Teaching Your Dog the Leave It Command</h2>
           <ol>
             <li>
-              <strong>Set Up the Scenario:</strong> Find distractions outdoors—these can be toys, food, paper, or other dogs. Keep the dog on a leash to prevent access to the distraction.
+              <strong>Set Up the Scenario:</strong> Find distractions outdoors - these can be toys, food, paper, or other dogs. Keep the dog on a leash to prevent access to the distraction.
             </li>
             <li>
               <strong>Walk and Spot the Distraction:</strong> Walk with your dog towards the distraction. As soon as the dog notices it and moves towards it, clearly and firmly say <strong>leave it.</strong>

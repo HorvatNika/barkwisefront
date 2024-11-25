@@ -9,7 +9,7 @@
               <strong>Familiarization:</strong> The first step is to introduce the dog to the crate. Place the crate in a visible spot in your home where the dog spends time. Leave the door open and add soft blankets, toys, and treats. Do not force the dog inside, let it explore on its own. Praise and reward it when it shows interest in the crate.
             </li>
             <li>
-              <strong>Positive Associations:</strong> Toss treats into the crate when the dog is nearby. Use the word "good" or click the clicker when it enters the crate to get the treat. This helps the dog associate the crate with positive experiences.
+              <strong>Positive Associations:</strong> Toss treats into the crate when the dog is nearby. Use the word <strong>good</strong> or click the clicker when it enters the crate to get the treat. This helps the dog associate the crate with positive experiences.
             </li>
             <li>
               <strong>Offer Game:</strong> Hold a treat in your hand and wait for the dog to show interest in the crate. When it approaches, reward it with the treat. Over time, try placing the treat inside the crate and let the dog enter to get it.

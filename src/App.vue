@@ -36,7 +36,15 @@
       <router-link to="/scheduledpotty">ScheduledPotty</router-link> 
       <router-link to="/cratetraining">CrateTraining</router-link> 
       <router-link to="/leaveit">LaveIt</router-link> 
-      <router-link to="/doormanners">doormanners</router-link> 
+      <router-link to="/doormanners">Doormanners</router-link> 
+      <router-link to="/nojumping">NoJumping</router-link> 
+      <router-link to="/nopulling">NoPulling</router-link> 
+      <router-link to="/offleash">OffLeash</router-link> 
+      <router-link to="/puppypad">PuppyPad</router-link> 
+      <router-link to="/quiet">Quiet</router-link> 
+      <router-link to="/retrieveitems">RetrieveItems</router-link> 
+      <router-link to="/flyball">Flyball</router-link> 
+      <router-link to="/frisbee">frisbee</router-link> 
     </div>
   </nav>
   <router-view/>

@@ -28,6 +28,14 @@ import ScheduledPotty from '../views/Trainings/ScheduledPotty.vue'
 import CrateTraining from '../views/Trainings/CrateTraining.vue'
 import LeaveIt from '../views/Trainings/LeaveIt.vue'
 import DoorManners from '../views/Trainings/DoorManners.vue'
+import NoJumping from '../views/Trainings/NoJumping.vue'
+import NoPulling from '../views/Trainings/NoPulling.vue'
+import OffLeash from '../views/Trainings/OffLeash.vue'
+import PuppyPad from '../views/Trainings/PuppyPad.vue'
+import Quiet from '../views/Trainings/Quiet.vue'
+import RetrieveItems from '@/views/Trainings/RetrieveItems.vue'
+import Flyball from '@/views/Trainings/Flyball.vue'
+import Frisbee from '@/views/Trainings/Frisbee.vue'
 
 const routes = [
   {
@@ -174,6 +182,46 @@ const routes = [
     path: '/doormanners',
     name: 'doormanners',
     component: DoorManners
+  },
+  {
+    path: '/nojumping',
+    name: 'nojumping',
+    component: NoJumping
+  },
+  {
+    path: '/nopulling',
+    name: 'nopulling',
+    component: NoPulling
+  },
+  {
+    path: '/offleash',
+    name: 'offleash',
+    component: OffLeash
+  },
+  {
+    path: '/puppypad',
+    name: 'puppypad',
+    component: PuppyPad
+  },
+  {
+    path: '/quiet',
+    name: 'quiet',
+    component: Quiet
+  },
+  {
+    path: '/retrieveitems',
+    name: 'retrieveitems',
+    component: RetrieveItems
+  },
+  {
+    path: '/flyball',
+    name: 'flyball',
+    component: Flyball
+  },
+  {
+    path: '/frisbee',
+    name: 'frisbee',
+    component: Frisbee
   }
 ]
 
