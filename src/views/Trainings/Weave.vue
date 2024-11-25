@@ -1,33 +1,35 @@
 <template>
-    <div class="heel">
+    <div class="weave">
       <div class="title-box">
-        <div class="page-title">heel</div>
+        <div class="page-title">weave</div>
         <div class="content">
-          <h2>Teaching Your Dog to Heel</h2>
+          <h2>Teaching Your Dog the Leg Weave Trick</h2>
           <ol>
             <li>
-              <strong>Prepare the Treats:</strong> For this exercise, you'll need plenty of tasty treats. It's best to use small, non-sticky treats like dog food or small pieces of meat.
+              <strong>Teach the Hand Target Skill:</strong> This is the foundation for the "leg weave". The dog must learn to touch your hand with their nose on cue.
+              <ul>
+                <li>Start by holding a treat between your thumb and index finger and showing it to your dog. When the dog touches your hand, say <strong>yes</strong> and reward them with the treat.</li>
+                <li>Gradually hide the food in your fist but still reward the dog when they touch your hand.</li>
+                <li>Practice the <strong>hand target</strong> with your hand in different positions so the dog learns that the goal is to touch your hand, no matter where it is.</li>
+              </ul>
             </li>
             <li>
-              <strong>Choose a Low-Distraction Area:</strong> Start the exercise in a place with few distractions, like your living room or backyard.
+              <strong>Positioning Your Dog:</strong> Have your dog sit in front of you, and spread your legs apart.
             </li>
             <li>
-              <strong>Lure the Dog Next to You:</strong> Stand next to your dog and lower your hand with the treat toward their mouth. The goal is for the dog to follow your hand and stand by your side.
+              <strong>Drop Your Right Hand:</strong> Place both hands behind your back and then drop your right hand between your legs.
             </li>
             <li>
-              <strong>Place the Treats in Your Dog’s Mouth:</strong> While the dog is standing next to you, place the treats in their mouth one at a time.
+              <strong>Lure Your Dog Through Your Legs:</strong> When the dog touches your right hand, pull it through your left leg and give the dog a treat.
             </li>
             <li>
-              <strong>Start Moving Slowly:</strong> Once the dog is reliably standing by your side, begin moving forward slowly. Continue placing treats in the dog’s mouth while you walk.
+              <strong>Repeat with Left Hand:</strong> Return both hands behind your back and drop your left hand between your legs. When the dog touches your left hand, pull it through your right leg and reward them.
             </li>
             <li>
-              <strong>Add the Command Heel:</strong> Once the dog consistently walks beside you, start saying the command <strong>heel</strong> while walking.
+              <strong>Practice Without Food:</strong> After your dog understands the concept, start practicing without food in your hand. Use the <strong>hand target</strong> only to guide them through your legs.
             </li>
             <li>
-              <strong>Reduce the Frequency of Treats:</strong> As your dog becomes more skilled, start reducing the frequency of treats. Eventually, only reward them occasionally to keep them motivated.
-            </li>
-            <li>
-              <strong>Practice in Different Locations:</strong> When your dog knows the <strong>heel</strong> command in a low-distraction area, begin practicing in places with more distractions, like a park or on the street.
+              <strong>Be Patient and Consistent:</strong> As with any dog training, patience and consistency are key. Don’t get discouraged if your dog takes time to understand the trick.
             </li>
           </ol>
   
@@ -35,7 +37,7 @@
             <iframe 
               width="560" 
               height="315" 
-              src="https://www.youtube.com/watch?v=uv5bpfKxzmk" 
+              src="https://www.youtube.com/watch?v=vWI4OGHVuZM" 
               frameborder="0" 
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
               allowfullscreen>
@@ -62,7 +64,7 @@
   
   <script>
   export default {
-    name: "Heel",
+    name: "Weave",
     data() {
       return {
         comment: '',
@@ -81,7 +83,7 @@
   </script>
   
   <style scoped>
-  .heel {
+  .weave {
     display: flex;
     flex-direction: column;
     align-items: center;

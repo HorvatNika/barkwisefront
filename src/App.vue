@@ -18,7 +18,15 @@
       <router-link to="/collietraits">CollieTraits</router-link>
       <router-link to="/trainingplan">TrainingPlan</router-link> 
       <router-link to="/personalizedplan">PersonalizedPlan</router-link>
-      <router-link to="/sitstay">SitStay</router-link>   
+      <router-link to="/sitstay">SitStay</router-link>  
+      <router-link to="/paw">Paw</router-link>    
+      <router-link to="/spin">Spin</router-link>    
+      <router-link to="/weave">Weave</router-link>    
+      <router-link to="/heel">Heel</router-link>  
+      <router-link to="/rollover">RollOver</router-link>  
+      <router-link to="/shakehand">ShakeHand</router-link>  
+      <router-link to="/crawl">Crawl</router-link>  
+      <router-link to="/findkeys">FindKeys</router-link>  
     </div>
   </nav>
   <router-view/>

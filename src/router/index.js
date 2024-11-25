@@ -10,6 +10,14 @@ import CollieTraits from '../views/CollieTraits.vue'
 import TrainingPlan from '../views/TrainingPlan.vue'
 import PersonalizedPlan from '../views/PersonalizedPlan.vue'
 import SitStay from '../views/Trainings/SitStay.vue'
+import Paw from '../views/Trainings/Paw.vue'
+import Spin from '../views/Trainings/Spin.vue'
+import Weave from '../views/Trainings/Weave.vue'
+import Heel from '../views/Trainings/Heel.vue'
+import RollOver from '../views/Trainings/RollOver.vue'
+import ShakeHand from '../views/Trainings/ShakeHand.vue'
+import Crawl from '../views/Trainings/Crawl.vue'
+import FindKeys from '../views/Trainings/FindKeys.vue'
 
 const routes = [
   {
@@ -66,6 +74,46 @@ const routes = [
     path: '/sitstay',
     name: 'sitstay',
     component: SitStay
+  },
+  {
+    path: '/paw',
+    name: 'paw',
+    component: Paw
+  },
+  {
+    path: '/spin',
+    name: 'spin',
+    component: Spin
+  },
+  {
+    path: '/weave',
+    name: 'weave',
+    component: Weave
+  },
+  {
+    path: '/heel',
+    name: 'heel',
+    component: Heel
+  },
+  {
+    path: '/rollover',
+    name: 'rollover',
+    component: RollOver
+  },
+  {
+    path: '/shakehand',
+    name: 'shakehand',
+    component: ShakeHand
+  },
+  {
+    path: '/crawl',
+    name: 'crawl',
+    component: Crawl
+  },
+  {
+    path: '/findkeys',
+    name: 'findkeys',
+    component: FindKeys
   }
 ]
 

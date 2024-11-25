@@ -17,6 +17,18 @@
           <li>
             <strong>Remove the Lure and Add a Hand Signal:</strong> Pretend to hold a treat, lure the dog into a sitting position, then reward from another hand or treat pouch. Gradually turn the luring motion into a hand signal by reducing the proximity of your hand to the dog’s face.
           </li>
+          
+          <div class="video-container">
+            <iframe 
+              width="560" 
+              height="315" 
+              src="https://www.youtube.com/embed/ksBLKi6lj1s" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+
         </ol>
 
         <h2>Teaching Your Dog to Stay</h2>
@@ -46,7 +58,6 @@
         <textarea v-model="comment" placeholder="Write your comment here..." rows="4" class="comment-box"></textarea>
         <button @click="submitComment" class="comment-btn">Submit</button>
         <div v-if="comments.length > 0" class="comments-list">
-          <h3>Comments:</h3>
           <ul>
             <li v-for="(comment, index) in comments" :key="index">{{ comment }}</li>
           </ul>
@@ -77,8 +88,6 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
-
 .sit-stay {
   display: flex;
   flex-direction: column;
@@ -93,11 +102,11 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: #FFFEF9;
-  padding: 5rem;
+  padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 800px;
   width: 100%;
-  margin-top: 5rem;
+  margin: 2rem auto;
 }
 
 .page-title {
@@ -105,6 +114,8 @@ export default {
   font-size: 10rem;
   color: #BAE1F0;
   text-align: center;
+  opacity: 70%;
+  margin-bottom: -2rem;
 }
 
 .content {
@@ -142,6 +153,7 @@ export default {
   resize: none; 
   font-family: 'Century Gothic', sans-serif;
   color: #5F5F5F;
+  box-sizing: border-box;
 }
 
 .comment-btn {
@@ -152,7 +164,7 @@ export default {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 1rem;
-  font-family: 'Montel', sans-serif
+  font-family: 'Montel', sans-serif;
 }
 
 .comment-btn:hover {
@@ -161,10 +173,6 @@ export default {
 
 .comments-list {
   margin-top: 2rem;
-}
-
-.comments-list h3 {
-  color: #BAE1F0;
 }
 
 .comments-list ul {
@@ -180,10 +188,17 @@ export default {
   font-weight: 600; 
   color: #5F5F5F;
   font-size: 2rem;
-  margin-top: 1rem;
+  margin-bottom: 0.6rem;
 }
 
 .comment-box:focus {
   outline: none; 
+}
+
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
 }
 </style>
