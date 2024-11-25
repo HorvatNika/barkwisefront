@@ -32,8 +32,10 @@
 
     <div class="exercise-list">
       <div v-for="(subOption, index) in filteredSubOptions" :key="index" class="exercise-item">
-        <div class="exercise-image"></div>
-        <div class="exercise-title">{{ subOption }}</div>
+        <router-link :to="getRoute(subOption)">
+          <div class="exercise-image"></div>
+          <div class="exercise-title">{{ subOption }}</div>
+        </router-link>
       </div>
     </div>
   </div>
@@ -69,7 +71,7 @@ export default {
           "spin",
           "roll over",
           "bang",
-          "wave",
+          "weave",
           "high five",
           "back up",
           "crawl",
@@ -103,10 +105,9 @@ export default {
           "no jumping",
           "shake hand",
           "paw",
-          "wave",
+          "weave",
           "high five",
           "kiss",
-          "frisbee",
         ],
         intermediate: [
           "door manners",
@@ -119,6 +120,7 @@ export default {
           "flyball",
           "agility training",
           "search",
+          "frisbee", 
         ],
         advanced: [
           "crate training",
@@ -156,9 +158,45 @@ export default {
       this.selectedType = type; 
       this.selectedDifficulty = null; 
     },
+    getRoute(subOption) {
+      const routes = {
+        "sit and stay": "/sitstay",
+        "leave it": "/leaveit",
+        "quiet": "/quiet",
+        "recall": "/recall",
+        "no jumping": "/nojumping",
+        "shake hand": "/shakehand",
+        "paw": "/paw",
+        "high five": "/highfive",
+        "kiss": "/kiss",
+        "frisbee": "/frisbee",
+        "spin": "/spin",
+        "roll over": "/rollover",
+        "bang": "/bang",
+        "back up": "/backup",
+        "crawl": "/crawl",
+        "agility training": "/agilitytraining",
+        "flyball": "/flyball",
+        "search": "/search",
+        "off-leash": "/offleash",
+        "retrieve specific items": "/retrieveitems",
+        "find your keys": "/findkeys",
+        "scheduled potty breaks": "/scheduledpotty",
+        "puppy pad": "/puppypad",
+        "parkour": "/parkour",
+        "crate training": "/cratetraining",
+        "door manners": "/doormanners",
+        "weave": "/weave",
+        "no pulling": "/nopulling",
+        "heel": "/heel",
+        "place command": "/place",
+      };
+      return routes[subOption] || "/";
+    }
   },
 };
 </script>
+
 
 <style scoped>
 .training-plan {
@@ -278,5 +316,14 @@ export default {
   font-family: 'CenturyGothic', sans-serif;
   font-size: 1rem;
   color: #333;
+}
+
+.exercise-item a {
+  text-decoration: none; 
+  color: inherit; 
+}
+
+.exercise-item a:hover {
+  text-decoration: none;
 }
 </style>

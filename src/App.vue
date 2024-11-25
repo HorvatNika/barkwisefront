@@ -17,34 +17,8 @@
       <router-link to="/profile">Profile</router-link> 
       <router-link to="/collietraits">CollieTraits</router-link>
       <router-link to="/trainingplan">TrainingPlan</router-link> 
-      <router-link to="/personalizedplan">PersonalizedPlan</router-link>
-      <router-link to="/sitstay">SitStay</router-link>  
-      <router-link to="/paw">Paw</router-link>    
-      <router-link to="/spin">Spin</router-link>    
-      <router-link to="/weave">Weave</router-link>    
-      <router-link to="/heel">Heel</router-link>  
-      <router-link to="/rollover">RollOver</router-link>  
-      <router-link to="/shakehand">ShakeHand</router-link>  
-      <router-link to="/crawl">Crawl</router-link>  
-      <router-link to="/findkeys">FindKeys</router-link>  
-      <router-link to="/kiss">Kiss</router-link>  
-      <router-link to="/search">Search</router-link>  
-      <router-link to="/backup">BackUp</router-link>  
-      <router-link to="/bang">Bang</router-link>  
-      <router-link to="/highfive">HighFive</router-link>  
-      <router-link to="/recall">Recall</router-link>  
-      <router-link to="/scheduledpotty">ScheduledPotty</router-link> 
-      <router-link to="/cratetraining">CrateTraining</router-link> 
-      <router-link to="/leaveit">LaveIt</router-link> 
-      <router-link to="/doormanners">Doormanners</router-link> 
-      <router-link to="/nojumping">NoJumping</router-link> 
-      <router-link to="/nopulling">NoPulling</router-link> 
-      <router-link to="/offleash">OffLeash</router-link> 
-      <router-link to="/puppypad">PuppyPad</router-link> 
-      <router-link to="/quiet">Quiet</router-link> 
-      <router-link to="/retrieveitems">RetrieveItems</router-link> 
-      <router-link to="/flyball">Flyball</router-link> 
-      <router-link to="/frisbee">frisbee</router-link> 
+      <router-link to="/personalizedplan">PersonalizedPlan</router-link> 
+      <router-link to="/place">Place</router-link> 
     </div>
   </nav>
   <router-view/>

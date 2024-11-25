@@ -36,6 +36,7 @@ import Quiet from '../views/Trainings/Quiet.vue'
 import RetrieveItems from '@/views/Trainings/RetrieveItems.vue'
 import Flyball from '@/views/Trainings/Flyball.vue'
 import Frisbee from '@/views/Trainings/Frisbee.vue'
+import Place from '@/views/Trainings/Place.vue'
 
 const routes = [
   {
@@ -222,6 +223,11 @@ const routes = [
     path: '/frisbee',
     name: 'frisbee',
     component: Frisbee
+  },
+  {
+    path: '/place',
+    name: 'place',
+    component: Place
   }
 ]
 
