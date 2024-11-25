@@ -18,6 +18,13 @@ import RollOver from '../views/Trainings/RollOver.vue'
 import ShakeHand from '../views/Trainings/ShakeHand.vue'
 import Crawl from '../views/Trainings/Crawl.vue'
 import FindKeys from '../views/Trainings/FindKeys.vue'
+import Kiss from '../views/Trainings/Kiss.vue'
+import Search from '../views/Trainings/Search.vue'
+import BackUp from '../views/Trainings/BackUp.vue'
+import Bang from '../views/Trainings/Bang.vue'
+import HighFive from '../views/Trainings/HighFive.vue'
+import Recall from '../views/Trainings/Recall.vue'
+import ScheduledPotty from '../views/Trainings/ScheduledPotty.vue'
 
 const routes = [
   {
@@ -114,6 +121,41 @@ const routes = [
     path: '/findkeys',
     name: 'findkeys',
     component: FindKeys
+  },
+  {
+    path: '/kiss',
+    name: 'kiss',
+    component: Kiss
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: Search
+  },
+  {
+    path: '/backup',
+    name: 'backup',
+    component: BackUp
+  },
+  {
+    path: '/bang',
+    name: 'bang',
+    component: Bang
+  },
+  {
+    path: '/highfive',
+    name: 'highfive',
+    component: HighFive
+  },
+  {
+    path: '/recall',
+    name: 'recall',
+    component: Recall
+  },
+  {
+    path: '/scheduledpotty',
+    name: 'scheduledpotty',
+    component: ScheduledPotty
   }
 ]
 

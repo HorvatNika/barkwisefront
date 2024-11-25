@@ -27,6 +27,13 @@
       <router-link to="/shakehand">ShakeHand</router-link>  
       <router-link to="/crawl">Crawl</router-link>  
       <router-link to="/findkeys">FindKeys</router-link>  
+      <router-link to="/kiss">Kiss</router-link>  
+      <router-link to="/search">Search</router-link>  
+      <router-link to="/backup">BackUp</router-link>  
+      <router-link to="/bang">Bang</router-link>  
+      <router-link to="/highfive">HighFive</router-link>  
+      <router-link to="/recall">Recall</router-link>  
+      <router-link to="/scheduledpotty">ScheduledPotty</router-link> 
     </div>
   </nav>
   <router-view/>
