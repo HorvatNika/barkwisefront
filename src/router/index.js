@@ -37,6 +37,11 @@ import RetrieveItems from '@/views/Trainings/RetrieveItems.vue'
 import Flyball from '@/views/Trainings/Flyball.vue'
 import Frisbee from '@/views/Trainings/Frisbee.vue'
 import Place from '@/views/Trainings/Place.vue'
+import WorkingDogs from '@/views/CollieTraits/WorkingDogs.vue'
+import CollieVarieties from '@/views/CollieTraits/CollieVarieties.vue'
+import HealthInsights from '@/views/CollieTraits/HealthInsights.vue'
+import TrainingTechniques from '@/views/CollieTraits/TrainingTechniques.vue'
+import AgilityCompetitions from '@/views/CollieTraits/AgilityCompetitions.vue'
 
 const routes = [
   {
@@ -228,6 +233,31 @@ const routes = [
     path: '/place',
     name: 'place',
     component: Place
+  },
+  {
+    path: '/workingdogs',
+    name: 'workingdogs',
+    component: WorkingDogs
+  },
+  {
+    path: '/collievarieties',
+    name: 'collievarieties',
+    component: CollieVarieties
+  },
+  {
+    path: '/healthinsights',
+    name: 'healthinsights',
+    component: HealthInsights
+  },
+  {
+    path: '/trainingtechniques',
+    name: 'trainingtechniques',
+    component: TrainingTechniques
+  },
+  {
+    path: '/agilitycompetitions',
+    name: 'agilitycompetitions',
+    component: AgilityCompetitions
   }
 ]
 
