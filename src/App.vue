@@ -23,6 +23,7 @@
       <router-link to="/healthinsights">HealthInsights</router-link> 
       <router-link to="/trainingtechniques">TrainingTechniques</router-link> 
       <router-link to="/agilitycompetitions">AgilityCompetitions</router-link>
+      <router-link to="/colorfulworld">ColorfulWorld</router-link>
     </div>
   </nav>
   <router-view/>

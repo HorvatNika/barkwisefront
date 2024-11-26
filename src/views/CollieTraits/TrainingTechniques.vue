@@ -89,7 +89,7 @@
     text-align: center;
     opacity: 70%;
     margin-bottom: 0.2rem;
-    line-height: 0.8;
+    line-height: 0.7;
   }
   
   .content {

@@ -1,7 +1,7 @@
 <template>
   <div class="border-collie-info">
     <div class="title-box">
-      <div class="page-title">why border collies are the ultimate working dogs</div>
+      <div class="page-title">why border collies are the ultimate working dogs: intelligence, energy, and loyalty combined</div>
       <div class="content">
         <p>
           Border Collies have earned their place as the epitome of working dogs. Known for their unparalleled intelligence, boundless energy, and unwavering loyalty, this breed thrives in environments that challenge both their minds and bodies. Their unique combination of traits makes them exceptional companions for those who can keep up with their high demands.
@@ -77,7 +77,7 @@ export default {
   text-align: center;
   opacity: 70%;
   margin-bottom: 0.2rem;
-  line-height: 0.8; 
+  line-height: 0.7; 
 }
 
 .content {

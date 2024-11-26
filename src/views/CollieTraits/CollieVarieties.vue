@@ -1,7 +1,7 @@
 <template>
   <div class="border-collie-coat-info">
     <div class="title-box">
-      <div class="page-title">the colorful world of border collies: exploring coat colors and patterns</div>
+      <div class="page-title">border collie varieties: discovering the different types and their unique traits</div>
       <div class="content">
         <p>
           Border Collies are not only known for their intelligence and work ethic but also for their striking and diverse coat colors. From the classic black-and-white to the rare merle, the Border Collie comes in a variety of stunning hues and patterns. Each coat variation is a reflection of the breed's genetics and heritage, adding to their allure and charm. In this article, we’ll explore the different coat colors and patterns of Border Collies and how these genetic traits play a role in their health.
@@ -76,7 +76,7 @@ export default {
   text-align: center;
   opacity: 70%;
   margin-bottom: 0.2rem;
-  line-height: 0.8; 
+  line-height: 0.7; 
 }
 
 .content {

@@ -42,6 +42,7 @@ import CollieVarieties from '@/views/CollieTraits/CollieVarieties.vue'
 import HealthInsights from '@/views/CollieTraits/HealthInsights.vue'
 import TrainingTechniques from '@/views/CollieTraits/TrainingTechniques.vue'
 import AgilityCompetitions from '@/views/CollieTraits/AgilityCompetitions.vue'
+import ColorfulWorld from '@/views/CollieTraits/ColorfulWorld.vue'
 
 const routes = [
   {
@@ -258,6 +259,11 @@ const routes = [
     path: '/agilitycompetitions',
     name: 'agilitycompetitions',
     component: AgilityCompetitions
+  },
+  {
+    path: '/colorfulworld',
+    name: 'colorfulworld',
+    component: ColorfulWorld
   }
 ]
 
