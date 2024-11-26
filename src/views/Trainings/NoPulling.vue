@@ -115,7 +115,7 @@ export default {
 .page-title {
   font-family: 'ChunkyRetro', sans-serif;
   font-size: 10rem;
-  color: #BAE1F0;
+  color: #EDD9B7;
   text-align: center;
   opacity: 70%;
   margin-bottom: -2rem;
@@ -129,7 +129,7 @@ export default {
 }
 
 .content h2 {
-  color: #BAE1F0;
+  color: #EDD9B7;
   font-size: 2rem;
   margin-top: 0.2rem;
   padding-top: 2.5rem;
@@ -166,7 +166,7 @@ export default {
 }
 
 .comment-btn {
-  background-color: #BAE1F0;
+  background-color: #EDD9B7;
   color: #fff;
   padding: 0.5rem 1rem;
   border: none;
@@ -177,7 +177,7 @@ export default {
 }
 
 .comment-btn:hover {
-  background-color: #A3C8D7;
+  background-color: #EDD9B7;
 }
 
 .comments-list {

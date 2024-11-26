@@ -81,7 +81,7 @@
   .page-title {
     font-family: 'ChunkyRetro', sans-serif;
     font-size: 5rem;
-    color: #AEEBBA;
+    color: #EDD9B7;
     text-align: center;
     opacity: 70%;
     margin-bottom: 0.2rem;
@@ -96,7 +96,7 @@
   }
   
   .content h3 {
-    color: #AEEBBA;
+    color: #EDD9B7;
     font-size: 1.5rem;
     margin-top: 1.5rem;
     margin-bottom: 0.2rem;

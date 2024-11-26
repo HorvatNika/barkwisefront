@@ -18,12 +18,6 @@
       <router-link to="/collietraits">CollieTraits</router-link>
       <router-link to="/trainingplan">TrainingPlan</router-link> 
       <router-link to="/personalizedplan">PersonalizedPlan</router-link> 
-      <router-link to="/workingdogs">WorkingDogs</router-link> 
-      <router-link to="/collievarieties">CollieVarieties</router-link> 
-      <router-link to="/healthinsights">HealthInsights</router-link> 
-      <router-link to="/trainingtechniques">TrainingTechniques</router-link> 
-      <router-link to="/agilitycompetitions">AgilityCompetitions</router-link>
-      <router-link to="/colorfulworld">ColorfulWorld</router-link>
     </div>
   </nav>
   <router-view/>
