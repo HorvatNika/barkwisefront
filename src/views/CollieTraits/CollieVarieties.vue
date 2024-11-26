@@ -53,7 +53,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: #f9f9f9;
+  background-color: #eeeee6;
   min-height: 100vh;
   padding: 2rem;
 }
@@ -61,7 +61,7 @@ export default {
 .title-box {
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: #fffef9;
   padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 800px;
