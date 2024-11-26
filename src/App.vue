@@ -17,7 +17,8 @@
       <router-link to="/profile">Profile</router-link> 
       <router-link to="/collietraits">CollieTraits</router-link>
       <router-link to="/trainingplan">TrainingPlan</router-link> 
-      <router-link to="/personalizedplan">PersonalizedPlan</router-link> 
+      <router-link to="/personalizedplan">PersonalizedPlan</router-link>
+      <router-link to="/dogprofile">DogProfile</router-link>
     </div>
   </nav>
   <router-view/>

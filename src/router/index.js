@@ -43,6 +43,7 @@ import HealthInsights from '@/views/CollieTraits/HealthInsights.vue'
 import TrainingTechniques from '@/views/CollieTraits/TrainingTechniques.vue'
 import AgilityCompetitions from '@/views/CollieTraits/AgilityCompetitions.vue'
 import ColorfulWorld from '@/views/CollieTraits/ColorfulWorld.vue'
+import DogProfile from '@/views/DogProfile.vue'
 
 const routes = [
   {
@@ -264,6 +265,11 @@ const routes = [
     path: '/colorfulworld',
     name: 'colorfulworld',
     component: ColorfulWorld
+  },
+  {
+    path: '/dogprofile',
+    name: 'dogprofile',
+    component: DogProfile
   }
 ]
 
