@@ -135,6 +135,7 @@ export default {
   width: 100%;
   z-index: 2;
   opacity: 30%;
+  pointer-events: none;
 }
 
 .top-background {
@@ -223,7 +224,7 @@ export default {
   border-radius: 50%;
   background-color: #FFFEF9;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.a3s ease;
 }
 
 .nav-circle:hover {
