@@ -46,6 +46,9 @@ import ColorfulWorld from '@/views/CollieTraits/ColorfulWorld.vue'
 import DogProfile from '@/views/DogProfile.vue'
 import HealthCare from '@/views/HealthCare.vue'
 import Food from '@/views/Food.vue'
+import Grooming from '@/views/HealthCare/Grooming.vue'
+import DentalCare from '@/views/HealthCare/DentalCare.vue'
+import MentalHealth from '@/views/HealthCare/MentalHealth.vue'
 
 const routes = [
   {
@@ -282,6 +285,21 @@ const routes = [
     path: '/food',
     name: 'food',
     component: Food
+  },
+  {
+    path: '/grooming',
+    name: 'grooming',
+    component: Grooming
+  },
+  {
+    path: '/dentalcare',
+    name: 'dentalcare',
+    component: DentalCare
+  },
+  {
+    path: '/mentalhealth',
+    name: 'mentalhealth',
+    component: MentalHealth
   }
 ]
 

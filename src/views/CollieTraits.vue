@@ -136,6 +136,7 @@ export default {
   z-index: 2;
   opacity: 30%;
   pointer-events: none;
+  
 }
 
 .top-background {

@@ -29,11 +29,11 @@
           </div>
         </router-link>
   
-        <router-link to="/bathingandgrooming" class="square right">
+        <router-link to="/mentalhealthandwellbeing" class="square right">
           <div class="square-title-wrapper">
-            <div class="square-title">Bathing and Grooming Frequency: How Often Should You Groom Your Border Collie?</div>
+            <div class="square-title">Mental Health and Well-being: Supporting Your Border Collie's Emotional Needs</div>
             <div class="square-description">
-              Border Collies have a dense coat that requires consistent care. Learn how often you should bathe your Border Collie, tips for maintaining their coat, and how regular grooming helps prevent skin issues and mats. We'll discuss the right tools for the job, how frequently to bathe, and the importance of grooming as part of your dog's overall health care routine.
+              Border Collies are highly intelligent and sensitive dogs that require mental stimulation and emotional care. Learn how to recognize signs of stress or anxiety, create a stimulating environment, and build a strong bond with your dog. We'll discuss games, training techniques, and activities that promote mental well-being and ensure a happy, balanced life for your Border Collie.
             </div>
           </div>
         </router-link>
