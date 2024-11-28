@@ -49,6 +49,10 @@ import Food from '@/views/Food.vue'
 import Grooming from '@/views/HealthCare/Grooming.vue'
 import DentalCare from '@/views/HealthCare/DentalCare.vue'
 import MentalHealth from '@/views/HealthCare/MentalHealth.vue'
+import BestFood from '@/views/Food/BestFood.vue'
+import FeedingPuppies from '@/views/Food/FeedingPuppies.vue'
+import DietaryNeeds from '@/views/Food/DietaryNeeds.vue'
+import FoodAllergies from '@/views/Food/FoodAllergies.vue'
 
 const routes = [
   {
@@ -300,6 +304,26 @@ const routes = [
     path: '/mentalhealth',
     name: 'mentalhealth',
     component: MentalHealth
+  },
+  {
+    path: '/bestfood',
+    name: 'bestfood',
+    component: BestFood
+  },
+  {
+    path: '/feedingpuppies',
+    name: 'feedingpuppies',
+    component: FeedingPuppies
+  },
+  {
+    path: '/dietaryneeds',
+    name: 'dietaryneeds',
+    component: DietaryNeeds
+  },
+  {
+    path: '/foodallergies',
+    name: 'foodallergies',
+    component: FoodAllergies
   }
 ]
 

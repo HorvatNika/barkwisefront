@@ -21,9 +21,6 @@
       <router-link to="/dogprofile">DogProfile</router-link>
       <router-link to="/healthcare">HealthCare</router-link>
       <router-link to="/food">Food</router-link>
-      <router-link to="/grooming">Grooming</router-link>
-      <router-link to="/dentalcare">DentalCare</router-link>
-      <router-link to="/mentalhealth">MentalHealth</router-link>
     </div>
   </nav>
   <router-view/>

@@ -11,7 +11,7 @@
       <div class="middle-line"></div>
   
       <div class="bottom-background">
-        <router-link v-if="currentSet === 1" to="/bestfoods" class="square left">
+        <router-link v-if="currentSet === 1" to="/bestfood" class="square left">
           <div class="square-title-wrapper">
             <div class="square-title">Best Foods for Border Collies: Learn What is the Best Food for Your Dog</div>
             <div class="square-description">
@@ -20,7 +20,7 @@
           </div>
         </router-link>
   
-        <router-link v-if="currentSet === 1" to="/feedingpuppies" class="square center">
+        <router-link v-if="currentSet === 1" to="/puppies" class="square center">
           <div class="square-title-wrapper">
             <div class="square-title">Feeding Border Collie Puppies: What You Need to Know</div>
             <div class="square-description">
@@ -29,7 +29,7 @@
           </div>
         </router-link>
   
-        <router-link v-if="currentSet === 1" to="/dietaryneeds" class="square right">
+        <router-link v-if="currentSet === 1" to="/dietary" class="square right">
           <div class="square-title-wrapper">
             <div class="square-title">Border Collie Dietary Needs: Age, Activity, and Health</div>
             <div class="square-description">
