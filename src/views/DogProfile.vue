@@ -4,9 +4,10 @@
     
     <div class="image-container">
       <img :src="userImage" alt="user dog" class="border-image" />
-      <div class="image-actions">
-        <span @click="triggerFileInput">change image</span>
-      </div>
+    </div>
+    
+    <div class="image-actions">
+      <span @click="triggerFileInput">change image</span>
     </div>
 
     <input type="file" ref="fileInput" @change="onImageChange" accept="image/*" style="display:none" />
@@ -43,12 +44,12 @@ export default {
   name: "DogProfile",
   data() {
     return {
-      userImage: require('@/assets/slike/oskar.jpg'),
+      userImage: require('@/assets/slike/tomi.jpg'),
       userData: {
         name: "Tomi",
         gender: "Male",
         birthday: "2024-06-20",
-        colorPattern: "Black and White",
+        colorPattern: "Three Color",
         email: "tomi@gmail.com",
       },
     };
@@ -134,8 +135,8 @@ export default {
   padding: 20px;
   background-color: transparent; 
   width: 50%;
-  max-width: 500px;
-  margin-left: 37%;
+  max-width: 370px;
+  margin-left: 40%;
   margin-right: auto;
   z-index: 3; 
 }
@@ -144,6 +145,7 @@ export default {
   margin-bottom: 2px; 
   display: flex;
   justify-content: space-between;
+  transform: rotate(-10deg);
 }
 
 .label {
@@ -155,21 +157,21 @@ export default {
 
 .value {
   color: #5F5F5F;
-  font-family: 'CenturyGothic', sans-serif;
+  font-family: 'Century Gothic', sans-serif;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .image-actions {
-  position: absolute;
-  top: 91%;
-  left: 83%;
-  transform: translateX(-50%);
+  position: fixed; 
+  right: 190px; 
+  top: 51.5%; 
   z-index: 3;
   cursor: pointer;
   color: #5F5F5F;
   font-family: 'ChunkyRetro', sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   white-space: nowrap; 
 }
 </style>
+

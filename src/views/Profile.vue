@@ -25,14 +25,14 @@
         </div>
         <img src="@/assets/slike/progress.png" alt="Progress" class="progress-image" />
       </div>
-      <div class="square right" @click="navigateTo('/settings')">
+      <div class="square right" @click="navigateTo('/journal')">
         <div class="square-title-wrapper">
-          <div class="square-title">Settings</div>
+          <div class="square-title">Journal</div>
         </div>
         <div class="square-description">
-          Customize the settings of your dog's profile, including preferences for notifications, training schedules, and more. Control how the app interacts with your dog’s progress and communication.
+          Record all the important moments and memories from your dog's life. Create a personalized journal to document special events and milestones that you and your furry friend will cherish forever.
         </div>
-        <img src="@/assets/slike/settings.png" alt="Settings" class="settings-image" />
+        <img src="@/assets/slike/journal.png" alt="Settings" class="journal-image" />
       </div>
     </div>
     <img src="@/assets/slike/borderpla.png" alt="borderpla" class="borderzel-image" />
@@ -167,7 +167,7 @@ export default {
   object-fit: contain;
 }
 
-.settings-image {
+.journal-image {
   position: absolute;
   top: 32%;
   left: 8%;
