@@ -7,7 +7,7 @@
     <div class="top-background"></div>
     <div class="middle-line"></div>
     <div class="bottom-background">
-      <div class="square left">
+      <div class="square left" @click="navigateTo('/dogprofile')">
         <div class="square-title-wrapper">
           <div class="square-title">Dog Profile</div>
         </div>
@@ -16,7 +16,7 @@
         </div>
         <img src="@/assets/slike/dogprofile.png" alt="Dog Profile" class="profile-image" />
       </div>
-      <div class="square center">
+      <div class="square center" @click="navigateTo('/progress')">
         <div class="square-title-wrapper">
           <div class="square-title">Progress</div>
         </div>
@@ -25,7 +25,7 @@
         </div>
         <img src="@/assets/slike/progress.png" alt="Progress" class="progress-image" />
       </div>
-      <div class="square right">
+      <div class="square right" @click="navigateTo('/settings')">
         <div class="square-title-wrapper">
           <div class="square-title">Settings</div>
         </div>
@@ -42,6 +42,11 @@
 <script>
 export default {
   name: "Profile",
+  methods: {
+    navigateTo(route) {
+      this.$router.push(route);
+    },
+  },
 };
 </script>
 
@@ -179,5 +184,10 @@ export default {
   height: 35%;
   object-fit: contain;
   z-index: 10;
+}
+
+.square {
+  cursor: pointer;
+  transition: transform 0.3s;
 }
 </style>

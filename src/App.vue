@@ -15,12 +15,9 @@
       <router-link to="/home">Home</router-link> 
       <router-link to="/training">Training</router-link> 
       <router-link to="/profile">Profile</router-link> 
-      <router-link to="/collietraits">CollieTraits</router-link>
       <router-link to="/trainingplan">TrainingPlan</router-link> 
       <router-link to="/personalizedplan">PersonalizedPlan</router-link>
       <router-link to="/dogprofile">DogProfile</router-link>
-      <router-link to="/healthcare">HealthCare</router-link>
-      <router-link to="/food">Food</router-link>
     </div>
   </nav>
   <router-view/>

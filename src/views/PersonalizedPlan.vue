@@ -99,7 +99,7 @@
   behavioral: {
     Puppy: [
       "Sit and Stay", "Leave It", "Quiet", "Recall", "No Jumping", 
-      "Crate Training (can help with housebreaking)", "Door Manners", 
+      "Crate Training", "Door Manners", 
       "No Pulling", "Place Command"
     ],
     Young: [
@@ -116,7 +116,7 @@
     ],
     Senior: [
       "Sit", "Stay", "Leave It", "Recall", "No Jumping", 
-      "Crate Training (helpful for comfort)", "Door Manners", 
+      "Crate Training", "Door Manners", 
       "No Pulling", "Place Command"
     ]
   },

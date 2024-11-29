@@ -7,7 +7,7 @@
     <div class="top-background"></div>
     <div class="middle-line"></div>
     <div class="bottom-background">
-      <div class="square left">
+      <div class="square left" @click="navigateTo('/trainingplan')">
         <div class="square-title-wrapper">
           <div class="square-title">Training Plan</div>
         </div>
@@ -16,7 +16,7 @@
         </div>
         <img src="@/assets/slike/training.png" alt="Training Plan" class="training-image" />
       </div>
-      <div class="square center">
+      <div class="square center" @click="navigateTo('/personalplan')">
         <div class="square-title-wrapper">
           <div class="square-title">Personal Plan</div>
         </div>
@@ -25,7 +25,7 @@
         </div>
         <img src="@/assets/slike/personalplan.png" alt="Personal Plan" class="personalplan-image" />
       </div>
-      <div class="square right">
+      <div class="square right" @click="navigateTo('/schedule')">
         <div class="square-title-wrapper">
           <div class="square-title">Schedule</div>
         </div>
@@ -42,6 +42,11 @@
 <script>
 export default {
   name: "Training",
+  methods: {
+    navigateTo(route) {
+      this.$router.push(route);
+    },
+  },
 };
 </script>
 
@@ -179,5 +184,10 @@ export default {
   height: 35%;
   object-fit: contain;
   z-index: 10;
+}
+
+.square {
+  cursor: pointer;
+  transition: transform 0.3s;
 }
 </style>

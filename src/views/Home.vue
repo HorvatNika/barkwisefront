@@ -7,7 +7,7 @@
     <div class="top-background"></div>
     <div class="middle-line"></div>
     <div class="bottom-background">
-      <div class="square left">
+      <div class="square left" @click="navigateTo('/collietraits')">
         <div class="square-title-wrapper">
           <div class="square-title">Collie Traits</div>
         </div>
@@ -16,16 +16,16 @@
         </div>
         <img src="@/assets/slike/collietraits.png" alt="Collie Traits" class="collie-traits-image" />
       </div>
-      <div class="square center">
+      <div class="square center" @click="navigateTo('/healthcare')">
         <div class="square-title-wrapper">
           <div class="square-title">Health and Care</div>
         </div>
         <div class="square-description">
           Explore essential health and care tips for Border Collies, including advice on diet, exercise, and common health issues. Learn about preventive care, vaccinations, and grooming techniques to keep your Border Collie happy and healthy.
         </div>
-        <img src="@/assets/slike/healthcare.png" alt="Health and Care" class="healthcare-image" />
+        <img src="@/assets/slike/healthcare.png" alt="HealthCare" class="healthcare-image" />
       </div>
-      <div class="square right">
+      <div class="square right" @click="navigateTo('/food')">
         <div class="square-title-wrapper">
           <div class="square-title">Food</div>
         </div>
@@ -42,6 +42,11 @@
 <script>
 export default {
   name: "Home",
+  methods: {
+    navigateTo(route) {
+      this.$router.push(route);
+    },
+  },
 };
 </script>
 
@@ -181,5 +186,10 @@ export default {
   width: 19%;
   height: auto;
   object-fit: contain;
+}
+
+.square {
+  cursor: pointer;
+  transition: transform 0.3s;
 }
 </style>
