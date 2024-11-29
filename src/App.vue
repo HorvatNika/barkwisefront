@@ -12,9 +12,6 @@
       <router-link to="/login">Login</router-link> 
       <router-link to="/register">Register</router-link> 
       <router-link to="/menu">Menu</router-link> 
-      <router-link to="/home">Home</router-link> 
-      <router-link to="/training">Training</router-link> 
-      <router-link to="/profile">Profile</router-link> 
       <router-link to="/trainingplan">TrainingPlan</router-link> 
       <router-link to="/personalizedplan">PersonalizedPlan</router-link>
       <router-link to="/dogprofile">DogProfile</router-link>
