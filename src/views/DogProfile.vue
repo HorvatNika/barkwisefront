@@ -1,29 +1,37 @@
 <template>
   <div class="profile">
     <div class="profile-title">dog profile</div>
-    <img src="@/assets/slike/borderpla.png" alt="borderpla" class="border-image" />
     
+    <div class="image-container">
+      <img :src="userImage" alt="user dog" class="border-image" />
+      <div class="image-actions">
+        <span @click="triggerFileInput">change image</span>
+      </div>
+    </div>
+
+    <input type="file" ref="fileInput" @change="onImageChange" accept="image/*" style="display:none" />
+
     <img src="@/assets/slike/dogtag.png" alt="dogtag" class="dogtag-image" />
 
     <div class="user-data">
       <div class="profile-item">
-        <span class="label">Name:</span>
+        <span class="label">name</span>
         <span class="value">{{ userData.name }}</span>
       </div>
       <div class="profile-item">
-        <span class="label">Gender:</span>
+        <span class="label">gender</span>
         <span class="value">{{ userData.gender }}</span>
       </div>
       <div class="profile-item">
-        <span class="label">Birthday:</span>
+        <span class="label">birthday</span>
         <span class="value">{{ formatDate(userData.birthday) }}</span>
       </div>
       <div class="profile-item">
-        <span class="label">Coat Pattern:</span>
+        <span class="label">coat pattern</span>
         <span class="value">{{ userData.colorPattern }}</span>
       </div>
       <div class="profile-item">
-        <span class="label">Email:</span>
+        <span class="label">email</span>
         <span class="value">{{ userData.email }}</span>
       </div>
     </div>
@@ -35,12 +43,13 @@ export default {
   name: "DogProfile",
   data() {
     return {
+      userImage: require('@/assets/slike/oskar.jpg'),
       userData: {
         name: "Tomi",
         gender: "Male",
-        birthday: "2024-06-20",  
+        birthday: "2024-06-20",
         colorPattern: "Black and White",
-        email: "tomi@gmail.com", 
+        email: "tomi@gmail.com",
       },
     };
   },
@@ -51,7 +60,20 @@ export default {
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const year = date.getFullYear();
       return `${day}.${month}.${year}`;
-    }
+    },
+    triggerFileInput() {
+      this.$refs.fileInput.click(); 
+    },
+    onImageChange(event) {
+      const file = event.target.files[0];
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.userImage = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    },
   }
 };
 </script>
@@ -80,44 +102,20 @@ export default {
   opacity: 60%;
 }
 
-.user-data {
-  margin-top: 47vh;
-  padding: 20px;
-  font-family: 'Montel', sans-serif;
-  background-color: transparent; 
-  color: #333;
-  width: 50%;
-  max-width: 500px;
-  margin-left: 37%;
-  margin-right: auto;
-  z-index: 3; 
-}
-
-.profile-item {
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.label {
-  font-weight: bold;
-  color: #5F5F5F;
-}
-
-.value {
-  color: #5F5F5F;
-  font-family: 'CenturyGothic', sans-serif;
-  font-weight: bold;
+.image-container {
+  position: fixed;
+  right: 190px;
+  top: 24%;
+  width: 250px; 
+  height: 250px; 
+  overflow: hidden; 
+  z-index: 1;
 }
 
 .border-image {
-  position: fixed;
-  right: 70px;
-  top: 24%;
-  width: auto;
-  height: 35%;
-  object-fit: contain;
-  z-index: 1; 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
 }
 
 .dogtag-image {
@@ -129,5 +127,49 @@ export default {
   height: auto;
   z-index: 0; 
   opacity: 0.2;
+}
+
+.user-data {
+  margin-top: 44vh;
+  padding: 20px;
+  background-color: transparent; 
+  width: 50%;
+  max-width: 500px;
+  margin-left: 37%;
+  margin-right: auto;
+  z-index: 3; 
+}
+
+.profile-item {
+  margin-bottom: 2px; 
+  display: flex;
+  justify-content: space-between;
+}
+
+.label {
+  font-weight: bold;
+  color: #5F5F5F;
+  font-family: 'ChunkyRetro', sans-serif;
+  font-size: 40px;
+}
+
+.value {
+  color: #5F5F5F;
+  font-family: 'CenturyGothic', sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.image-actions {
+  position: absolute;
+  top: 91%;
+  left: 83%;
+  transform: translateX(-50%);
+  z-index: 3;
+  cursor: pointer;
+  color: #5F5F5F;
+  font-family: 'ChunkyRetro', sans-serif;
+  font-size: 18px;
+  white-space: nowrap; 
 }
 </style>
