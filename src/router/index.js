@@ -53,6 +53,7 @@ import BestFood from '@/views/Food/BestFood.vue'
 import FeedingPuppies from '@/views/Food/FeedingPuppies.vue'
 import DietaryNeeds from '@/views/Food/DietaryNeeds.vue'
 import FoodAllergies from '@/views/Food/FoodAllergies.vue'
+import Journal from '@/views/Journal.vue'
 
 const routes = [
   {
@@ -324,6 +325,11 @@ const routes = [
     path: '/foodallergies',
     name: 'foodallergies',
     component: FoodAllergies
+  },
+  {
+    path: '/journal',
+    name: 'journal',
+    component: Journal
   }
 ]
 

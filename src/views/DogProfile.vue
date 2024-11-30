@@ -17,7 +17,7 @@
     <div class="user-data">
       <div class="profile-item">
         <span class="label">name</span>
-        <span class="value">{{ userData.name }}</span>
+        <input type="text" v-model="userData.name" class="value editable" />
       </div>
       <div class="profile-item">
         <span class="label">gender</span>
@@ -25,11 +25,17 @@
       </div>
       <div class="profile-item">
         <span class="label">birthday</span>
-        <span class="value">{{ formatDate(userData.birthday) }}</span>
+        <input 
+          type="text" 
+          v-model="userData.birthday" 
+          class="value editable" 
+          placeholder="dd.mm.gggg" 
+          @input="validateDateFormat"
+        />
       </div>
       <div class="profile-item">
         <span class="label">coat pattern</span>
-        <span class="value">{{ userData.colorPattern }}</span>
+        <input type="text" v-model="userData.colorPattern" class="value editable" />
       </div>
       <div class="profile-item">
         <span class="label">email</span>
@@ -48,7 +54,7 @@ export default {
       userData: {
         name: "Tomi",
         gender: "Male",
-        birthday: "2024-06-20",
+        birthday: "20.06.2024",
         colorPattern: "Three Color",
         email: "tomi@gmail.com",
       },
@@ -63,7 +69,7 @@ export default {
       return `${day}.${month}.${year}`;
     },
     triggerFileInput() {
-      this.$refs.fileInput.click(); 
+      this.$refs.fileInput.click();
     },
     onImageChange(event) {
       const file = event.target.files[0];
@@ -75,7 +81,7 @@ export default {
         reader.readAsDataURL(file);
       }
     },
-  }
+  },
 };
 </script>
 
@@ -172,6 +178,17 @@ export default {
   font-family: 'ChunkyRetro', sans-serif;
   font-size: 20px;
   white-space: nowrap; 
+}
+
+.editable {
+  border: none;
+  background: transparent;
+  color: #5F5F5F;
+  font-family: 'Century Gothic', sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: right;
+  outline: none;
 }
 </style>
 
