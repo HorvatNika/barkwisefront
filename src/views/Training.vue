@@ -16,7 +16,7 @@
         </div>
         <img src="@/assets/slike/training.png" alt="Training Plan" class="training-image" />
       </div>
-      <div class="square center" @click="navigateTo('/personalplan')">
+      <div class="square center" @click="navigateTo('/personalizedplan')">
         <div class="square-title-wrapper">
           <div class="square-title">Personal Plan</div>
         </div>
