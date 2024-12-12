@@ -80,7 +80,7 @@ export default {
   color: #FFFEF9;
   text-align: left;
   position: fixed;
-  top: 1%;
+  top: 0.5%;
   left: 15%;
   width: 100%;
   z-index: 2;
@@ -92,7 +92,7 @@ export default {
   font-size: 1rem;
   color: #FFFEF9;
   text-align: left;
-  margin-top: 9.5%;
+  margin-top: 9%;
   position: absolute;
   left: 15%;
   width: 50%;
@@ -121,7 +121,7 @@ export default {
   font-family: 'ChunkyRetro', sans-serif;
   font-size: 4rem;
   color: #5F5F5F;
-  margin: 3rem 0 0.5rem 0; 
+  margin: 1.5rem 0 -0.5rem 0; 
   text-align: center;
   opacity: 60%;
 }
@@ -131,7 +131,7 @@ export default {
   background-color: #FFFEF9;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  width: 700px; 
+  width: 820px; 
   height: 300px; 
   padding: 1rem;
   gap: 1rem;
@@ -146,7 +146,7 @@ export default {
   background-color: #F0F0F0;
   overflow: hidden;
   width: 200px;
-  height: 250px;
+  height: 100%;
   position: relative;
 }
 
