@@ -1,46 +1,69 @@
 <template>
-    <div class="journal">
-      <div class="journal-title">journal</div>
-      <div class="journal-text">
-        Record all the important moments and memories from your dog's life. Create a personalized journal to document special events and milestones that you and your furry friend will cherish forever.
-      </div>
-      <div class="journal-entries">
-        <div v-for="(entry, index) in journalEntries" :key="index" class="journal-card">
+  <div class="journal">
+    <div class="journal-title">journal</div>
+    <div class="journal-text">
+      Record all the important moments and memories from your dog's life. Create a personalized journal to document special events and milestones that you and your furry friend will cherish forever.
+    </div>
+    <div class="journal-entries">
+      <div v-for="(entry, index) in journalEntries" :key="index" class="journal-entry">
+        <h3 class="card-title">{{ entry.title }}</h3> 
+        <div class="journal-card">
           <div class="card-image">
-            <input type="file" accept="image/*" class="image-input" />
+            <input 
+              type="file" 
+              accept="image/*" 
+              class="image-input" 
+              @change="handleImageChange($event, index)" 
+            />
+            <img v-if="entry.image" :src="entry.image" alt="Uploaded Image" />
           </div>
           <div class="card-text">
-            <h3 class="card-title">{{ entry.title }}</h3>
-            <textarea class="description-input" placeholder="Describe the moment..."></textarea>
+            <textarea 
+              class="description-input" 
+              placeholder="Describe the moment...">
+            </textarea>
           </div>
         </div>
       </div>
     </div>
-  </template>  
-  
-  <script>
-  export default {
-    name: "Journal",
-    data() {
-      return {
-        journalEntries: [
-          { title: "First Day at Home" },
-          { title: "First Walk" },
-          { title: "First Trick Learned" },
-          { title: "Favorite Toy" },
-          { title: "First Birthday" },
-          { title: "Favorite Sleeping Spot" },
-          { title: "Funny Habits and Behaviors" },
-          { title: "First Visit to the Vet" },
-          { title: "Favorite Treat" },
-        ],
-      };
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Journal",
+  data() {
+    return {
+      journalEntries: [
+        { title: "first day at home", image: null },
+        { title: "first walk", image: null },
+        { title: "first trick learned", image: null },
+        { title: "favorite toy", image: null },
+        { title: "first birthday", image: null },
+        { title: "favorite sleeping spot", image: null },
+        { title: "funny habits and behaviors", image: null },
+        { title: "first visit to the vet", image: null },
+        { title: "favorite treat", image: null },
+      ],
+    };
+  },
+  methods: {
+    handleImageChange(event, index) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.journalEntries[index].image = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
     },
-  };
-  </script>  
-  
-  <style scoped>
-    .journal {
+  },
+};
+</script>
+
+<style scoped>
+.journal {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -48,7 +71,7 @@
   background-color: #BAE1F0;
   padding: 2rem;
   box-sizing: border-box;
-  position: relative; 
+  position: relative;
 }
 
 .journal-title {
@@ -56,8 +79,8 @@
   font-size: 17rem;
   color: #FFFEF9;
   text-align: left;
-  position: absolute;
-  bottom: 90.5%;
+  position: fixed;
+  top: 1%;
   left: 15%;
   width: 100%;
   z-index: 2;
@@ -82,18 +105,37 @@
   gap: 2rem;
   width: 100%;
   background-color: #BAE1F0;
-  margin-top: 20rem; 
+  margin-top: 20rem;
   padding-bottom: 2rem;
+  align-items: center; 
+}
+
+.journal-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.card-title {
+  font-family: 'ChunkyRetro', sans-serif;
+  font-size: 4rem;
+  color: #5F5F5F;
+  margin: 3rem 0 0.5rem 0; 
+  text-align: center;
+  opacity: 60%;
 }
 
 .journal-card {
   display: flex;
-  background-color: #FFFFFF;
-  border-radius: 12px;
+  background-color: #FFFEF9;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  width: 700px; 
+  height: 300px; 
   padding: 1rem;
   gap: 1rem;
+  margin: 0 auto; 
 }
 
 .card-image {
@@ -102,11 +144,16 @@
   align-items: center;
   justify-content: center;
   background-color: #F0F0F0;
-  border-radius: 8px;
   overflow: hidden;
-  width: 200px; 
-  height: 250px; 
+  width: 200px;
+  height: 250px;
   position: relative;
+}
+
+.card-image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .image-input {
@@ -122,24 +169,20 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.card-title {
-  font-family: 'CenturyGothic', sans-serif;
-  font-size: 1.5rem;
-  color: #333333;
-  margin: 0;
+  height: 100%;
 }
 
 .description-input {
   font-family: 'CenturyGothic', sans-serif;
   font-size: 1rem;
-  color: #333333;
-  border: 1px solid #CCCCCC;
-  border-radius: 8px;
-  padding: 0.5rem;
+  border: 1px solid #eeeeee;
+  padding: 0.5rem; 
   resize: none;
-  min-height: 250px; 
+  height: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: auto;
+  text-align: left; 
 }
 
 body {
@@ -148,5 +191,4 @@ body {
   background-color: #BAE1F0;
   min-height: 100vh;
 }
-  </style>
-  
+</style>
