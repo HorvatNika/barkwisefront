@@ -20,7 +20,9 @@
           <div class="card-text">
             <textarea 
               class="description-input" 
-              placeholder="Describe the moment...">
+              v-model="entry.description"
+              :placeholder="entry.description ? '' : 'Describe the moment...'"
+            >
             </textarea>
           </div>
         </div>
@@ -35,15 +37,8 @@ export default {
   data() {
     return {
       journalEntries: [
-        { title: "first day at home", image: null },
-        { title: "first walk", image: null },
-        { title: "first trick learned", image: null },
-        { title: "favorite toy", image: null },
-        { title: "first birthday", image: null },
-        { title: "favorite sleeping spot", image: null },
-        { title: "funny habits and behaviors", image: null },
-        { title: "first visit to the vet", image: null },
-        { title: "favorite treat", image: null },
+        { title: "first day at home", image: null, description: "" },
+        { title: "first trick learned", image: null, description: "" },
       ],
     };
   },
