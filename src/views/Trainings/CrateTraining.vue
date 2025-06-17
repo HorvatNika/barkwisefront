@@ -35,7 +35,7 @@
             <iframe 
               width="560" 
               height="315" 
-              src="https://www.youtube.com/watch?v=wxJXJes0_pM" 
+              src="https://www.youtube.com/embed/wxJXJes0_pM"
               frameborder="0" 
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
               allowfullscreen>

@@ -23,7 +23,7 @@
             <iframe 
               width="560" 
               height="315" 
-              src="https://www.youtube.com/watch?v=kJboalA4oi4" 
+              src="https://www.youtube.com/embed/kJboalA4oi4" 
               frameborder="0" 
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
               allowfullscreen>
