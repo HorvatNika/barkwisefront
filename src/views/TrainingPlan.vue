@@ -33,7 +33,10 @@
     <div class="exercise-list">
       <div v-for="(subOption, index) in filteredSubOptions" :key="index" class="exercise-item">
         <router-link :to="getRoute(subOption)">
-          <div class="exercise-image"></div>
+          <div
+            class="exercise-image"
+            :style="{ backgroundImage: 'url(' + getImage(subOption) + ')' }"
+          ></div>
           <div class="exercise-title">{{ subOption }}</div>
         </router-link>
       </div>
@@ -42,6 +45,36 @@
 </template>
 
 <script>
+import highfiveImg from '@/assets/slike/highfive.jpg';
+import pawImg from '@/assets/slike/paw.jpg';
+import touchImg from '@/assets/slike/touch.jpg';
+import rolloverImg from '@/assets/slike/rollover.jpg';
+import spinImg from '@/assets/slike/spin.jpg';
+import backupImg from '@/assets/slike/backup.jpg';
+import nojumpImg from '@/assets/slike/nojump.jpg';
+import leaveitImg from '@/assets/slike/leaveit.jpg';
+import sitstayImg from '@/assets/slike/sitstay.jpg';
+import crawlImg from '@/assets/slike/crawl.jpg';
+import heelImg from '@/assets/slike/heel.jpg';
+import nopullingImg from '@/assets/slike/nopulling.jpg';
+import kissImg from '@/assets/slike/kiss.jpg';
+import quietImg from '@/assets/slike/quiet.jpg';
+import recallImg from '@/assets/slike/recall.jpg';
+import shakehandImg from '@/assets/slike/shakehand.jpg';
+import weaveImg from '@/assets/slike/weave.jpg';
+import doormannersImg from '@/assets/slike/doormanners.jpg';
+import placecommandImg from '@/assets/slike/placecommand.jpg';
+import flyballImg from '@/assets/slike/flyball.jpg';
+import searchImg from '@/assets/slike/search.jpg';
+import frisbeeImg from '@/assets/slike/frisbee.jpg';
+import cratetrainingImg from '@/assets/slike/cratetraining.jpg';
+import bangImg from '@/assets/slike/bang.jpg';
+import offleashImg from '@/assets/slike/offleash.jpg';
+import retrievespecificitemsImg from '@/assets/slike/retrievespecificitems.jpg';
+import findyourkeysImg from '@/assets/slike/findyourkeys.jpg';
+import scheduledpottybreaksImg from '@/assets/slike/scheduledpottybreaks.jpg';
+import puppypadImg from '@/assets/slike/puppypad.jpg';
+
 export default {
   name: "Training",
   data() {
@@ -120,7 +153,7 @@ export default {
           "flyball",
           "agility training",
           "search",
-          "frisbee", 
+          "frisbee",
         ],
         advanced: [
           "crate training",
@@ -136,6 +169,37 @@ export default {
       },
       selectedDifficulty: null,
       selectedType: null,
+      exerciseImages: {
+        "high five": highfiveImg,
+        "paw": pawImg,
+        "touch": touchImg,
+        "roll over": rolloverImg,
+        "spin": spinImg,
+        "back up": backupImg,
+        "no jumping": nojumpImg,
+        "leave it": leaveitImg,
+        "sit and stay": sitstayImg,
+        "crawl": crawlImg,
+        "heel": heelImg,
+        "no pulling": nopullingImg,
+        "kiss": kissImg,
+        "quiet": quietImg,
+        "recall": recallImg,
+        "shake hand": shakehandImg,
+        "weave": weaveImg,
+        "door manners": doormannersImg,
+        "place command": placecommandImg,
+        "flyball": flyballImg,
+        "search": searchImg,
+        "frisbee": frisbeeImg,
+        "crate training": cratetrainingImg,
+        "bang": bangImg,
+        "off-leash": offleashImg,
+        "retrieve specific items": retrievespecificitemsImg,
+        "find your keys": findyourkeysImg,
+        "scheduled potty breaks": scheduledpottybreaksImg,
+        "puppy pad": puppypadImg
+      }
     };
   },
   computed: {
@@ -152,11 +216,11 @@ export default {
   methods: {
     selectDifficulty(difficulty) {
       this.selectedDifficulty = difficulty;
-      this.selectedType = null; 
+      this.selectedType = null;
     },
     selectType(type) {
-      this.selectedType = type; 
-      this.selectedDifficulty = null; 
+      this.selectedType = type;
+      this.selectedDifficulty = null;
     },
     getRoute(subOption) {
       const routes = {
@@ -190,19 +254,22 @@ export default {
         "no pulling": "/nopulling",
         "heel": "/heel",
         "place command": "/place",
+        "touch": "/touch",
       };
       return routes[subOption] || "/";
-    }
+    },
+    getImage(subOption) {
+      return this.exerciseImages[subOption] || "";
+    },
   },
 };
 </script>
-
 
 <style scoped>
 .training-plan {
   display: flex;
   flex-direction: column;
-  background-color: #EDD9B7;
+  background-color: #edd9b7;
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -210,7 +277,7 @@ export default {
 .training-title {
   font-family: 'ChunkyRetro', sans-serif;
   font-size: 15rem;
-  color: #FFFEF9;
+  color: #fffef9;
   text-align: left;
   width: 100%;
   z-index: 2;
@@ -237,8 +304,8 @@ export default {
 }
 
 .dropbtn {
-  background-color: #FFFEF9;
-  color: #EDD9B7;
+  background-color: #fffef9;
+  color: #edd9b7;
   font-family: 'ChunkyRetro', sans-serif;
   font-size: 3rem;
   padding: 16px;
@@ -255,7 +322,7 @@ export default {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #FFFEF9;
+  background-color: #fffef9;
   width: 270px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -278,20 +345,20 @@ export default {
   cursor: pointer;
   font-family: 'ChunkyRetro', sans-serif;
   font-size: 2.5rem;
-  color: #EDD9B7;
+  color: #edd9b7;
   text-align: left;
 }
 
 .menu-item:hover {
-  background-color: #EDD9B7;
-  color: #FFFEF9;
+  background-color: #edd9b7;
+  color: #fffef9;
 }
 
 .exercise-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
-  justify-items: center;  
-  align-items: start;    
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: start;
   margin-top: 5%;
   padding: 0 5%;
 }
@@ -301,15 +368,18 @@ export default {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  max-width: 250px; 
-  margin-bottom: 50px;  
+  max-width: 250px;
+  margin-bottom: 50px;
 }
 
 .exercise-image {
-  width: 350px; 
+  width: 350px;
   height: 250px;
-  background-color: #D1B38D;
+  background-color: #d1b38d;
   margin-bottom: 10px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
 }
 
 .exercise-title {
@@ -319,8 +389,8 @@ export default {
 }
 
 .exercise-item a {
-  text-decoration: none; 
-  color: inherit; 
+  text-decoration: none;
+  color: inherit;
 }
 
 .exercise-item a:hover {
