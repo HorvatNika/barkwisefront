@@ -16,6 +16,7 @@
       <router-link to="/personalizedplan">PersonalizedPlan</router-link>
       <router-link to="/dogprofile">DogProfile</router-link>
       <router-link to="/journal">Journal</router-link>
+      <router-link to="/schedule">Schedule</router-link>
     </div>
   </nav>
   <router-view/>

@@ -41,6 +41,8 @@
         </router-link>
       </div>
     </div>
+
+    <img src="@/assets/slike/bordernar.png" alt="bordernar" class="bordernar-image" />
   </div>
 </template>
 
@@ -395,5 +397,15 @@ export default {
 
 .exercise-item a:hover {
   text-decoration: none;
+}
+
+.bordernar-image {
+  position: fixed;
+  right: 70px;
+  top: 24%;
+  width: auto;
+  height: 35%;
+  object-fit: contain;
+  z-index: 10;
 }
 </style>
