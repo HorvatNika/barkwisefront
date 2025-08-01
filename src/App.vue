@@ -8,19 +8,25 @@
       <img src="@/assets/slike/logo.png" alt="Logo" class="logo" />
     </div>
     <div class="nav-links">
-      <router-link to="/">HomePage</router-link> 
-      <router-link to="/login">Login</router-link> 
-      <router-link to="/register">Register</router-link> 
-      <router-link to="/menu">Menu</router-link> 
-      <router-link to="/trainingplan">TrainingPlan</router-link> 
-      <router-link to="/personalizedplan">PersonalizedPlan</router-link>
-      <router-link to="/dogprofile">DogProfile</router-link>
-      <router-link to="/journal">Journal</router-link>
-      <router-link to="/schedule">Schedule</router-link>
+      <router-link to="/menu" class="nav-button menu-button">Menu</router-link>
+      <button class="nav-button logout-button" @click="logout">Logout</button>
     </div>
   </nav>
-  <router-view/>
+  <router-view />
 </template>
+
+<script>
+export default {
+  name: 'App',
+  methods: {
+    logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      this.$router.push('/login');
+    }
+  }
+};
+</script>
 
 <style lang="scss">
 #app {
@@ -34,29 +40,22 @@
 nav {
   display: flex;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   padding: 20px;
   font-family: 'CenturyGothic', sans-serif;
   background-color: transparent;
-  box-shadow: none;
   position: fixed;
   width: 100%;
   z-index: 1000;
   left: 0;
   top: 0;
-  box-sizing: border-box; 
-}
-
-.nav-container {
-  width: 100%; 
-  max-width: 1200px; 
-  margin: 0 auto; 
+  box-sizing: border-box;
 }
 
 .logo-container {
   display: flex;
   align-items: center;
-  justify-content: flex-start; 
+  justify-content: flex-start;
 }
 
 .logo-text {
@@ -86,48 +85,70 @@ nav {
 
 .nav-links {
   display: flex;
-  justify-content: flex-end; 
+  gap: 10px;
   align-items: center;
-  flex-wrap: wrap; 
-  gap: 10px; 
 }
 
-.nav-links a {
-  color: #FFFEF9;
-  margin: 0 10px;
+.nav-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 45px;
+  font-family: 'Century Gothic', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
   text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+}
 
-  &.router-link-exact-active {
-    color: #FFFEF9;
-    font-weight: bold;
-  }
+.menu-button {
+  background-color: #D7BDF2;
+}
+
+.menu-button:hover {
+  background-color: #bda6e0;
+}
+
+.logout-button {
+  background-color: #F0C3CE;
+}
+
+.logout-button:hover {
+  background-color: #d6aab8;
 }
 
 @media (max-width: 768px) {
   nav {
-    flex-direction: column; 
-    align-items: center; 
+    flex-direction: column;
+    align-items: center;
   }
 
   .nav-links {
-    justify-content: center; 
+    justify-content: center;
     width: 100%;
-    margin-top: 20px; 
-  }
-
-  .nav-links a {
-    margin: 5px 0; 
+    margin-top: 20px;
   }
 }
 
 @media (max-width: 480px) {
   .logo-text {
-    font-size: 30px; 
+    font-size: 30px;
   }
 
   .logo {
     width: 30px;
     height: 30px;
+  }
+
+  .nav-button {
+    width: 100px;
+    height: 40px;
+    font-size: 14px;
   }
 }
 </style>

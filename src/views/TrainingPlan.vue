@@ -120,10 +120,8 @@ export default {
           "find your keys",
         ],
         "active disciplines": [
-          "agility training",
           "flyball",
           "frisbee",
-          "parkour",
         ],
         "potty training": [
           "scheduled potty breaks",
@@ -153,7 +151,6 @@ export default {
           "crawl",
           "heel",
           "flyball",
-          "agility training",
           "search",
           "frisbee",
         ],
@@ -166,7 +163,6 @@ export default {
           "find your keys",
           "scheduled potty breaks",
           "puppy pad",
-          "parkour",
         ],
       },
       selectedDifficulty: null,
@@ -241,7 +237,6 @@ export default {
         "bang": "/bang",
         "back up": "/backup",
         "crawl": "/crawl",
-        "agility training": "/agilitytraining",
         "flyball": "/flyball",
         "search": "/search",
         "off-leash": "/offleash",
@@ -249,7 +244,6 @@ export default {
         "find your keys": "/findkeys",
         "scheduled potty breaks": "/scheduledpotty",
         "puppy pad": "/puppypad",
-        "parkour": "/parkour",
         "crate training": "/cratetraining",
         "door manners": "/doormanners",
         "weave": "/weave",
@@ -381,13 +375,13 @@ export default {
   margin-bottom: 10px;
   background-size: cover;
   background-position: center;
-  border-radius: 10px;
+  border-radius: 0px;
 }
 
 .exercise-title {
-  font-family: 'CenturyGothic', sans-serif;
-  font-size: 1rem;
-  color: #333;
+  font-family: 'ChunkyRetro', sans-serif;
+  font-size: 2.5rem;
+  color: #fffef9a8;
 }
 
 .exercise-item a {

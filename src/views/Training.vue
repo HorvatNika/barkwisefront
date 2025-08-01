@@ -16,6 +16,7 @@
         </div>
         <img src="@/assets/slike/training.png" alt="Training Plan" class="training-image" />
       </div>
+
       <div class="square center" @click="navigateTo('/personalizedplan')">
         <div class="square-title-wrapper">
           <div class="square-title">Personal Plan</div>
@@ -23,8 +24,9 @@
         <div class="square-description">
           Discover personalized training plans based on your dog's specific needs, age, and behavior to maximize their potential. Whether your Border Collie is a young pup or an adult, our program adapts to their learning speed, energy level, and preferences.
         </div>
-        <img src="@/assets/slike/personalplan.png" alt="Personal Plan" class="personalplan-image" />
+        <img src="@/assets/slike/training.png" alt="Personal Plan" class="training-image" />
       </div>
+
       <div class="square right" @click="navigateTo('/schedule')">
         <div class="square-title-wrapper">
           <div class="square-title">Schedule</div>
@@ -115,6 +117,12 @@ export default {
   align-items: center;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.left, .center, .right {
+  background-color: #FFFEF9;
 }
 
 .square-title-wrapper {
@@ -123,10 +131,6 @@ export default {
   left: 35%;
   width: 100%;
   text-align: left;
-}
-
-.left, .center, .right {
-  background-color: #FFFEF9;
 }
 
 .square-title {
@@ -158,15 +162,6 @@ export default {
   object-fit: contain;
 }
 
-.personalplan-image {
-  position: absolute;
-  top: 25%;
-  left: 11%;
-  width: 11.5%;
-  height: auto;
-  object-fit: contain;
-}
-
 .schedule-image {
   position: absolute;
   top: 25%;
@@ -184,10 +179,5 @@ export default {
   height: 35%;
   object-fit: contain;
   z-index: 10;
-}
-
-.square {
-  cursor: pointer;
-  transition: transform 0.3s;
 }
 </style>

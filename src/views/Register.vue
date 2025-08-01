@@ -109,7 +109,7 @@
         </div>
 
         <div class="button-container">
-          <button type="submit" class="register-btn">Register</button>
+          <button type="submit" class="register-btn" @click.prevent="registerUser">Register</button>
         </div>
       </div>
 
@@ -130,6 +130,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Register',
   data() {
@@ -142,7 +144,8 @@ export default {
       password: '',
       confirmPassword: '',
       showFirstForm: true,
-      profilePicture: null, 
+      profilePicture: null,
+      profilePictureFile: null,
     };
   },
   methods: {
@@ -152,18 +155,58 @@ export default {
     handleProfilePictureUpload(event) {
       const file = event.target.files[0];
       if (file && file.type.startsWith('image/')) {
+        this.profilePictureFile = file;
         const reader = new FileReader();
         reader.onload = (e) => {
-          this.profilePicture = e.target.result; 
+          this.profilePicture = e.target.result;
         };
-        reader.readAsDataURL(file); 
+        reader.readAsDataURL(file);
       } else {
         alert('Please upload a valid image.');
       }
     },
+    async registerUser() {
+  try {
+    const formData = new FormData();
+    if (this.profilePictureFile) {
+      formData.append('profilePicture', this.profilePictureFile);
+      console.log("📦 Profile picture file:", this.profilePictureFile?.name);
+
+      
+    }
+    formData.append('name', this.name);
+    formData.append('gender', this.gender);
+    formData.append('birthday', this.birthday);
+    formData.append('colorPattern', this.colorPattern);
+    formData.append('email', this.email);
+    formData.append('password', this.password);
+    formData.append('confirmPassword', this.confirmPassword);
+
+    const response = await axios.post('http://localhost:3000/register', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    if (response.status === 201) {
+      this.$router.push('/login'); 
+    }
+  } catch (error) {
+    if (error.response && error.response.status === 409) {
+      alert('Email is already registered.');
+    } else {
+      alert('Registration failed. Please try again.');
+    }
+    console.error('Registration failed:', error);
+  }
+}
+
+
   },
 };
 </script>
+
+
 
 <style scoped>
 .register {

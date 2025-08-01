@@ -55,12 +55,19 @@ import DietaryNeeds from '@/views/Food/DietaryNeeds.vue'
 import FoodAllergies from '@/views/Food/FoodAllergies.vue'
 import Journal from '@/views/Journal.vue'
 import Schedule from '@/views/Schedule.vue'
+import ForgotPassword from '@/views/ForgotPassword.vue';
+import ResetPassword from '@/views/ResetPassword.vue';
 
 const routes = [
   {
     path: '/',
     name: 'homepage',
     component: HomePage
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: Profile
   },
   {
     path: '/login',
@@ -336,7 +343,22 @@ const routes = [
     path: '/schedule',
     name: 'schedule',
     component: Schedule
-  }
+  },
+  { path: '/forgot-password',
+    name: 'forgotpassword',
+    component: ForgotPassword
+  },
+  { path: '/reset-password',
+    name: 'resetpassword',
+    component: ResetPassword
+  },
+   {
+  path: '/progress',
+  name: 'progress',
+  component: () => import('@/views/ProgressTracking.vue')
+}
+ 
+
 ]
 
 const router = createRouter({

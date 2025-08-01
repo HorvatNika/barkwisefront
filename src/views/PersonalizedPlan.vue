@@ -53,11 +53,13 @@
     </div>
 
     <div class="exercise-list">
-      <div v-if="plan.length" class="exercise-item">
-        <h2>Your Comprehensive Training Plan:</h2>
-        <ul>
-          <li v-for="(exercise, index) in plan" :key="index">{{ exercise }}</li>
-        </ul>
+      <div v-if="plan.length" class="exercise-block">
+        <h2 class="plan-title">your training plan</h2>
+        <div class="exercise-item">
+          <ul>
+            <li v-for="(exercise, index) in plan" :key="index">{{ exercise }}</li>
+          </ul>
+        </div>
       </div>
       <div v-else-if="planMessage" class="exercise-item">{{ planMessage }}</div>
     </div>
@@ -108,10 +110,8 @@ export default {
           "find your keys",
         ],
         active: [
-          "agility training",
           "flyball",
           "frisbee",
-          "parkour",
         ],
         potty: [
           "scheduled potty breaks",
@@ -124,7 +124,7 @@ export default {
         Young: "beginner",
         Adult: "intermediate",
         Mature: "intermediate",
-        Senior: "beginner", 
+        Senior: "beginner",
       },
       difficultyExercises: {
         beginner: [
@@ -148,7 +148,6 @@ export default {
           "crawl",
           "heel",
           "flyball",
-          "agility training",
           "search",
           "frisbee",
         ],
@@ -161,7 +160,6 @@ export default {
           "find your keys",
           "scheduled potty breaks",
           "puppy pad",
-          "parkour",
         ],
       },
     };
@@ -182,37 +180,30 @@ export default {
       this.planMessage = "";
 
       if (!this.form.age) {
-        this.planMessage = "Please select an age.";
+        this.planMessage = "please select an age";
         return;
       }
       if (this.form.goals.length === 0) {
-        this.planMessage = "Please select at least one training goal.";
+        this.planMessage = "please select at least one training goal";
         return;
       }
 
       const difficulty = this.ageDifficultyMap[this.form.age] || "beginner";
-
-      // Za svaki odabrani cilj uzmi vježbe iz odgovarajuće kategorije
-      // i filtriraj prema težini (beginner, intermediate, advanced) na osnovu dobi
       let selectedExercises = [];
 
       this.form.goals.forEach(goal => {
         let exercisesForGoal = this.exercisesByType[goal] || [];
-
-        // Filtriramo po težini (uzimamo samo one iz difficultyExercises za tu težinu)
         const allowedExercises = this.difficultyExercises[difficulty] || [];
 
         exercisesForGoal.forEach(exercise => {
           if (allowedExercises.includes(exercise) && !selectedExercises.includes(exercise)) {
             selectedExercises.push(exercise);
           }
-          // za potty training i advanced možda želimo uključiti i neke "napredne" vježbe za starije pse
-          // pa se ovdje može dodatno prilagoditi ako treba
         });
       });
 
       if (selectedExercises.length === 0) {
-        this.planMessage = "No exercises matched your criteria. Try different selections.";
+        this.planMessage = "no exercises matched your criteria";
         return;
       }
 
@@ -317,20 +308,44 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 5%;
+  margin-top: 1%;
   padding: 0 5%;
+}
+
+.exercise-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+}
+
+.plan-title {
+  font-family: 'ChunkyRetro', sans-serif;
+  font-size: 7rem;
+  color: #FFFEF9;
+  opacity: 60%;
+  margin-bottom: 0px;
+  text-align: center;
+  width: 100%;
 }
 
 .exercise-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  max-width: 600px;
-  margin-bottom: 50px;
-  font-family: 'CenturyGothic', sans-serif;
-  font-size: 1rem;
-  color: #333;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+  width: 45vw;
+  font-family: 'ChunkyRetro', sans-serif;
+  font-size: 2.5rem;
+  color: #EDD9B7;
+  border: 3px solid #EDD9B7;
+  padding: 30px;
+  border-radius: 0;
+  background-color: #FFFEF9;
+  box-sizing: border-box;
+  opacity: 60%;
 }
 
 .generate-button-container {

@@ -16,6 +16,7 @@
       <span class="description-text">Manage your profile and your dog's profile, and easily track your dog's training progress.</span>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -30,7 +31,7 @@ export default {
     },
     goToProfile() {
       this.$router.push('/profile');
-    }
+    },
   }
 };
 </script>
@@ -143,4 +144,24 @@ export default {
   max-width: 280px;
   left: 45%; 
 }
+
+.logout-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #ff4d4d;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Century Gothic', sans-serif;
+  font-weight: bold;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #e63946;
+}
+
 </style>

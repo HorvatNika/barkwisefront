@@ -16,6 +16,7 @@
         </div>
         <img src="@/assets/slike/dogprofile.png" alt="Dog Profile" class="profile-image" />
       </div>
+
       <div class="square center" @click="navigateTo('/progress')">
         <div class="square-title-wrapper">
           <div class="square-title">Progress</div>
@@ -25,6 +26,7 @@
         </div>
         <img src="@/assets/slike/progress.png" alt="Progress" class="progress-image" />
       </div>
+
       <div class="square right" @click="navigateTo('/journal')">
         <div class="square-title-wrapper">
           <div class="square-title">Journal</div>
@@ -32,7 +34,7 @@
         <div class="square-description">
           Record all the important moments and memories from your dog's life. Create a personalized journal to document special events and milestones that you and your furry friend will cherish forever.
         </div>
-        <img src="@/assets/slike/journal.png" alt="Settings" class="journal-image" />
+        <img src="@/assets/slike/journal.png" alt="Journal" class="journal-image" />
       </div>
     </div>
     <img src="@/assets/slike/borderpla.png" alt="borderpla" class="borderzel-image" />
@@ -115,6 +117,12 @@ export default {
   align-items: center;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.left, .center, .right {
+  background-color: #FFFEF9;
 }
 
 .square-title-wrapper {
@@ -123,10 +131,6 @@ export default {
   left: 35%;
   width: 100%;
   text-align: left;
-}
-
-.left, .center, .right {
-  background-color: #FFFEF9;
 }
 
 .square-title {
@@ -184,10 +188,5 @@ export default {
   height: 35%;
   object-fit: contain;
   z-index: 10;
-}
-
-.square {
-  cursor: pointer;
-  transition: transform 0.3s;
 }
 </style>

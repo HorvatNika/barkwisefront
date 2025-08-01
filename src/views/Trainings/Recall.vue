@@ -5,33 +5,15 @@
       <div class="content">
         <h2>Teaching Your Dog to Come When Called</h2>
         <ol>
-          <li>
-            <strong>Start in a Safe Environment:</strong> Practice in a fenced yard or on a long leash to prevent the dog from running away.
-          </li>
-          <li>
-            <strong>Charge the Dog’s Name with Meaning:</strong> Start by tossing a piece of food to the dog. After it eats it, call its name. As the dog comes back, mark the positive response with a clicker or the word <strong>yes</strong>. When the dog approaches, give it 4-5 pieces of food.
-          </li>
-          <li>
-            <strong>Make Coming Back Worthwhile:</strong> The goal is to help the dog understand that coming to you brings rewards. Give it more treats when it returns than when it leaves you.
-          </li>
-          <li>
-            <strong>Short and Intense Sessions:</strong> Practice in short sessions, ranging from 30 seconds to 2-3 minutes, several times a day. This will keep the dog motivated and prevent boredom.
-          </li>
-          <li>
-            <strong>Introduce Limited Return:</strong> Have someone help you hold the dog in a sitting position while you move a few meters away. When you're ready, have the helper release the dog as you call its name. The dog will <strong>launch</strong> toward you. Repeat this exercise several times.
-          </li>
-          <li>
-            <strong>Death Triangle:</strong> Have two people stand in a triangle with you. While the dog is with one person, the other person calls it by name. When it reaches them, reward the dog. Then, have the third person call the dog’s name. This teaches the dog to pay attention to who is calling it.
-          </li>
-          <li>
-            <strong>Using a Leash:</strong> At this stage, use a regular collar and leash. Throw food to the dog, and while it eats, gently pull on the leash and call its name. Reward the dog when it comes. This teaches the dog that your command hold weight, even when it’s distracted.
-          </li>
-          <li>
-            <strong>Introducing an Electronic Collar:</strong> This step is advanced and requires caution and expertise. It is not recommended without guidance from a professional dog trainer. The idea is to use the electronic collar as a <strong>digital leash</strong>, providing a mild reminder (vibration or sound) if the dog does not respond to the verbal command.
-          </li>
-          <li>
-            <strong>Testing in Real-Life Situations:</strong> Once the dog reliably comes when called in a controlled environment, test it in real-life situations with gradually increasing distractions). Always have a leash or electronic collar ready for safety.
-          </li>
+          <li><strong>Start in a Safe Environment:</strong> Practice in a fenced yard or on a long leash to prevent the dog from running away.</li>
+          <li><strong>Charge the Dog’s Name with Meaning:</strong> Start by tossing a piece of food to the dog. After it eats it, call its name. As the dog comes back, mark the positive response with a clicker or the word <strong>yes</strong>. When the dog approaches, give it 4-5 pieces of food.</li>
+          <li><strong>Make Coming Back Worthwhile:</strong> The goal is to help the dog understand that coming to you brings rewards. Give it more treats when it returns than when it leaves you.</li>
+          <li><strong>Short and Intense Sessions:</strong> Practice in short sessions, ranging from 30 seconds to 2-3 minutes, several times a day. This will keep the dog motivated and prevent boredom.</li>
+          <li><strong>Introduce Limited Return:</strong> Have someone help you hold the dog in a sitting position while you move a few meters away. When you're ready, have the helper release the dog as you call its name. The dog will <strong>launch</strong> toward you. Repeat this exercise several times.</li>
+          <li><strong>Death Triangle:</strong> Have two people stand in a triangle with you. While the dog is with one person, the other person calls it by name. When it reaches them, reward the dog. Then, have the third person call the dog’s name. This teaches the dog to pay attention to who is calling it.</li>
+          <li><strong>Using a Leash:</strong> At this stage, use a regular collar and leash. Throw food to the dog, and while it eats, gently pull on the leash and call its name. Reward the dog when it comes. This teaches the dog that your command hold weight, even when it’s distracted.</li>
+          <li><strong>Introducing an Electronic Collar:</strong> This step is advanced and requires caution and expertise. It is not recommended without guidance from a professional dog trainer. The idea is to use the electronic collar as a <strong>digital leash</strong>, providing a mild reminder (vibration or sound) if the dog does not respond to the verbal command.</li>
+          <li><strong>Testing in Real-Life Situations:</strong> Once the dog reliably comes when called in a controlled environment, test it in real-life situations with gradually increasing distractions. Always have a leash or electronic collar ready for safety.</li>
         </ol>
 
         <div class="video-container">
@@ -52,9 +34,29 @@
         <h2 class="training-talk">Training Talk</h2>
         <textarea v-model="comment" placeholder="Write your comment here..." rows="4" class="comment-box"></textarea>
         <button @click="submitComment" class="comment-btn">Submit</button>
+
         <div v-if="comments.length > 0" class="comments-list">
           <ul>
-            <li v-for="(comment, index) in comments" :key="index">{{ comment }}</li>
+            <li v-for="(comment, index) in comments" :key="comment._id">
+              <div v-if="editIndex === index">
+                <input 
+                  v-model="editText" 
+                  class="edit-input" 
+                  placeholder="Edit your comment..."
+                />
+                <div class="edit-actions">
+                  <button class="delete-entry-button" @click="updateComment(comment._id)">save</button>
+                  <button class="delete-entry-button" @click="cancelEdit">cancel</button>
+                </div>
+              </div>
+              <div v-else>
+                <strong>{{ comment.author }}:</strong> {{ comment.text }}
+                <div class="action-buttons" v-if="isOwnComment(comment)">
+                  <button class="delete-entry-button" @click="startEdit(index, comment.text)">edit</button>
+                  <button class="delete-entry-button" @click="deleteComment(comment._id)">delete</button>
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
@@ -63,21 +65,101 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-  name: "CallName",
+  name: "Recall",
   data() {
     return {
       comment: '',
-      comments: []
+      comments: [],
+      componentId: 'Recall',
+      editIndex: null,
+      editText: ''
     };
   },
   methods: {
-    submitComment() {
-      if (this.comment.trim()) {
-        this.comments.push(this.comment);
-        this.comment = ''; 
+    async submitComment() {
+      if (!this.comment.trim()) return;
+
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      try {
+        const res = await axios.post(
+          'http://localhost:3000/comments',
+          { text: this.comment.trim(), componentId: this.componentId },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        this.comments.push(res.data.comment);
+        this.comment = '';
+      } catch (err) {
+        console.error('Failed to submit comment:', err);
+      }
+    },
+
+    async fetchComments() {
+      try {
+        const response = await axios.get(`http://localhost:3000/comments?componentId=${this.componentId}`);
+        this.comments = response.data.filter(c => c.componentId === this.componentId);
+      } catch (err) {
+        console.error("Failed to fetch comments:", err);
+      }
+    },
+
+    isOwnComment(comment) {
+      const user = JSON.parse(localStorage.getItem('user'));
+      return user && (user.name === comment.author || user.email === comment.author);
+    },
+
+    startEdit(index, text) {
+      this.editIndex = index;
+      this.editText = text;
+    },
+
+    cancelEdit() {
+      this.editIndex = null;
+      this.editText = '';
+    },
+
+    async updateComment(_id) {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      try {
+        const res = await axios.put(
+          `http://localhost:3000/comments/${_id}`,
+          { text: this.editText },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        if (res.data?.comment?._id) {
+          await this.fetchComments();
+          this.cancelEdit();
+        }
+      } catch (err) {
+        console.error("Failed to update comment:", err);
+      }
+    },
+
+    async deleteComment(id) {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      try {
+        await axios.delete(`http://localhost:3000/comments/${id}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        this.comments = this.comments.filter(c => c._id !== id);
+      } catch (err) {
+        console.error("Failed to delete comment:", err);
       }
     }
+  },
+
+  mounted() {
+    this.fetchComments();
   }
 };
 </script>
@@ -149,10 +231,27 @@ export default {
   padding: 1rem;
   font-size: 1rem;
   border: 1px solid #ddd;
-  resize: none; 
+  resize: none;
   font-family: 'Century Gothic', sans-serif;
   color: #5F5F5F;
   box-sizing: border-box;
+  margin-bottom: 0.5rem;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-family: 'Century Gothic', sans-serif;
+  border: 1px solid #ddd;
+  color: #5F5F5F;
+  margin-bottom: 0.3rem;
+  box-sizing: border-box;
+}
+
+.comment-box:focus,
+.edit-input:focus {
+  outline: none;
 }
 
 .comment-btn {
@@ -162,12 +261,37 @@ export default {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   font-family: 'Montel', sans-serif;
 }
 
 .comment-btn:hover {
-  background-color: #EDD9B7;
+  background-color: #d5be9d;
+}
+
+.delete-entry-button {
+  font-family: 'ChunkyRetro', sans-serif;
+  font-size: 25px;
+  color: #5F5F5F;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 80%;
+  padding: 0 0.25rem;
+}
+
+.action-buttons {
+  display: inline-flex;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  margin-top: 0.35rem;
+}
+
+.edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.35rem;
+  margin-left: 0.5rem;
 }
 
 .comments-list {
@@ -184,13 +308,9 @@ export default {
 
 .training-talk {
   font-family: 'Montel', sans-serif;
-  font-weight: 600; 
+  font-weight: 600;
   color: #5F5F5F;
   font-size: 2rem;
-}
-
-.comment-box:focus {
-  outline: none; 
 }
 
 .video-container {

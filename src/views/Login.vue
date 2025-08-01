@@ -22,7 +22,8 @@
             v-model="password" 
             class="input-field" 
             required />
-          <div class="forgot-password">forgot password?</div>
+<router-link to="/forgot-password" class="forgot-password">forgot password?</router-link>
+
         </div>
         <button type="submit" class="submit-btn">Login</button>
       </form>
@@ -31,18 +32,38 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Login',
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
     };
   },
   methods: {
-    submitForm() {
-      console.log('Email:', this.email);
-      console.log('Password:', this.password);
+    async submitForm() {
+      try {
+        const response = await axios.post('http://localhost:3000/login', {
+          email: this.email,
+          password: this.password
+        });
+
+        const { token } = response.data.user;
+        localStorage.setItem('token', token);
+
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+
+        this.$router.push('/menu'); 
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          alert('Invalid email or password.');
+        } else {
+          alert('Login failed. Please try again.');
+        }
+        console.error('Login error:', error);
+      }
     }
   }
 };

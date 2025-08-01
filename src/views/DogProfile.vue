@@ -3,6 +3,7 @@
     <div class="profile-title">dog profile</div>
     
     <div class="image-container">
+      <div class="image-frame"></div>
       <img :src="userImage" alt="user dog" class="border-image" />
     </div>
     
@@ -19,10 +20,8 @@
         <span class="label">name</span>
         <input type="text" v-model="userData.name" class="value editable" />
       </div>
-      <div class="profile-item">
-        <span class="label">gender</span>
-        <span class="value">{{ userData.gender }}</span>
-      </div>
+
+
       <div class="profile-item">
         <span class="label">birthday</span>
         <input 
@@ -33,13 +32,18 @@
           @input="validateDateFormat"
         />
       </div>
+
       <div class="profile-item">
         <span class="label">coat pattern</span>
         <input type="text" v-model="userData.colorPattern" class="value editable" />
       </div>
+
       <div class="profile-item">
         <span class="label">email</span>
-        <span class="value">{{ userData.email }}</span>
+        <div style="display: flex; flex-direction: column; align-items: flex-end;">
+          <span class="value">{{ userData.email }}</span>
+          <span class="change-password" @click="handleChangePassword">change password</span>
+        </div>
       </div>
     </div>
   </div>
@@ -50,18 +54,18 @@ export default {
   name: "DogProfile",
   data() {
     return {
-      userImage: require('@/assets/slike/tomi.jpg'),
+      userImage: require('@/assets/slike/sitstay.jpg'),
       userData: {
-        name: "Tomi",
-        gender: "Male",
-        birthday: "20.06.2024",
-        colorPattern: "Three Color",
-        email: "tomi@gmail.com",
+        name: '',
+        birthday: '',
+        colorPattern: '',
+        email: '',
       },
     };
   },
   methods: {
     formatDate(dateString) {
+      if (!dateString) return '';
       const date = new Date(dateString);
       const day = String(date.getDate()).padStart(2, '0');
       const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -81,8 +85,44 @@ export default {
         reader.readAsDataURL(file);
       }
     },
+    validateDateFormat() {
+      
+    },
+    handleChangePassword() {
+      this.$router.push('/reset-password'); 
+    }
   },
+  mounted() {
+  const token = localStorage.getItem('token');
+  if (!token) return this.$router.push('/login');
+
+  fetch('http://localhost:3000/profile', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      this.userData = {
+        name: data.name || '',
+        birthday: this.formatDate(data.birthday),
+        colorPattern: data.colorPattern || '',
+        email: data.email || '',
+      };
+
+
+      if (data.profilePicture) {
+        this.userImage = `http://localhost:3000${data.profilePicture}`;
+      }
+    })
+    .catch(err => {
+      console.error('Failed to fetch profile:', err);
+      this.$router.push('/login');
+    });
+}
+
 };
+
 </script>
 
 <style scoped>
@@ -113,42 +153,56 @@ export default {
   position: fixed;
   right: 190px;
   top: 24%;
-  width: 250px; 
-  height: 250px; 
-  overflow: hidden; 
-  z-index: 1;
+  width: 250px;
+  height: 250px;
+  z-index: 2;
+}
+
+.image-frame {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 270px;
+  height: 270px;
+  background-color: #fffef9;
+  border-radius: 0px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  z-index: 0;
 }
 
 .border-image {
-  width: 100%; 
-  height: 100%; 
-  object-fit: cover; 
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0px;
+  z-index: 1;
 }
 
 .dogtag-image {
   position: absolute;
-  top: -10%; 
+  top: -10%;
   left: 50%;
   transform: translateX(-50%) rotate(-15deg);
-  width: 1200px; 
+  width: 1200px;
   height: auto;
-  z-index: 0; 
+  z-index: 0;
   opacity: 0.2;
 }
 
 .user-data {
   margin-top: 44vh;
   padding: 20px;
-  background-color: transparent; 
+  background-color: transparent;
   width: 50%;
   max-width: 370px;
   margin-left: 40%;
   margin-right: auto;
-  z-index: 3; 
+  z-index: 3;
 }
 
 .profile-item {
-  margin-bottom: 2px; 
+  margin-bottom: 2px;
   display: flex;
   justify-content: space-between;
   transform: rotate(-10deg);
@@ -169,15 +223,15 @@ export default {
 }
 
 .image-actions {
-  position: fixed; 
-  right: 190px; 
-  top: 51.5%; 
+  position: fixed;
+  right: 190px;
+  top: 52.25%;
   z-index: 3;
   cursor: pointer;
   color: #5F5F5F;
   font-family: 'ChunkyRetro', sans-serif;
   font-size: 20px;
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
 .editable {
@@ -190,5 +244,24 @@ export default {
   text-align: right;
   outline: none;
 }
-</style>
 
+.select {
+  border: none;
+  background: transparent;
+  color: #5F5F5F;
+  font-family: 'Century Gothic', sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: right;
+  appearance: none;
+  outline: none;
+}
+
+.change-password {
+  color: #5F5F5F;
+  font-family: 'ChunkyRetro', sans-serif;
+  font-size: 25px;
+  cursor: pointer;
+  margin-top: 25px;
+}
+</style>

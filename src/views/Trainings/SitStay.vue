@@ -5,49 +5,30 @@
       <div class="content">
         <h2>Teaching Your Dog to Sit</h2>
         <ol>
-          <li>
-            <strong>Lure Your Dog into a Sitting Position:</strong> Hold a treat above your dog’s head. As you lift the treat, the dog’s rear will naturally move down. Once you see the muscles in their hind legs shifting into a sit, click a clicker or use a marker word like <strong>yes</strong>.
-          </li>
-          <li>
-            <strong>Encourage Staying in a Sitting Position:</strong> Use quick treat delivery to reward the dog for remaining seated. As the dog improves, gradually increase the time between marking the behavior and delivering the treat. If the dog stands, lure them back into the sitting position, wait, and reward.
-          </li>
-          <li>
-            <strong>Train a Release Command:</strong> When your dog can sit for 5–10 seconds, introduce a release command like <strong>free</strong> or <strong>release</strong>. Say the command, and if the dog doesn’t stand, encourage them to do so by clapping or gesturing. Reward them once they stand.
-          </li>
-          <li>
-            <strong>Remove the Lure and Add a Hand Signal:</strong> Pretend to hold a treat, lure the dog into a sitting position, then reward from another hand or treat pouch. Gradually turn the luring motion into a hand signal by reducing the proximity of your hand to the dog’s face.
-          </li>
-          
-          <div class="video-container">
-            <iframe 
-              width="560" 
-              height="315" 
-              src="https://www.youtube.com/embed/ksBLKi6lj1s" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-            </iframe>
-          </div>
-
+          <li><strong>Lure Your Dog into a Sitting Position:</strong> Hold a treat above your dog’s head. As you lift the treat, the dog’s rear will naturally move down. Once you see the muscles in their hind legs shifting into a sit, click a clicker or use a marker word like <strong>yes</strong>.</li>
+          <li><strong>Encourage Staying in a Sitting Position:</strong> Use quick treat delivery to reward the dog for remaining seated. Gradually increase the time before delivering the treat. If the dog stands, lure them back, wait, and reward.</li>
+          <li><strong>Train a Release Command:</strong> When your dog can sit for 5–10 seconds, introduce a release command like <strong>free</strong> or <strong>release</strong>. Encourage them to stand, then reward.</li>
+          <li><strong>Remove the Lure and Add a Hand Signal:</strong> Pretend to hold a treat, lure the dog into a sit, and reward from another hand. Gradually transition to a hand signal only.</li>
         </ol>
+
+        <div class="video-container">
+          <iframe 
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/ksBLKi6lj1s" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
 
         <h2>Teaching Your Dog to Stay</h2>
         <ol>
-          <li>
-            <strong>Start with Basic Stays:</strong> With your dog sitting, give the <strong>stay</strong> command. Take a single step backward, then return and reward the dog for staying.
-          </li>
-          <li>
-            <strong>Increase Distance Gradually:</strong> Repeat step one while slowly increasing the number of steps away. Always return to the dog and reward.
-          </li>
-          <li>
-            <strong>Train the Out-of-Sight Stay:</strong> Once your dog can stay with you across the room, give the <strong>stay</strong> command, step out of sight, and return quickly. Gradually increase the time spent out of sight before rewarding.
-          </li>
-          <li>
-            <strong>Add Distractions:</strong> Introduce simple distractions like touching your treat pouch, gradually progressing to more complex ones like tossing a frisbee. Reward the dog for staying seated.
-          </li>
-          <li>
-            <strong>Perfect the Release Command:</strong> Teach your dog that they can only move when given the release command. Use distractions to test their focus, and reward them only when they wait for your command.
-          </li>
+          <li><strong>Start with Basic Stays:</strong> With your dog sitting, give the <strong>stay</strong> command. Take a step back, return, and reward.</li>
+          <li><strong>Increase Distance Gradually:</strong> Repeat while increasing steps. Always return to reward.</li>
+          <li><strong>Train the Out-of-Sight Stay:</strong> Once your dog stays across the room, step out of sight briefly, then return and reward.</li>
+          <li><strong>Add Distractions:</strong> Introduce distractions like touching a pouch or tossing a toy. Reward the dog for staying.</li>
+          <li><strong>Perfect the Release Command:</strong> Ensure the dog moves only when released. Test with distractions and reward correct response.</li>
         </ol>
       </div>
     </div>
@@ -57,9 +38,29 @@
         <h2 class="training-talk">Training Talk</h2>
         <textarea v-model="comment" placeholder="Write your comment here..." rows="4" class="comment-box"></textarea>
         <button @click="submitComment" class="comment-btn">Submit</button>
+
         <div v-if="comments.length > 0" class="comments-list">
           <ul>
-            <li v-for="(comment, index) in comments" :key="index">{{ comment }}</li>
+            <li v-for="(comment, index) in comments" :key="comment._id">
+              <div v-if="editIndex === index">
+                <input 
+                  v-model="editText" 
+                  class="edit-input" 
+                  placeholder="Edit your comment..."
+                />
+                <div class="edit-actions">
+                  <button class="delete-entry-button" @click="updateComment(comment._id)">save</button>
+                  <button class="delete-entry-button" @click="cancelEdit">cancel</button>
+                </div>
+              </div>
+              <div v-else>
+                <strong>{{ comment.author }}:</strong> {{ comment.text }}
+                <div v-if="isOwnComment(comment)" class="action-buttons">
+                  <button class="delete-entry-button" @click="startEdit(index, comment.text)">edit</button>
+                  <button class="delete-entry-button" @click="deleteComment(comment._id)">delete</button>
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
@@ -68,21 +69,101 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: "SitStay",
   data() {
     return {
       comment: '',
-      comments: []
+      comments: [],
+      componentId: 'SitStay',
+      editIndex: null,
+      editText: ''
     };
   },
   methods: {
-    submitComment() {
-      if (this.comment.trim()) {
-        this.comments.push(this.comment);
-        this.comment = ''; 
+    async submitComment() {
+      if (!this.comment.trim()) return;
+
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      try {
+        const res = await axios.post(
+          'http://localhost:3000/comments',
+          { text: this.comment.trim(), componentId: this.componentId },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        this.comments.push(res.data.comment);
+        this.comment = '';
+      } catch (err) {
+        console.error('Failed to submit comment:', err);
+      }
+    },
+
+    async fetchComments() {
+      try {
+        const response = await axios.get(`http://localhost:3000/comments?componentId=${this.componentId}`);
+        this.comments = response.data.filter(c => c.componentId === this.componentId);
+      } catch (err) {
+        console.error("Failed to fetch comments:", err);
+      }
+    },
+
+    isOwnComment(comment) {
+      const user = JSON.parse(localStorage.getItem('user'));
+      return user && (user.name === comment.author || user.email === comment.author);
+    },
+
+    startEdit(index, text) {
+      this.editIndex = index;
+      this.editText = text;
+    },
+
+    cancelEdit() {
+      this.editIndex = null;
+      this.editText = '';
+    },
+
+    async updateComment(_id) {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      try {
+        const res = await axios.put(
+          `http://localhost:3000/comments/${_id}`,
+          { text: this.editText },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        if (res.data?.comment?._id) {
+          await this.fetchComments();
+          this.cancelEdit();
+        }
+      } catch (err) {
+        console.error("Failed to update comment:", err);
+      }
+    },
+
+    async deleteComment(id) {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      try {
+        await axios.delete(`http://localhost:3000/comments/${id}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        this.comments = this.comments.filter(c => c._id !== id);
+      } catch (err) {
+        console.error("Failed to delete comment:", err);
       }
     }
+  },
+
+  mounted() {
+    this.fetchComments();
   }
 };
 </script>
@@ -150,10 +231,27 @@ export default {
   padding: 1rem;
   font-size: 1rem;
   border: 1px solid #ddd;
-  resize: none; 
+  resize: none;
   font-family: 'Century Gothic', sans-serif;
   color: #5F5F5F;
   box-sizing: border-box;
+  margin-bottom: 0.5rem;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-family: 'Century Gothic', sans-serif;
+  border: 1px solid #ddd;
+  color: #5F5F5F;
+  margin-bottom: 0.3rem;
+  box-sizing: border-box;
+}
+
+.comment-box:focus,
+.edit-input:focus {
+  outline: none;
 }
 
 .comment-btn {
@@ -163,12 +261,37 @@ export default {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   font-family: 'Montel', sans-serif;
 }
 
 .comment-btn:hover {
-  background-color: #EDD9B7;
+  background-color: #d5be9d;
+}
+
+.delete-entry-button {
+  font-family: 'ChunkyRetro', sans-serif;
+  font-size: 25px;
+  color: #5F5F5F;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 80%;
+  padding: 0 0.25rem;
+}
+
+.action-buttons {
+  display: inline-flex;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  margin-top: 0.35rem;
+}
+
+.edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.35rem;
+  margin-left: 0.5rem;
 }
 
 .comments-list {
@@ -185,14 +308,10 @@ export default {
 
 .training-talk {
   font-family: 'Montel', sans-serif;
-  font-weight: 600; 
+  font-weight: 600;
   color: #5F5F5F;
   font-size: 2rem;
   margin-bottom: 0.6rem;
-}
-
-.comment-box:focus {
-  outline: none; 
 }
 
 .video-container {

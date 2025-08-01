@@ -7,10 +7,13 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "axios": "^1.10.0",
+    "chart.js": "^4.5.0",
     "core-js": "^3.8.3",
     "cropperjs": "^1.6.2",
     "vue": "^3.2.13",
     "vue-cal": "^4.10.2",
+    "vue-chartjs": "^5.3.2",
     "vue-cropperjs": "^5.0.0",
     "vue-router": "^4.0.3",
     "vue-val": "^1.2.3"
