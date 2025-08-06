@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <nav>
-      <div class="logo-container">
+      <router-link to="/" class="logo-container">
         <h1 class="logo-text">
           <span class="barkwise">Barkwise</span><br />
           <span class="collie">Collie</span>
         </h1>
         <img src="@/assets/slike/logo.png" alt="Logo" class="logo" />
-      </div>
+      </router-link>
 
       <div class="nav-links">
         <router-link
@@ -79,6 +79,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  text-decoration: none;
 }
 
 .logo-text {
@@ -87,16 +88,16 @@ nav {
   margin: 0;
   text-align: right;
   line-height: 0.6;
+}
 
-  .barkwise {
-    color: #D7BDF2;
-    margin: 0;
-  }
+.barkwise {
+  color: #D7BDF2;
+  margin: 0;
+}
 
-  .collie {
-    color: #F0C3CE;
-    margin-top: -10px;
-  }
+.collie {
+  color: #F0C3CE;
+  margin-top: -10px;
 }
 
 .logo {

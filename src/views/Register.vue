@@ -33,16 +33,6 @@
         </div>
 
         <div class="input-item">
-          <label for="gender" class="input-label">Gender</label>
-          <div class="input-line">
-            <select id="gender" v-model="gender" class="input-select">
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="input-item">
           <label for="birthday" class="input-label">Birthday</label>
           <div class="input-line">
             <input
@@ -137,7 +127,6 @@ export default {
   data() {
     return {
       name: '',
-      gender: '',
       birthday: '',
       colorPattern: '',
       email: '',
@@ -166,47 +155,40 @@ export default {
       }
     },
     async registerUser() {
-  try {
-    const formData = new FormData();
-    if (this.profilePictureFile) {
-      formData.append('profilePicture', this.profilePictureFile);
-      console.log("📦 Profile picture file:", this.profilePictureFile?.name);
+      try {
+        const formData = new FormData();
+        if (this.profilePictureFile) {
+          formData.append('profilePicture', this.profilePictureFile);
+          console.log("📦 Profile picture file:", this.profilePictureFile?.name);
+        }
+        formData.append('name', this.name);
+        formData.append('birthday', this.birthday);
+        formData.append('colorPattern', this.colorPattern);
+        formData.append('email', this.email);
+        formData.append('password', this.password);
+        formData.append('confirmPassword', this.confirmPassword);
 
-      
+        const response = await axios.post('http://localhost:3000/register', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+
+        if (response.status === 201) {
+          this.$router.push('/login'); 
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 409) {
+          alert('Email is already registered.');
+        } else {
+          alert('Registration failed. Please try again.');
+        }
+        console.error('Registration failed:', error);
+      }
     }
-    formData.append('name', this.name);
-    formData.append('gender', this.gender);
-    formData.append('birthday', this.birthday);
-    formData.append('colorPattern', this.colorPattern);
-    formData.append('email', this.email);
-    formData.append('password', this.password);
-    formData.append('confirmPassword', this.confirmPassword);
-
-    const response = await axios.post('http://localhost:3000/register', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-
-    if (response.status === 201) {
-      this.$router.push('/login'); 
-    }
-  } catch (error) {
-    if (error.response && error.response.status === 409) {
-      alert('Email is already registered.');
-    } else {
-      alert('Registration failed. Please try again.');
-    }
-    console.error('Registration failed:', error);
-  }
-}
-
-
   },
 };
 </script>
-
-
 
 <style scoped>
 .register {
