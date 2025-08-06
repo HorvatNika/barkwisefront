@@ -1,23 +1,46 @@
 <template>
-  <nav>
-    <div class="logo-container">
-      <h1 class="logo-text">
-        <span class="barkwise">Barkwise</span><br />
-        <span class="collie">Collie</span>
-      </h1>
-      <img src="@/assets/slike/logo.png" alt="Logo" class="logo" />
-    </div>
-    <div class="nav-links">
-      <router-link to="/menu" class="nav-button menu-button">Menu</router-link>
-      <button class="nav-button logout-button" @click="logout">Logout</button>
-    </div>
-  </nav>
-  <router-view />
+  <div id="app">
+    <nav>
+      <div class="logo-container">
+        <h1 class="logo-text">
+          <span class="barkwise">Barkwise</span><br />
+          <span class="collie">Collie</span>
+        </h1>
+        <img src="@/assets/slike/logo.png" alt="Logo" class="logo" />
+      </div>
+
+      <div class="nav-links">
+        <router-link
+          v-if="!hideMenuAndLogout"
+          to="/menu"
+          class="nav-button menu-button"
+        >
+          Menu
+        </router-link>
+
+        <button
+          v-if="!hideMenuAndLogout"
+          class="nav-button logout-button"
+          @click="logout"
+        >
+          Logout
+        </button>
+      </div>
+    </nav>
+
+    <router-view />
+  </div>
 </template>
 
 <script>
 export default {
   name: 'App',
+  computed: {
+    hideMenuAndLogout() {
+      const hiddenRoutes = ['/', '/login', '/register', '/forgot-password', '/reset-password'];
+      return hiddenRoutes.includes(this.$route.path);
+    }
+  },
   methods: {
     logout() {
       localStorage.removeItem('token');
