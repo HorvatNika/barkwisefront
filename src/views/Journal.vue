@@ -5,7 +5,8 @@
       Record all the important moments and memories from your dog's life. Create a personalized journal to document special events and milestones that you and your furry friend will cherish forever.
     </div>
     <div class="journal-entries">
-      <div v-for="(entry, index) in journalEntries" :key="index" class="journal-entry">
+<!-- MODIFIED (use stable id instead of index for the key) -->
+<div v-for="(entry, index) in journalEntries" :key="entry.id" class="journal-entry">
         <h3 
           class="card-title" 
           contenteditable="true"
@@ -63,6 +64,16 @@
 <script>
 import axios from 'axios';
 
+// NEW (right after `import axios from 'axios';`)
+const api = axios.create({ baseURL: 'http://localhost:3000' });
+
+// attach JWT automatically
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token'); // wherever you store it
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
+
 export default {
   name: "Journal",
   data() {
@@ -76,46 +87,71 @@ export default {
     this.fetchJournalEntries();
   },
   methods: {
-    async fetchJournalEntries() {
-      try {
-        const response = await axios.get('https://barkwisebackend.onrender.com/journal');
-        this.journalEntries = response.data.map(entry => ({
-          id: entry._id,
-          title: entry.title,
-          description: entry.description || "",
-          image: entry.image || "",
-          timestamp: entry.timestamp
-        }));
-      } catch (err) {
-        console.error("Failed to fetch journal entries:", err);
-      }
-    },
+   // MODIFIED methods (swap axios -> api and keep your fixed delete URL)
+async fetchJournalEntries() {
+  try {
+    const response = await api.get('/journal');
+    this.journalEntries = response.data.map(entry => ({
+      id: entry._id,
+      title: entry.title,
+      description: entry.description || "",
+      image: entry.image || "",
+      timestamp: entry.timestamp
+    }));
+  } catch (err) {
+    console.error("Failed to fetch journal entries:", err);
+  }
+},
 
-    async createJournalEntry() {
-      if (!this.newEntryTitle.trim()) return;
+async createJournalEntry() {
+  if (!this.newEntryTitle.trim()) return;
 
-      try {
-        const response = await axios.post('https://barkwisebackend.onrender.com/journal', {
-          title: this.newEntryTitle.trim(),
-          description: "",
-          image: ""
-        });
+  try {
+    const response = await api.post('/journal', {
+      title: this.newEntryTitle.trim(),
+      description: "",
+      image: ""
+    });
 
-        const newEntry = {
-          id: response.data.entry.id,
-          title: response.data.entry.title,
-          description: response.data.entry.description,
-          image: response.data.entry.image,
-          timestamp: response.data.entry.timestamp
-        };
+    const newEntry = {
+      id: response.data.entry.id,
+      title: response.data.entry.title,
+      description: response.data.entry.description,
+      image: response.data.entry.image,
+      timestamp: response.data.entry.timestamp
+    };
 
-        this.journalEntries.push(newEntry);
-        this.newEntryTitle = "";
-        this.showModal = false;
-      } catch (err) {
-        console.error("Failed to create journal entry:", err);
-      }
-    },
+    this.journalEntries.push(newEntry);
+    this.newEntryTitle = "";
+    this.showModal = false;
+  } catch (err) {
+    console.error("Failed to create journal entry:", err);
+  }
+},
+
+async deleteEntry(index) {
+  try {
+    const entry = this.journalEntries[index];
+    await api.delete(`/journal/${entry.id}`);
+    this.journalEntries.splice(index, 1);
+  } catch (err) {
+    console.error("Failed to delete journal entry:", err);
+  }
+},
+
+async saveEntryToBackend(index) {
+  try {
+    const entry = this.journalEntries[index];
+    await api.put(`/journal/${entry.id}`, {
+      title: entry.title,
+      description: entry.description,
+      image: entry.image
+    });
+  } catch (err) {
+    console.error("Failed to update journal entry:", err);
+  }
+},
+
 
     async handleImageChange(event, index) {
       const file = event.target.files[0];
@@ -138,28 +174,6 @@ export default {
       await this.saveEntryToBackend(index);
     },
 
-    async deleteEntry(index) {
-      try {
-        const entry = this.journalEntries[index];
-        await axios.delete(`https://barkwisebackend.onrender.com/journal/${entry.id}`);
-        this.journalEntries.splice(index, 1);
-      } catch (err) {
-        console.error("Failed to delete journal entry:", err);
-      }
-    },
-
-    async saveEntryToBackend(index) {
-      try {
-        const entry = this.journalEntries[index];
-        await axios.put(`https://barkwisebackend.onrender.com/journal/${entry.id}`, {
-          title: entry.title,
-          description: entry.description,
-          image: entry.image
-        });
-      } catch (err) {
-        console.error("Failed to update journal entry:", err);
-      }
-    }
   },
   watch: {
     showModal(val) {
