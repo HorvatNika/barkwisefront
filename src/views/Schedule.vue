@@ -80,6 +80,18 @@ import axios from 'axios';
 import VueCal from 'vue-cal';
 import 'vue-cal/dist/vuecal.css';
 
+// NEW (right after imports)
+const api = axios.create({ baseURL: 'https://barkwisebackend.onrender.com' });
+
+
+
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token'); // adjust if you store it elsewhere
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
+
+
 export default {
   name: "Schedule",
   components: { VueCal },
@@ -105,79 +117,84 @@ export default {
     this.fetchEvents();
   },
   methods: {
-    async fetchEvents() {
-      try {
-        const response = await axios.get('https://barkwisebackend.onrender.com/schedule');
-        this.events = response.data.map(event => ({
-          id: event._id,
-          title: event.title,
-          content: event.content,
-          start: new Date(event.start),
-          end: new Date(event.end)
-        }));
-      } catch (err) {
-        console.error("Failed to fetch events:", err);
-      }
-    },
+    // MODIFIED
+async fetchEvents() {
+  try {
+    const response = await api.get('/schedule');
+    this.events = response.data.map(event => ({
+      id: event._id,
+      title: event.title,
+      content: event.content,
+      start: new Date(event.start),
+      end: new Date(event.end)
+    }));
+  } catch (err) {
+    console.error("Failed to fetch events:", err);
+  }
+},
 
-    async addEvent() {
-      if (!this.newEventTitle.trim()) return;
 
-      const newEvent = {
-        title: this.newEventTitle.trim(),
-        content: this.newEventDescription.trim(),
-        start: this.selectedDate,
-        end: this.selectedDate
-      };
+    // MODIFIED
+async addEvent() {
+  if (!this.newEventTitle.trim()) return;
 
-      try {
-        const response = await axios.post('https://barkwisebackend.onrender.com/schedule', newEvent);
-        const created = response.data.event;
-        this.events.push({
-          id: created.id,
-          title: created.title,
-          content: created.content,
-          start: new Date(created.start),
-          end: new Date(created.end)
-        });
-        this.closeModal();
-      } catch (err) {
-        console.error("Failed to add event:", err);
-      }
-    },
+  const newEvent = {
+    title: this.newEventTitle.trim(),
+    content: this.newEventDescription.trim(),
+    start: new Date(this.selectedDate).toISOString(),
+    end: new Date(this.selectedDate).toISOString()
+  };
 
-    async updateEvent(event) {
-      try {
-        const updatedEvent = {
-          title: event.title,
-          content: event.content,
-          start: event.start,
-          end: event.end
-        };
+  try {
+    const response = await api.post('/schedule', newEvent);
+    const created = response.data.event;
+    this.events.push({
+      id: created.id,
+      title: created.title,
+      content: created.content,
+      start: new Date(created.start),
+      end: new Date(created.end)
+    });
+    this.closeModal();
+  } catch (err) {
+    console.error("Failed to add event:", err);
+  }
+},
 
-        await axios.put(`https://barkwisebackend.onrender.com/schedule/${event.id}`, updatedEvent);
-        const index = this.events.findIndex(e => e.id === event.id);
-        if (index !== -1) {
-          this.events.splice(index, 1, {
-            ...updatedEvent,
-            id: event.id
-          });
-        }
-        this.closeModal();
-      } catch (err) {
-        console.error("Failed to update event:", err);
-      }
-    },
 
-    async deleteEvent(event) {
-      try {
-        await axios.delete(`https://barkwisebackend.onrender.com/schedule/${event.id}`);
-        this.events = this.events.filter(e => e.id !== event.id);
-        this.closeModal();
-      } catch (err) {
-        console.error("Failed to delete event:", err);
-      }
-    },
+    // MODIFIED
+async updateEvent(event) {
+  try {
+    const updatedEvent = {
+      title: event.title,
+      content: event.content,
+      start: new Date(event.start).toISOString(),
+      end: new Date(event.end).toISOString()
+    };
+
+    await api.put(`/schedule/${event.id}`, updatedEvent);
+    const index = this.events.findIndex(e => e.id === event.id);
+    if (index !== -1) {
+      this.events.splice(index, 1, { ...event });
+    }
+    this.closeModal();
+  } catch (err) {
+    console.error("Failed to update event:", err);
+  }
+},
+
+
+    // MODIFIED
+async deleteEvent(event) {
+  try {
+    await api.delete(`/schedule/${event.id}`);
+    this.events = this.events.filter(e => e.id !== event.id);
+    this.closeModal();
+  } catch (err) {
+    console.error("Failed to delete event:", err);
+  }
+},
+
 
     closeModal() {
       this.showModal = false;
