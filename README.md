@@ -1,6 +1,6 @@
-# 🐾 BarkWise
+# 🐾 Barkwise Collie
 
-**BarkWise** je web aplikacija namijenjena vlasnicima **border collija**.  
+**Barkwise Collie** je web aplikacija namijenjena vlasnicima pasmine **Border Collie**.  
 Cilj aplikacije je olakšati brigu o ljubimcu kroz edukativne članke, personalizirane treninge i alate za praćenje napretka i zdravlja psa.  
 
 👉 [Isprobajte aplikaciju](https://barkwise.netlify.app/)
@@ -10,7 +10,7 @@ Cilj aplikacije je olakšati brigu o ljubimcu kroz edukativne članke, personali
 ## ✨ Glavne značajke
 
 ### 🏠 Home  
-- Članci o brizi za border collie pse  
+- Članci o brizi za Border Collie pse  
 - Teme poput prehrane, zdravlja i svakodnevne njege  
 
 ### 🎓 Training  
@@ -25,8 +25,8 @@ Cilj aplikacije je olakšati brigu o ljubimcu kroz edukativne članke, personali
 
 ---
 
-## 📌 Zašto BarkWise?  
-BarkWise pomaže vlasnicima border collija:  
+## 📌 Zašto Barkwise Collie?  
+Barkwise Collie pomaže vlasnicima pasmine Border Collie:  
 - učiti o pravoj brizi za pse  
 - razviti strukturirane treninge  
 - pratiti napredak i zdravlje ljubimca  
@@ -35,4 +35,4 @@ BarkWise pomaže vlasnicima border collija:
 ---
 
 ## 🐶 Autor  
-Razvijeno s ljubavlju za border collie pse.  
+Razvijeno s ljubavlju za Border Collie pse.  
