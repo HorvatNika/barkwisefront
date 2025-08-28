@@ -169,7 +169,7 @@ export default {
         formData.append('confirmPassword', this.confirmPassword);
 
       
-        const response = await axios.post('http://localhost:3000/register', formData, {
+        const response = await axios.post('https://barkwisebackend.onrender.com/register', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -363,3 +363,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: #FFFEF9;
 }
 </style>
+
