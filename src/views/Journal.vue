@@ -5,7 +5,6 @@
       Record all the important moments and memories from your dog's life. Create a personalized journal to document special events and milestones that you and your furry friend will cherish forever.
     </div>
     <div class="journal-entries">
-<!-- MODIFIED (use stable id instead of index for the key) -->
 <div v-for="(entry, index) in journalEntries" :key="entry.id" class="journal-entry">
         <h3 
           class="card-title" 
@@ -64,12 +63,10 @@
 <script>
 import axios from 'axios';
 
-// NEW (right after `import axios from 'axios';`)
 const api = axios.create({ baseURL: 'https://barkwisebackend.onrender.com' });
 
-// attach JWT automatically
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token'); // wherever you store it
+  const token = localStorage.getItem('token'); 
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
@@ -87,7 +84,6 @@ export default {
     this.fetchJournalEntries();
   },
   methods: {
-   // MODIFIED methods (swap axios -> api and keep your fixed delete URL)
 async fetchJournalEntries() {
   try {
     const response = await api.get('/journal');
