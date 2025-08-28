@@ -159,7 +159,7 @@ export default {
         const formData = new FormData();
         if (this.profilePictureFile) {
           formData.append('profilePicture', this.profilePictureFile);
-          console.log("📦 Profile picture file:", this.profilePictureFile?.name);
+          console.log(" Profile picture file:", this.profilePictureFile?.name);
         }
         formData.append('name', this.name);
         formData.append('birthday', this.birthday);
@@ -169,7 +169,7 @@ export default {
         formData.append('confirmPassword', this.confirmPassword);
 
       
-        const response = await axios.post('https://barkwisebackend.onrender.com/register', formData, {
+        const response = await axios.post('http://localhost:3000/register', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
