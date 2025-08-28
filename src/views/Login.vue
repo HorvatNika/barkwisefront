@@ -45,7 +45,7 @@ export default {
   methods: {
     async submitForm() {
       try {
-        const response = await axios.post('http://localhost:3000/login', {
+        const response = await axios.post('https://barkwisebackend.onrender.com/login', {
           email: this.email,
           password: this.password
         });
