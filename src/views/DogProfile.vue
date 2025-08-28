@@ -10,7 +10,6 @@
     <div class="image-actions">
       <span @click="triggerFileInput">change image</span>
     </div>
-
     <input type="file" ref="fileInput" @change="onImageChange" accept="image/*" style="display:none" />
 
     <img src="@/assets/slike/dogtag.png" alt="dogtag" class="dogtag-image" />
@@ -21,7 +20,6 @@
         <input type="text" v-model="userData.name" class="value editable" />
       </div>
 
-
       <div class="profile-item">
         <span class="label">birthday</span>
         <input 
@@ -29,7 +27,7 @@
           v-model="userData.birthday" 
           class="value editable" 
           placeholder="dd.mm.gggg" 
-          @input="validateDateFormat"
+          @blur="validateDateFormat"
         />
       </div>
 
@@ -44,6 +42,10 @@
           <span class="value">{{ userData.email }}</span>
           <span class="change-password" @click="handleChangePassword">change password</span>
         </div>
+      </div>
+
+      <div class="save-actions">
+        <span class="save-changes" @click="saveProfile">save changes</span>
       </div>
     </div>
   </div>
@@ -61,12 +63,14 @@ export default {
         colorPattern: '',
         email: '',
       },
+      newProfilePicture: null, 
     };
   },
   methods: {
     formatDate(dateString) {
       if (!dateString) return '';
       const date = new Date(dateString);
+      if (isNaN(date)) return '';
       const day = String(date.getDate()).padStart(2, '0');
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const year = date.getFullYear();
@@ -78,6 +82,7 @@ export default {
     onImageChange(event) {
       const file = event.target.files[0];
       if (file && file.type.startsWith('image/')) {
+        this.newProfilePicture = file;
         const reader = new FileReader();
         reader.onload = (e) => {
           this.userImage = e.target.result;
@@ -86,43 +91,85 @@ export default {
       }
     },
     validateDateFormat() {
-      
+      const regex = /^\d{2}\.\d{2}\.\d{4}$/;
+      if (this.userData.birthday && !regex.test(this.userData.birthday)) {
+        alert("Date format must be dd.mm.gggg");
+        this.userData.birthday = "";
+      }
     },
     handleChangePassword() {
       this.$router.push('/reset-password'); 
+    },
+    async saveProfile() {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) return this.$router.push('/login');
+
+        const formData = new FormData();
+        formData.append("name", this.userData.name);
+        formData.append("birthday", this.userData.birthday);
+        formData.append("colorPattern", this.userData.colorPattern);
+        if (this.newProfilePicture) {
+          formData.append("profilePicture", this.newProfilePicture);
+        }
+
+        const res = await fetch("http://localhost:3000/profile", {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        });
+
+        const data = await res.json();
+
+        this.userData = {
+          name: data.user.name || '',
+          birthday: this.formatDate(data.user.birthday),
+          colorPattern: data.user.colorPattern || '',
+          email: data.user.email || this.userData.email,
+        };
+        
+        if (data.user.profilePicture) {
+          this.userImage = `http://localhost:3000${data.user.profilePicture}`;
+        }
+        
+        this.newProfilePicture = null;
+
+        alert("Profile updated!");
+      } catch (err) {
+        alert("OK");
+        console.error("Failed to update profile:", err);
+      }
     }
   },
   mounted() {
-  const token = localStorage.getItem('token');
-  if (!token) return this.$router.push('/login');
+    const token = localStorage.getItem('token');
+    if (!token) return this.$router.push('/login');
 
-  fetch('https://barkwisebackend.onrender.com/profile', {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  })
-    .then(res => res.json())
-    .then(data => {
-      this.userData = {
-        name: data.name || '',
-        birthday: this.formatDate(data.birthday),
-        colorPattern: data.colorPattern || '',
-        email: data.email || '',
-      };
-
-
-      if (data.profilePicture) {
-        this.userImage = `https://barkwisebackend.onrender.com${data.profilePicture}`;
+    fetch('http://localhost:3000/profile', {
+      headers: {
+        Authorization: `Bearer ${token}`,
       }
     })
-    .catch(err => {
-      console.error('Failed to fetch profile:', err);
-      this.$router.push('/login');
-    });
-}
-
+      .then(res => res.json())
+      .then(data => {
+        this.userData = {
+          name: data.name || '',
+          birthday: this.formatDate(data.birthday),
+          colorPattern: data.colorPattern || '',
+          email: data.email || '',
+        };
+        if (data.profilePicture) {
+          this.userImage = `http://localhost:3000${data.profilePicture}`;
+        }
+      })
+      .catch(err => {
+        console.error('Failed to fetch profile:', err);
+        this.$router.push('/login');
+      });
+  }
 };
-
 </script>
 
 <style scoped>
@@ -165,7 +212,6 @@ export default {
   width: 270px;
   height: 270px;
   background-color: #fffef9;
-  border-radius: 0px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   z-index: 0;
 }
@@ -175,7 +221,6 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 0px;
   z-index: 1;
 }
 
@@ -245,23 +290,27 @@ export default {
   outline: none;
 }
 
-.select {
-  border: none;
-  background: transparent;
-  color: #5F5F5F;
-  font-family: 'Century Gothic', sans-serif;
-  font-weight: bold;
-  font-size: 15px;
-  text-align: right;
-  appearance: none;
-  outline: none;
-}
-
 .change-password {
   color: #5F5F5F;
   font-family: 'ChunkyRetro', sans-serif;
   font-size: 25px;
   cursor: pointer;
   margin-top: 25px;
+}
+
+.save-actions {
+  margin-top: 30px;
+  text-align: center; 
+}
+
+.save-changes {
+  color: #5F5F5F;
+  font-family: 'ChunkyRetro', sans-serif;
+  font-size: 25px;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 5px;
+  transform: rotate(-10deg);
+  margin-left: 125px;
 }
 </style>
