@@ -113,7 +113,7 @@ export default {
           formData.append("profilePicture", this.newProfilePicture);
         }
 
-        const res = await fetch("https://barkwisebackend.onrender.com/forgot-password/profile", {
+        const res = await fetch("https://barkwisebackend.onrender.com/profile", {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -131,7 +131,7 @@ export default {
         };
         
         if (data.user.profilePicture) {
-          this.userImage = `https://barkwisebackend.onrender.com/forgot-password${data.user.profilePicture}`;
+          this.userImage = `https://barkwisebackend.onrender.com${data.user.profilePicture}`;
         }
         
         this.newProfilePicture = null;
@@ -147,7 +147,7 @@ export default {
     const token = localStorage.getItem('token');
     if (!token) return this.$router.push('/login');
 
-    fetch('https://barkwisebackend.onrender.com/forgot-password/profile', {
+    fetch('https://barkwisebackend.onrender.comprofile', {
       headers: {
         Authorization: `Bearer ${token}`,
       }
@@ -314,5 +314,6 @@ export default {
   margin-left: 125px;
 }
 </style>
+
 
 
