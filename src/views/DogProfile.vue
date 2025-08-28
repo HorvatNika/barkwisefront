@@ -161,7 +161,7 @@ export default {
           email: data.email || '',
         };
         if (data.profilePicture) {
-          this.userImage = `http://localhost:3000${data.profilePicture}`;
+          this.userImage = `https://barkwisebackend.onrender.com${data.profilePicture}`;
         }
       })
       .catch(err => {
@@ -314,4 +314,5 @@ export default {
   margin-left: 125px;
 }
 </style>
+
 
