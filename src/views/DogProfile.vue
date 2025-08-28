@@ -147,7 +147,7 @@ export default {
     const token = localStorage.getItem('token');
     if (!token) return this.$router.push('/login');
 
-    fetch('https://barkwisebackend.onrender.comprofile', {
+    fetch('https://barkwisebackend.onrender.com/profile', {
       headers: {
         Authorization: `Bearer ${token}`,
       }
@@ -314,6 +314,7 @@ export default {
   margin-left: 125px;
 }
 </style>
+
 
 
 
